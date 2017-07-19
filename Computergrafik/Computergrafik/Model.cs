@@ -6,13 +6,7 @@ using System.Threading.Tasks;
 
 namespace Computergrafik
 {
-    class locig
+    class Model
     {
-        static void Main(string[] args)
-        {
-
-            //geändert rwjgjlkjjkjkjk
-
-        }
     }
 }
