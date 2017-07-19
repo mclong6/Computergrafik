@@ -21,6 +21,11 @@ namespace Computergrafik
             StartScreen = new Box2D(-1.0f, -1.0f, 2.0f, 2.0f);
             StartButton = new Box2D(0.3f, 0.3f, 0.6f, 0.2f);
 
+            for(int index = 0; index<2; index++)
+            {
+                player[index] = new Box2D(-2f, -2f, 0.1f, 0.1f);
+            }
+
         }
 
         public Box2D StartScreen
