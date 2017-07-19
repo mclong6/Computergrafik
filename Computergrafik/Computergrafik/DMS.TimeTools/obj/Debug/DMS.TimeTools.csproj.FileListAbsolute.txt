@@ -1,0 +1,4 @@
+C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.TimeTools\bin\Debug\DMS.TimerTools.dll
+C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.TimeTools\bin\Debug\DMS.TimerTools.pdb
+C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.TimeTools\obj\Debug\DMS.TimerTools.dll
+C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.TimeTools\obj\Debug\DMS.TimerTools.pdb
