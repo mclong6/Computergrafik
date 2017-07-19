@@ -8,7 +8,7 @@ namespace Computergrafik
 {
     class Opponent
     {
-        private Vector2 ballV = new Vector2(1.0f, 0.5f);
+        private Vector2 opponentVector = new Vector2(1.0f, 0.5f);
 
         public Opponent() {
 
@@ -20,17 +20,17 @@ namespace Computergrafik
         public void updatePosition(Box2D opponent)
         {
             //move Opponent
-            opponent.X += 1.0f / 120.0f * ballV.X;
-            opponent.Y += 1.0f / 120.0f * ballV.Y;
+            opponent.X += 1.0f / 120.0f * opponentVector.X;
+            opponent.Y += 1.0f / 120.0f * opponentVector.Y;
             
             //reflect Opponent
             if (opponent.MaxY > 1.0f || opponent.Y < -1.0)
             {
-                ballV.Y = -ballV.Y;
+                opponentVector.Y = -opponentVector.Y;
             }
             if (opponent.MaxX > 1.0f || opponent.X < -1.0)
             {
-                ballV.X = -ballV.X;
+                opponentVector.X = -opponentVector.X;
             }
 
             /* 
