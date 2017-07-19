@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Computergrafik
 {
-    class Logic
+    class Program
     {
         static void Main(string[] args)
         {
 
             //geändert
-
+            //gege
+            //test
         }
     }
 }
