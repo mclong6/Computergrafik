@@ -4,7 +4,7 @@ using OpenTK.Input;
 using System;
 using System.Drawing;
 
-namespace Computergrafik
+/*namespace Computergrafik
 {
 
     class StartMenu
@@ -13,37 +13,32 @@ namespace Computergrafik
 
         int GameState;
 
-        
+        public event EventHandler OnKlick;
         const int StateMenu = 0;
         const int StateStart = 1;
 
         int joyStickUp = 0;
         int joyStickDown = 0;
 
-        Box2D startScreen;
-        Box2D startButton;
-        Box2D endButton;
-        Box2D selectButton;
 
 
-        public StartMenu(Model model) {
-
-            startScreen = model.StartScreen;
-            startButton = model.StartButton;
-            endButton = model.EndButton;
-            selectButton = model.SelectButton;
-
+        public StartMenu(Box2D rect) {
+            OnKlick.Target.Equals(rect);
             this.changeMenu();
            
 
     }
         private void changeMenu() {
 
-            /*GameLogic*/
+            Box2D startScreen;
+            Box2D startButton;
+            Box2D endButton;
+            Box2D selectButton*/
+            /*GameLogic*//*
             if (GameState == StateMenu)
             {
                 /*Bei drücken der Taste A*/
-                /*currentState.Buttons.LeftStick == ButtonState.Pressed*/
+                /*currentState.Buttons.LeftStick == ButtonState.Pressed*//*
                 if (Keyboard.GetState()[Key.A])
                 {
                     if (startButton.Inside(selectButton))
@@ -56,8 +51,8 @@ namespace Computergrafik
                         //Exit Game
                     }
                 }
-
-                /*Bei Hoch oder Runter*/
+                */
+                /*Bei Hoch oder Runter*//*
                 if (Keyboard.GetState()[Key.Up])
                 {
                     joyStickUp = 1;
@@ -65,8 +60,8 @@ namespace Computergrafik
 
                 if (joyStickUp == 1 & !(Keyboard.GetState()[Key.Up]))
                 {
-                    joyStickUp = 0;
-                    /*SelectBox nach oben setzen*/
+                    joyStickUp = 0;*/
+                    /*SelectBox nach oben setzen*//*
                     if (selectButton.MaxY < (startButton.MaxY))
                     {
                         selectButton.Y = selectButton.Y + 0.4f;
@@ -80,8 +75,8 @@ namespace Computergrafik
 
                 if (joyStickDown == 1 & !(Keyboard.GetState()[Key.Down]))
                 {
-                    joyStickDown = 0;
-                    /*SelectBox nach unten setzen*/
+                    joyStickDown = 0;*/
+                    /*SelectBox nach unten setzen*//*
                     if (selectButton.Y > (endButton.Y))
                     {
                         selectButton.Y = selectButton.Y - 0.4f;
@@ -93,9 +88,8 @@ namespace Computergrafik
 
             }
 
-
-            /*GameRender*/
-            /*Rendern im Menü*/
+*/
+            /*GameRender*//*
             if (GameState == StateMenu)
             {
                 this.DrawStartScreen(startScreen);
@@ -104,8 +98,7 @@ namespace Computergrafik
                 this.DrawSelectButton(selectButton);
 
             }
-            /*Rendern beim GameRun und GameStart*/
-            if(GameState == StateStart){
+            else {
 
 
             }
@@ -169,3 +162,4 @@ namespace Computergrafik
         }
     }
 }
+*/

@@ -27,7 +27,7 @@ namespace Computergrafik
             gameWindow.UpdateFrame  += GameWindow_UpdateFrame;
             gameWindow.RenderFrame  += GameWindow_RenderFrame;
             gameWindow.RenderFrame  += (sender, e) => { gameWindow.SwapBuffers(); };
-            GL.ClearColor(Color.White);
+            GL.ClearColor(Color.Black);
 
         }
 
@@ -40,8 +40,16 @@ namespace Computergrafik
 
         public void GameWindow_RenderFrame(object sender, FrameEventArgs e)
         {
+            GL.Clear(ClearBufferMask.ColorBufferBit);
+            GL.Enable(EnableCap.Blend);
+
+
+
             visuals.DrawPlayer(model.Player[0]);
             visuals.DrawPlayer(model.Player[1]);
+
+
+            GL.Disable(EnableCap.Blend);
 
 
         }
