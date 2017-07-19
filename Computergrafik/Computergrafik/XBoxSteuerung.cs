@@ -10,30 +10,32 @@ namespace Computergrafik
 {
     class XboxSteuerung
     {
-        /*Holt sich den Controller 0 Wenn GetState(1) holt sich den zweiten Controller*/
-       static GamePadState currentState = GamePad.GetState(0);
+        XboxSteuerung()
+        {
+            /*Holt sich den Controller 0 Wenn GetState(1) holt sich den zweiten Controller*/
+            GamePadState currentState = GamePad.GetState(0);
 
-        /*Holt sich das DPad bzw. Steuerkreuz, ist nicht der JoyStick*/
-        GamePadDPad curState = currentState.DPad;
+            /*Holt sich das DPad bzw. Steuerkreuz, ist nicht der JoyStick*/
+            GamePadDPad curState = currentState.DPad;
 
-        // GamePadState currentState1 = GamePad.GetState(3);
-        //GamePadDPad curState1 = currentState1.DPad;
+            // GamePadState currentState1 = GamePad.GetState(3);
+            //GamePadDPad curState1 = currentState1.DPad;
 
 
             /*Holt sich den JoyStick, thumber.Left -> Linker Joystick, thumber.Right -> rechter JoyStick*/
-        GamePadThumbSticks thumber = currentState.ThumbSticks;
+            GamePadThumbSticks thumber = currentState.ThumbSticks;
 
 
-        /*     if (thumber.Left.Y >= 0.1f)
-         {
-             player.X -= updatePeriod;
+            /*     if (thumber.Left.Y >= 0.1f)
+             {
+                 player.X -= updatePeriod;
 
-         }*/
+             }*/
 
 
-        player.X =thumber.Left.X;
-                player.Y =thumber.Left.Y;
-            
+            //player.X = thumber.Left.X;
+            // player.Y = thumber.Left.Y;
+
 
 
             // Process input only if connected.
@@ -47,34 +49,38 @@ namespace Computergrafik
                     //todo:Limit player movements to window
 
                     //no intersection -> move obstacle
-                    obstacle.Y -= 0.5f * updatePeriod;
+                    //   obstacle.Y -= 0.5f * updatePeriod;
                 }
 
-                if (curState.IsLeft) {
+                if (curState.IsLeft)
+                {
 
-                    player.X -= updatePeriod;
+                    //    player.X -= updatePeriod;
                 }
-              
+
 
                 if (curState.IsRight)
                 {
 
-                    player.X += updatePeriod;
+                    //   player.X += updatePeriod;
 
                 }
                 if (curState.IsDown)
                 {
 
 
-                    player.Y -= updatePeriod;
+                    //    player.Y -= updatePeriod;
                 }
 
                 if (curState.IsUp)
                 {
 
-                    player.Y += updatePeriod;
+                    //    player.Y += updatePeriod;
 
                 }
 
+            }
+        }
     }
 }
+

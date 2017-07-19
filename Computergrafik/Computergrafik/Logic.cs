@@ -14,6 +14,8 @@ namespace Computergrafik
         public Logic(Model model) {
 
             this.model = model;
+            this.player[0] = new Player(model, 0);
+            this.player[1] = new Player(model, 1);
 
         }
 
@@ -21,9 +23,6 @@ namespace Computergrafik
         {
             this.player[0].updatePosition();
             this.player[1].updatePosition();
-
-
-
 
         }
     }

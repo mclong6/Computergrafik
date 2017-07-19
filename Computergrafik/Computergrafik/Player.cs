@@ -16,7 +16,7 @@ namespace Computergrafik
         private Box2D   player;
 
 
-        Player(Model model, int playerNr) {
+        public Player(Model model, int playerNr) {
 
             this.model      = model;
             this.playerNr   = playerNr;
