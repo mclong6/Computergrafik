@@ -9,6 +9,5 @@ namespace Computergrafik
     class Visuals
     {
 
-
     }
 }
