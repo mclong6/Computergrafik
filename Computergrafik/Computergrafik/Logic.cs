@@ -10,7 +10,6 @@ namespace Computergrafik
     {
         static void Main(string[] args)
         {
-
             //geändert
 
         }

@@ -8,5 +8,12 @@ namespace Computergrafik
 {
     class Model
     {
+        Model(){
+
+
+
+        }
+
+
     }
 }
