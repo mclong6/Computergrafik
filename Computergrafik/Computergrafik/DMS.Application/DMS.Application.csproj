@@ -47,8 +47,9 @@
     <Compile Include="ResourceTextureFile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="OpenTK">
-      <HintPath>..\DMS.ShaderDebugging\bin\Debug\OpenTK.dll</HintPath>
+    <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OpenTK.2.0.0\lib\net20\OpenTK.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -72,6 +73,10 @@
       <Project>{3C8BCF2C-1019-4A8D-B986-AFD6BB80E917}</Project>
       <Name>DMS.ShaderDebugging</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
