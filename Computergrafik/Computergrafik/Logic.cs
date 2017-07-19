@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DMS.Application;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,6 @@ namespace Computergrafik
 {
     class Logic
     {
-        static void Main(string[] args)
-        {
-            //geändert
-
-        }
+        
     }
 }
