@@ -22,8 +22,13 @@ namespace Computergrafik
             this.playerNr   = playerNr;
             this.player     = model.Player[playerNr];
         }
-            
-        
+
+        public void updatePosition()
+        {
+
+
+
+        }
 
 
     }
