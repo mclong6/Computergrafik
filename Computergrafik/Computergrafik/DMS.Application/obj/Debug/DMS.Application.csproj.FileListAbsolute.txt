@@ -42,3 +42,4 @@ C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.A
 C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Application\obj\Debug\DMS.Application.csprojResolveAssemblyReference.cache
 C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Application\obj\Debug\DMS.Application.dll
 C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Application\obj\Debug\DMS.Application.pdb
+C:\Users\Maximilian\Source\Repos\Computer_Grafik_Klon\Computergrafik\Computergrafik\DMS.Application\bin\Debug\OpenTK.xml

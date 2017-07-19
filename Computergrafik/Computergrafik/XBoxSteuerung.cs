@@ -1,5 +1,4 @@
-﻿
-using DMS.Geometry;
+﻿using DMS.Geometry;
 using DMS.OpenGL;
 
 using OpenTK.Graphics.OpenGL;
@@ -9,25 +8,34 @@ using System.Drawing;
 
 namespace Computergrafik
 {
-  
-    class XBoxSteuerung
+    class XboxSteuerung
     {
-        /*Holt sich den Aktuellen Kontroller GetState(0) -> erster Kontroller  GetState(1) -> zweiter Kontroller*/
-      static GamePadState currentState = GamePad.GetState(0);
+        XboxSteuerung()
+        {
+            /*Holt sich den Controller 0 Wenn GetState(1) holt sich den zweiten Controller*/
+            GamePadState currentState = GamePad.GetState(0);
 
-        /*DPad ist das Steuerkreuz-> NICHT DIE JOYSTICKS*/
-        GamePadDPad curState = currentState.DPad;
-        
+            /*Holt sich das DPad bzw. Steuerkreuz, ist nicht der JoyStick*/
+            GamePadDPad curState = currentState.DPad;
 
-        // GamePadState currentState1 = GamePad.GetState(3);
-        //GamePadDPad curState1 = currentState1.DPad;
+            // GamePadState currentState1 = GamePad.GetState(3);
+            //GamePadDPad curState1 = currentState1.DPad;
 
-            /*Holt sich die JoyStick,, thumber.Left -> linker Joystick ,  thumber.Right -> rechter Joystick*/
-        GamePadThumbSticks thumber = currentState.ThumbSticks;
 
-        player.X =thumber.Left.X;
-        player.Y =thumber.Left.Y;
-            
+            /*Holt sich den JoyStick, thumber.Left -> Linker Joystick, thumber.Right -> rechter JoyStick*/
+            GamePadThumbSticks thumber = currentState.ThumbSticks;
+
+
+            /*     if (thumber.Left.Y >= 0.1f)
+             {
+                 player.X -= updatePeriod;
+
+             }*/
+
+
+            //player.X = thumber.Left.X;
+            // player.Y = thumber.Left.Y;
+
 
 
             // Process input only if connected.
@@ -41,63 +49,38 @@ namespace Computergrafik
                     //todo:Limit player movements to window
 
                     //no intersection -> move obstacle
-                    obstacle.Y -= 0.5f * updatePeriod;
+                    //   obstacle.Y -= 0.5f * updatePeriod;
                 }
 
-                if (curState.IsLeft) {
+                if (curState.IsLeft)
+                {
 
-                    player.X -= updatePeriod;
+                    //    player.X -= updatePeriod;
                 }
-              
+
 
                 if (curState.IsRight)
                 {
 
-                    player.X += updatePeriod;
+                    //   player.X += updatePeriod;
 
                 }
                 if (curState.IsDown)
                 {
 
 
-                    player.Y -= updatePeriod;
+                    //    player.Y -= updatePeriod;
                 }
 
                 if (curState.IsUp)
                 {
 
-                    player.Y += updatePeriod;
+                    //    player.Y += updatePeriod;
 
                 }
 
-                /**//*
-                if (curState1.IsLeft)
-                {
-
-                    player1.X -= updatePeriod;
-                }
-
-
-                if (curState1.IsRight)
-                {
-
-                    player1.X += updatePeriod;
-
-                }
-                if (curState1.IsDown)
-                {
-
-
-                    player1.Y -= updatePeriod;
-                }
-
-                if (curState1.IsUp)
-                {
-
-                    player1.Y += updatePeriod;
-
-                }
-                */
-
+            }
+        }
     }
 }
+
