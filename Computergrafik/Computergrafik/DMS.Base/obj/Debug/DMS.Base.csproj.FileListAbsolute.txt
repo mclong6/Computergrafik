@@ -1,0 +1,5 @@
+C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.Base\bin\Debug\DMS.Base.dll
+C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.Base\bin\Debug\DMS.Base.pdb
+C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.Base\obj\Debug\DMS.Base.csprojResolveAssemblyReference.cache
+C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.Base\obj\Debug\DMS.Base.dll
+C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.Base\obj\Debug\DMS.Base.pdb
