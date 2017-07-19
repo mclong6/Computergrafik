@@ -9,3 +9,14 @@ C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.OpenGL\bin\Debug\
 C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.OpenGL\obj\Debug\DMS.OpenGL.csprojResolveAssemblyReference.cache
 C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.OpenGL\obj\Debug\DMS.OpenGL.dll
 C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.OpenGL\obj\Debug\DMS.OpenGL.pdb
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\bin\Debug\DMS.OpenGL.dll
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\bin\Debug\DMS.OpenGL.pdb
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\bin\Debug\DMS.Base.dll
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\bin\Debug\DMS.Geometry.dll
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\bin\Debug\OpenTK.dll
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\bin\Debug\DMS.Geometry.pdb
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\bin\Debug\DMS.Base.pdb
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\bin\Debug\OpenTK.xml
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\obj\Debug\DMS.OpenGL.csprojResolveAssemblyReference.cache
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\obj\Debug\DMS.OpenGL.dll
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\obj\Debug\DMS.OpenGL.pdb

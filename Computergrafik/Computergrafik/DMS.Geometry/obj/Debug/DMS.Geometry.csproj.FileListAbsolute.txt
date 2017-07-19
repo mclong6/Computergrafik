@@ -3,3 +3,10 @@ C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.Geometry\bin\Debu
 C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.Geometry\obj\Debug\DMS.Geometry.csprojResolveAssemblyReference.cache
 C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.Geometry\obj\Debug\DMS.Geometry.dll
 C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.Geometry\obj\Debug\DMS.Geometry.pdb
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Geometry\bin\Debug\DMS.Geometry.dll
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Geometry\bin\Debug\DMS.Geometry.pdb
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Geometry\bin\Debug\OpenTK.dll
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Geometry\bin\Debug\OpenTK.xml
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Geometry\obj\Debug\DMS.Geometry.csprojResolveAssemblyReference.cache
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Geometry\obj\Debug\DMS.Geometry.dll
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Geometry\obj\Debug\DMS.Geometry.pdb
