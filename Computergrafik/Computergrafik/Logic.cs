@@ -8,9 +8,6 @@ namespace Computergrafik
 {
     class Logic
     {
-        static void Main(string[] args)
-        {
-            //geändert
-        }
+    
     }
 }
