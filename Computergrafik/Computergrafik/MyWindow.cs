@@ -12,28 +12,17 @@ namespace Computergrafik
 {
     class MyWindow
     {
-        /*GameStatus*/
 
         private GameWindow gameWindow = new GameWindow(1920, 1080);
         private Model model;
         private Visuals visuals;
         private Logic logic;
 
-        /*HauptMenu*/
-        int GameState = 0;
-
-        const int StateMenu = 0;
-        const int StateStart = 1;
-        private StartMenuErsatz menu;
-
         public MyWindow() {
 
             this.model              = new Model();
             this.visuals            = new Visuals();
             this.logic              = new Logic(model);
-
-            /*Menu*/
-            this.menu = new StartMenuErsatz(model);
 
             gameWindow.UpdateFrame  += GameWindow_UpdateFrame;
             gameWindow.RenderFrame  += GameWindow_RenderFrame;
@@ -46,21 +35,16 @@ namespace Computergrafik
         public void GameWindow_UpdateFrame(object sender, FrameEventArgs e)
         {
             logic.updateLogic();
-            menu.changeMenu();
-
+            logic.updateOpponent();
         }
 
         public void GameWindow_RenderFrame(object sender, FrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
             GL.Enable(EnableCap.Blend);
-
-
-            menu.DrawMenu();
             visuals.DrawPlayer(model.Player[0]);
             visuals.DrawPlayer(model.Player[1]);
-
-
+            visuals.DrawOpponent(model.Opponent[0].CenterX, model.Opponent[0].CenterY, 0.5f * model.Opponent[0].SizeX);
             GL.Disable(EnableCap.Blend);
 
 
