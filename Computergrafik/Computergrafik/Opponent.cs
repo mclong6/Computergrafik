@@ -1,35 +1,38 @@
 ﻿using DMS.Geometry;
 using OpenTK;
+using OpenTK.Graphics.OpenGL;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Computergrafik
 {
     class Opponent
     {
-        private Vector2 ballV = new Vector2(1.0f, 0.0f);
+        private Vector2 ballV = new Vector2(1.0f, 0.5f);
 
         public Opponent() {
 
-        }   
-        
-        public void updateOpponent(Box2D opponent)
+        } 
+                
+        /*
+         * Position of Opponent
+         */
+        public void updatePosition(Box2D opponent)
         {
-            //move ball
-            opponent.X += 1.0f / 60.0f * ballV.X;
-            opponent.Y += 1.0f / 60.0f * ballV.Y;
-            //reflect ball
+            //move Opponent
+            opponent.X += 1.0f / 120.0f * ballV.X;
+            opponent.Y += 1.0f / 120.0f * ballV.Y;
+            
+            //reflect Opponent
             if (opponent.MaxY > 1.0f || opponent.Y < -1.0)
             {
                 ballV.Y = -ballV.Y;
             }
             if (opponent.MaxX > 1.0f || opponent.X < -1.0)
             {
-                ballV.X = -ballV.Y;
+                ballV.X = -ballV.X;
             }
+
             /* 
              * 
              * !!!!!!!!!!!!!!Für Obstacle Kollision!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

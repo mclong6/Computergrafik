@@ -55,7 +55,7 @@ namespace Computergrafik
             {player = value;}
         }
 
-        public Box2D[] Oponent
+        public Box2D[] Opponent
         {
             get
             {return opponent;}

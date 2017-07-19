@@ -35,20 +35,16 @@ namespace Computergrafik
         public void GameWindow_UpdateFrame(object sender, FrameEventArgs e)
         {
             logic.updateLogic();
-
+            logic.updateOpponent();
         }
 
         public void GameWindow_RenderFrame(object sender, FrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
             GL.Enable(EnableCap.Blend);
-
-
-
             visuals.DrawPlayer(model.Player[0]);
             visuals.DrawPlayer(model.Player[1]);
-
-
+            visuals.DrawOpponent(model.Opponent[0].CenterX, model.Opponent[0].CenterY, 0.5f * model.Opponent[0].SizeX);
             GL.Disable(EnableCap.Blend);
 
 
