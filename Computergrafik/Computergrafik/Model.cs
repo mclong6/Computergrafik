@@ -20,6 +20,7 @@ namespace Computergrafik
 
             StartScreen     = new Box2D(-1.0f, -1.0f, 2.0f, 2.0f);
             StartButton     = new Box2D(0.3f, 0.3f, 0.6f, 0.2f);
+            opponent[0]     = new Box2D(0.0f, 0.0f, 0.2f, 0.2f);
 
             for(int index = 0; index<2; index++)
             {
