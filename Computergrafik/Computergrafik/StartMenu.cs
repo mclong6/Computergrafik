@@ -4,7 +4,7 @@ using OpenTK.Input;
 using System;
 using System.Drawing;
 
-namespace Computergrafik
+/*namespace Computergrafik
 {
 
     class StartMenu
@@ -33,12 +33,12 @@ namespace Computergrafik
             Box2D startScreen;
             Box2D startButton;
             Box2D endButton;
-            Box2D selectButton;
-            /*GameLogic*/
+            Box2D selectButton*/
+            /*GameLogic*//*
             if (GameState == StateMenu)
             {
                 /*Bei drücken der Taste A*/
-                /*currentState.Buttons.LeftStick == ButtonState.Pressed*/
+                /*currentState.Buttons.LeftStick == ButtonState.Pressed*//*
                 if (Keyboard.GetState()[Key.A])
                 {
                     if (startButton.Inside(selectButton))
@@ -51,8 +51,8 @@ namespace Computergrafik
                         //Exit Game
                     }
                 }
-
-                /*Bei Hoch oder Runter*/
+                */
+                /*Bei Hoch oder Runter*//*
                 if (Keyboard.GetState()[Key.Up])
                 {
                     joyStickUp = 1;
@@ -60,8 +60,8 @@ namespace Computergrafik
 
                 if (joyStickUp == 1 & !(Keyboard.GetState()[Key.Up]))
                 {
-                    joyStickUp = 0;
-                    /*SelectBox nach oben setzen*/
+                    joyStickUp = 0;*/
+                    /*SelectBox nach oben setzen*//*
                     if (selectButton.MaxY < (startButton.MaxY))
                     {
                         selectButton.Y = selectButton.Y + 0.4f;
@@ -75,8 +75,8 @@ namespace Computergrafik
 
                 if (joyStickDown == 1 & !(Keyboard.GetState()[Key.Down]))
                 {
-                    joyStickDown = 0;
-                    /*SelectBox nach unten setzen*/
+                    joyStickDown = 0;*/
+                    /*SelectBox nach unten setzen*//*
                     if (selectButton.Y > (endButton.Y))
                     {
                         selectButton.Y = selectButton.Y - 0.4f;
@@ -88,8 +88,8 @@ namespace Computergrafik
 
             }
 
-
-            /*GameRender*/
+*/
+            /*GameRender*//*
             if (GameState == StateMenu)
             {
                 this.DrawStartScreen(startScreen);
@@ -162,3 +162,4 @@ namespace Computergrafik
         }
     }
 }
+*/
