@@ -6,14 +6,13 @@ using System.Drawing;
 
 namespace Computergrafik
 {
-
-    class StartMenu
+    class StartMenuErsatz
     {
 
 
         int GameState;
 
-        
+
         const int StateMenu = 0;
         const int StateStart = 1;
 
@@ -26,7 +25,8 @@ namespace Computergrafik
         Box2D selectButton;
 
 
-        public StartMenu(Model model) {
+        public StartMenuErsatz(Model model)
+        {
 
             startScreen = model.StartScreen;
             startButton = model.StartButton;
@@ -34,10 +34,11 @@ namespace Computergrafik
             selectButton = model.SelectButton;
 
             this.changeMenu();
-           
 
-    }
-        private void changeMenu() {
+
+        }
+        private void changeMenu()
+        {
 
             /*GameLogic*/
             if (GameState == StateMenu)
@@ -105,7 +106,8 @@ namespace Computergrafik
 
             }
             /*Rendern beim GameRun und GameStart*/
-            if(GameState == StateStart){
+            if (GameState == StateStart)
+            {
 
 
             }
@@ -113,7 +115,8 @@ namespace Computergrafik
 
         }
 
-        private void DrawStartScreen(Box2D rect) { 
+        private void DrawStartScreen(Box2D rect)
+        {
             GL.Begin(PrimitiveType.LineLoop);
             GL.Vertex2(rect.X, rect.Y);
             GL.Color3(Color.YellowGreen);
@@ -127,7 +130,8 @@ namespace Computergrafik
         }
 
 
-        private void DrawStartButton(Box2D rect) { 
+        private void DrawStartButton(Box2D rect)
+        {
             GL.Begin(PrimitiveType.LineLoop);
             GL.Vertex2(rect.X, rect.Y);
             GL.Color3(Color.Blue);
@@ -167,5 +171,5 @@ namespace Computergrafik
             GL.Color3(Color.White);
             GL.End();
         }
-    }
+    } }
 }
