@@ -55,6 +55,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartMenu.cs" />
+    <Compile Include="StartMenuErsatz.cs" />
     <Compile Include="Visuals.cs" />
     <Compile Include="XBoxSteuerung.cs" />
   </ItemGroup>
