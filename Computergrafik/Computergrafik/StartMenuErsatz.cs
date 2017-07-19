@@ -33,11 +33,11 @@ namespace Computergrafik
             endButton = model.EndButton;
             selectButton = model.SelectButton;
 
-            this.changeMenu();
+         
 
 
         }
-        private void changeMenu()
+        public void changeMenu()
         {
 
             /*GameLogic*/
@@ -114,6 +114,13 @@ namespace Computergrafik
 
 
         }
+        public void DrawMenu() {
+            this.DrawStartScreen(startScreen);
+            this.DrawStartButton(startButton);
+            this.DrawEndButton(endButton);
+            this.DrawSelectButton(selectButton);
+
+        }
 
         private void DrawStartScreen(Box2D rect)
         {
@@ -172,4 +179,3 @@ namespace Computergrafik
             GL.End();
         }
     } }
-}

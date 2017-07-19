@@ -11,9 +11,8 @@ using System.Drawing;
     {
 
 
-        int GameState;
+        int GameState = 0;
 
-        public event EventHandler OnKlick;
         const int StateMenu = 0;
         const int StateStart = 1;
 
