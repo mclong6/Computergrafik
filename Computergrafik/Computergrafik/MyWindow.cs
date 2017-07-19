@@ -17,6 +17,7 @@ namespace Computergrafik
 
 
         public MyWindow() {
+            
             gameWindow.UpdateFrame += GameWindow_UpdateFrame;
             gameWindow.RenderFrame += GameWindow_RenderFrame;
             gameWindow.RenderFrame += (sender, e) => { gameWindow.SwapBuffers(); };
@@ -44,6 +45,7 @@ namespace Computergrafik
         {
             MyWindow app;
             app = new MyWindow();
+           
             app.gameWindow.Run(60.0);
         }
     }
