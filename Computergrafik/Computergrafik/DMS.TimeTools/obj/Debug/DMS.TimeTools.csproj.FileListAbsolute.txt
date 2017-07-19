@@ -2,10 +2,8 @@ C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.TimeTools\bin\Deb
 C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.TimeTools\bin\Debug\DMS.TimerTools.pdb
 C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.TimeTools\obj\Debug\DMS.TimerTools.dll
 C:\Users\Leumas\Desktop\GitNormal\Framework-master\_Common\DMS.TimeTools\obj\Debug\DMS.TimerTools.pdb
-C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.TimeTools\bin\Debug\DMS.TimerTools.dll
-C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.TimeTools\bin\Debug\DMS.TimerTools.pdb
-C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.TimeTools\bin\Debug\OpenTK.dll
-C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.TimeTools\bin\Debug\OpenTK.xml
-C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.TimeTools\obj\Debug\DMS.TimeTools.csprojResolveAssemblyReference.cache
-C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.TimeTools\obj\Debug\DMS.TimerTools.dll
-C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.TimeTools\obj\Debug\DMS.TimerTools.pdb
+C:\Users\Maximilian\Source\Repos\Computer_Grafik_Klon\Computergrafik\Computergrafik\DMS.TimeTools\bin\Debug\DMS.TimerTools.dll
+C:\Users\Maximilian\Source\Repos\Computer_Grafik_Klon\Computergrafik\Computergrafik\DMS.TimeTools\bin\Debug\DMS.TimerTools.pdb
+C:\Users\Maximilian\Source\Repos\Computer_Grafik_Klon\Computergrafik\Computergrafik\DMS.TimeTools\obj\Debug\DMS.TimeTools.csprojResolveAssemblyReference.cache
+C:\Users\Maximilian\Source\Repos\Computer_Grafik_Klon\Computergrafik\Computergrafik\DMS.TimeTools\obj\Debug\DMS.TimerTools.dll
+C:\Users\Maximilian\Source\Repos\Computer_Grafik_Klon\Computergrafik\Computergrafik\DMS.TimeTools\obj\Debug\DMS.TimerTools.pdb

@@ -8,5 +8,6 @@ namespace Computergrafik
 {
     class Visuals
     {
+
     }
 }
