@@ -12,17 +12,31 @@ namespace Computergrafik
 {
     class MyWindow
     {
+        /*Spielstatus*/
+        int GameState;
+        const int StateMenu = 0;
+        const int StateStart = 1;
+
+
 
         private GameWindow gameWindow = new GameWindow(1920, 1080);
         private Model model;
         private Visuals visuals;
         private Logic logic;
 
+        /*Hauptmenu*/
+        private StartMenu menu;
+
+     
+
         public MyWindow() {
 
             this.model              = new Model();
             this.visuals            = new Visuals();
             this.logic              = new Logic(model);
+
+            /*Hauptmenü*/
+            this.menu = new StartMenu(model);    
 
             gameWindow.UpdateFrame  += GameWindow_UpdateFrame;
             gameWindow.RenderFrame  += GameWindow_RenderFrame;
@@ -34,24 +48,48 @@ namespace Computergrafik
 
         public void GameWindow_UpdateFrame(object sender, FrameEventArgs e)
         {
-            logic.updateLogic();
-            logic.updateOpponent();
+            if (GameState == StateMenu)
+            {
+                menu.changeMenu(GameState, this);
+            }
+            if (GameState == StateStart)
+            {
+                logic.updateLogic();
+                logic.updateOpponent();
+            }
         }
 
         public void GameWindow_RenderFrame(object sender, FrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
             GL.Enable(EnableCap.Blend);
+            if (GameState == StateMenu)
+            {
+                menu.DrawMenu();
+            }
+            if (GameState == StateStart)
+            {
             visuals.DrawPlayer(model.Player[0]);
             visuals.DrawPlayer(model.Player[1]);
             visuals.DrawOpponent(model.Opponent[0].CenterX, model.Opponent[0].CenterY, 0.5f * model.Opponent[0].SizeX);
             GL.Disable(EnableCap.Blend);
-
+            }
 
         }
 
 
+        public int GameState1
+        {
+            get
+            {
+                return GameState;
+            }
 
+            set
+            {
+                GameState = value;
+            }
+        }
         [STAThread]
         public static void Main()
         {

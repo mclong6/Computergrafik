@@ -22,8 +22,8 @@ namespace Computergrafik
             /*Alle Boxen fürs Menü*/
             startScreen     = new Box2D(-1.0f, -1.0f, 2.0f, 2.0f);
             startButton     = new Box2D(0.3f, 0.3f, 0.6f, 0.2f);
-            EndButton       = new Box2D(0.3f, -0.1f, 0.6f, 0.2f);
-            SelectButton    = new Box2D(0.4f, 0.2f, 0.8f, 0.4f);
+            endButton       = new Box2D(0.3f, -0.1f, 0.6f, 0.2f);
+            selectButton    = new Box2D(0.4f, 0.2f, 0.8f, 0.4f);
 
             /*Boxen fürs Spiel*/
             opponent[0]     = new Box2D(0.0f, 0.0f, 0.2f, 0.2f);

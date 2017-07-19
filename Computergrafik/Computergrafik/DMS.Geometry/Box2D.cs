@@ -83,7 +83,7 @@ namespace DMS.Geometry
 			return !(noXintersect || noYintersect);
 		}
 
-		public bool Inside(Box2D rectangle)
+		public bool Intersect(Box2D rectangle)
 		{
 			if (X < rectangle.X) return false;
 			if (MaxX > rectangle.MaxX) return false;
