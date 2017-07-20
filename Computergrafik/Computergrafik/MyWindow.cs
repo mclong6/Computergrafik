@@ -41,7 +41,7 @@ namespace Computergrafik
             this.menu = new StartMenu(model);
 
             /*Lebensmenü*/
-            this.lebensleiste = new Lebensleiste();
+            this.lebensleiste = new Lebensleiste(model);
            // gameWindow.WindowState = WindowState.Fullscreen;
             gameWindow.UpdateFrame  += GameWindow_UpdateFrame;
             gameWindow.RenderFrame  += GameWindow_RenderFrame;
@@ -77,10 +77,15 @@ namespace Computergrafik
                
             visuals.DrawPlayer(model.Player[0]);
             visuals.DrawPlayer(model.Player[1]);
-            visuals.DrawOpponent(model.Opponent[0].CenterX, model.Opponent[0].CenterY, 0.5f * model.Opponent[0].SizeX);
-            lebensleiste.DrawPlayerInfo();
-               
-            GL.Disable(EnableCap.Blend);
+
+            visuals.DrawPlayerGun(model.PlayerGun[0]);
+            visuals.DrawPlayerGun(model.PlayerGun[1]);
+
+
+
+                visuals.DrawOpponent(model.Opponent[0].CenterX, model.Opponent[0].CenterY, 0.5f * model.Opponent[0].SizeX);
+                lebensleiste.DrawPlayerInfo();
+                GL.Disable(EnableCap.Blend);
             }
 
         }
