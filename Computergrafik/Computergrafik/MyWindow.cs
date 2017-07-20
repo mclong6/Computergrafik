@@ -19,7 +19,7 @@ namespace Computergrafik
 
 
 
-        private GameWindow gameWindow = new GameWindow(1920, 1080);
+        private GameWindow gameWindow = new GameWindow(1024, 1024);
         private Model model;
         private Visuals visuals;
         private Logic logic;
