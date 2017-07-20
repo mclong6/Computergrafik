@@ -18,6 +18,9 @@ namespace Computergrafik
         Box2D[] playerGun   = new Box2D[2];
         Box2D[] opponent    = new Box2D[2];
 
+
+        Box2D playerInfoOne;
+        Box2D playerInfoTwo;
         public Model()
         {
             /*Alle Boxen fürs Menü*/
@@ -26,6 +29,10 @@ namespace Computergrafik
             endButton       = new Box2D(-0.3f, -0.1f, 0.6f, 0.2f);
             selectButton    = new Box2D(-0.4f, 0.2f, 0.8f, 0.4f);
 
+            /*PlayerInfoBox*/
+
+            playerInfoOne = new Box2D(-1.0f, 0.7f, 0.4f, 0.3f);
+            playerInfoTwo = new Box2D(0.6f, 0.7f, 0.4f, 0.3f);
             /*Boxen fürs Spiel*/
             opponent[0]     = new Box2D(0.0f, 0.4f, 0.2f, 0.2f);
 
@@ -106,14 +113,29 @@ namespace Computergrafik
         public Box2D[] PlayerGun
         {
             get
-            {
-                return playerGun;
-            }
+            {return playerGun;}
 
             set
-            {
-                playerGun = value;
-            }
+            { playerGun = value;}
+        }
+
+        /*Player Info */
+        public Box2D PlayerInfoOne
+        {
+            get
+            {return playerInfoOne;}
+
+            set
+            {playerInfoOne = value;}
+        }
+
+        public Box2D PlayerInfoTwo
+        {
+            get
+            { return playerInfoTwo;}
+
+            set
+            { playerInfoTwo = value; }
         }
     }
 }
