@@ -20,19 +20,42 @@ namespace Computergrafik
         {
 
             GL.Begin(PrimitiveType.LineLoop);
+            GL.Color3(Color.Yellow);
             GL.Vertex2(rect.X, rect.Y);
+            GL.Color3(Color.Yellow);
             GL.Vertex2(rect.MaxX, rect.Y);
+            GL.Color3(Color.Yellow);
             GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.Color3(Color.Yellow);
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
         }
 
-        public void DrawPlayer(Box2D rect){
+        public void DrawPlayerOne(Box2D rect){
 
             GL.Begin(PrimitiveType.LineLoop);
+            GL.Color3(Color.Blue);
             GL.Vertex2(rect.X, rect.Y);
+            GL.Color3(Color.Blue);
             GL.Vertex2(rect.MaxX, rect.Y);
+            GL.Color3(Color.Blue);
             GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.Color3(Color.Blue);
+            GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+        }
+
+        public void DrawPlayerTwo(Box2D rect)
+        {
+
+            GL.Begin(PrimitiveType.LineLoop);
+            GL.Color3(Color.Red);
+            GL.Vertex2(rect.X, rect.Y);
+            GL.Color3(Color.Red);
+            GL.Vertex2(rect.MaxX, rect.Y);
+            GL.Color3(Color.Red);
+            GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.Color3(Color.Red);
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
         }
