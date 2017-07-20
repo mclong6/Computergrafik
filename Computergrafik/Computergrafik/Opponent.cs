@@ -8,8 +8,9 @@ namespace Computergrafik
 {
     class Opponent
     {
-        private Vector2 opponentVector = new Vector2(0.0f, -1.0f);
+        private Vector2 opponentVector = new Vector2(1.0f, -1.0f);
         private Model myModel;
+        private float minus = -1.0f;
 
         public Opponent(Model model) {
             myModel = model;
@@ -37,16 +38,24 @@ namespace Computergrafik
             {
                 if (myModel.Player[i].Intersects(opponent))
                 {
+                    //Collision from underneath and above
                     if (opponent.CenterX >= (myModel.Player[i].CenterX - (myModel.Player[i].MaxX / 2))||
                         opponent.CenterX <= (myModel.Player[i].CenterX +(myModel.Player[i].MaxX / 2)))
                     {
-                        opponentVector.Y = opponentVector.Y * (-1.0f);
+                        opponentVector.Y = opponentVector.Y * minus;
                         Console.WriteLine(opponentVector.Y);
                     }
-                    
-                            /*opponentVector.Y = obstacleOponentResponseY(myModel.Player[i], opponent);
-                    //opponentVector.X = obstacleOponentResponseY(myModel.Player[i], opponent);
-                    opponentVector.X = 1.0f;*/
+                    //Collision from the left and right
+                    if (opponent.CenterY >= (myModel.Player[i].CenterY - (myModel.Player[i].MaxY / 2)) ||
+                        opponent.CenterY <= (myModel.Player[i].CenterY + (myModel.Player[i].MaxY / 2)))
+                    {
+                        opponentVector.X = opponentVector.X * minus;
+                        Console.WriteLine(opponentVector.X);
+                    }
+
+                    /*opponentVector.Y = obstacleOponentResponseY(myModel.Player[i], opponent);
+            //opponentVector.X = obstacleOponentResponseY(myModel.Player[i], opponent);
+            opponentVector.X = 1.0f;*/
                 }
 
             }
