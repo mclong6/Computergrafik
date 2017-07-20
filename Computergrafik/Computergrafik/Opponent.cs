@@ -37,9 +37,9 @@ namespace Computergrafik
             {
                 if (myModel.Player[i].Intersects(opponent))
                 {
-                    opponent.Y = obstacleOponentResponseY(myModel.Player[i], opponent);
-                    opponent.X = obstacleOponentResponseY(myModel.Player[i], opponent);
-                    //opponentVector.X = 1.0f;
+                    opponentVector.Y = obstacleOponentResponseY(myModel.Player[i], opponent);
+                    //opponentVector.X = obstacleOponentResponseY(myModel.Player[i], opponent);
+                    opponentVector.X = 1.0f;
                 }
 
             }
