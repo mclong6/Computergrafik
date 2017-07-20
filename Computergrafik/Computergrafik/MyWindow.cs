@@ -36,8 +36,8 @@ namespace Computergrafik
             this.logic              = new Logic(model);
 
             /*Hauptmenü*/
-            this.menu = new StartMenu(model);    
-
+            this.menu = new StartMenu(model);
+           // gameWindow.WindowState = WindowState.Fullscreen;
             gameWindow.UpdateFrame  += GameWindow_UpdateFrame;
             gameWindow.RenderFrame  += GameWindow_RenderFrame;
             gameWindow.RenderFrame  += (sender, e) => { gameWindow.SwapBuffers(); };

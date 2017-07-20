@@ -49,6 +49,7 @@ namespace Computergrafik
                     if (endButton.Intersects(selectButton))
                     {
                         //Exit Game
+                        Environment.Exit(1);
                     }
                 }
 
@@ -67,7 +68,7 @@ namespace Computergrafik
                         selectButton.Y = selectButton.Y + 0.4f;
                     }
                 }
-
+                /*Bei Key Down muss noch mit JoyStick ersetzt werden*/
                 else if (Keyboard.GetState()[Key.Down])
                 {
                     joyStickDown = 1;
