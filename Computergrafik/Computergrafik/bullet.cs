@@ -25,7 +25,6 @@ namespace Computergrafik
             this.X_Dir = x;
             this.Y_Dir = y;
             Bbullet = new Box2D(player.pplayer.CenterX,player.pplayer.CenterY,0.005f,0.005f);
-            Console.WriteLine("bullet erstellt");
 
         }
 

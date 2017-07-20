@@ -97,6 +97,12 @@ namespace Computergrafik
             if (pplayer.Intersects(model.Opponent[0]))
             {
                 speed = 0;
+                pplayer.X = pplayer.X + direcction.X*-0.1f;
+                pplayer.Y = pplayer.Y + direcction.Y * -0.1f;
+
+                pplayer.Y = 0f;
+                pplayer.X = playerNr - 0.25f;
+
                 colisionControl = false;
             }
             else if (!pplayer.Intersects(model.Opponent[0]) && colisionControl == false)
