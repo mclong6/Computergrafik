@@ -4,16 +4,18 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace Computergrafik
 {
     class Player
     {
-
+        private Timer timer;
         private int playerNr;
         private Model model;
         private float speed = 0.006f;
@@ -27,21 +29,8 @@ namespace Computergrafik
         private bool colisionControl = true;
         private IList<Bullet> bullets = new List<Bullet>();
         private Bullet bullet;
-        private float bulledSpeed = 0.01f;
-
-        public Box2D pplayer
-        {
-            get
-            {
-                return player;
-            }
-
-            set
-            {
-                player = value;
-            }
-        }
-
+        private float bulledSpeed = 0.02f;
+        private float bulledInterval = 100;     // mill sec
 
 
         public Player(Model model, int playerNr) {
@@ -49,10 +38,15 @@ namespace Computergrafik
             
             this.model          = model;
             this.playerNr       = playerNr;
-            this.pplayer         = model.Player[playerNr];
+            this.pplayer        = model.Player[playerNr];
             this.gun            = model.PlayerGun[playerNr];
             this.direcction     = new Vector2(0f, 0f);
             this.gunDirection   = new Vector2(0f,0f);
+            this.timer          = new Timer();
+            this.timer.Interval = bulledInterval;
+            this.timer.Elapsed += OnTimedEvent;
+            this.timer.AutoReset= true;
+            this.timer.Enabled  = true;
         }
 
 
@@ -164,8 +158,7 @@ namespace Computergrafik
 
             if (currentControllerState.Triggers.Left > 0.5f && shootcontrol == true)
             {
-                shoot(gunDirection.X,gunDirection.Y);
-               // shootcontrol = false;
+                 shootcontrol = false;
             }
 
             if (currentControllerState.Triggers.Left == 0.0f)
@@ -176,6 +169,14 @@ namespace Computergrafik
 
         }
 
+        private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            if (shootcontrol == false)
+            {
+                shoot(gunDirection.X, gunDirection.Y);
+            }
+           // Console.WriteLine("The Elapsed event was raised at {0}", e.SignalTime);
+        }
 
 
         private void moveGun() {
@@ -205,9 +206,19 @@ namespace Computergrafik
                 Bullets[i].Bbullet.CenterY = Bullets[i].Bbullet.CenterY + Bullets[i].Y_Dir*bulledSpeed;
 
             }
+        }
 
+        public Box2D pplayer
+        {
+            get
+            {
+                return player;
+            }
 
-
+            set
+            {
+                player = value;
+            }
         }
 
         public IList<Bullet> Bullets
