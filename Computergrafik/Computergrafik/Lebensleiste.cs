@@ -12,17 +12,15 @@ namespace Computergrafik
         Box2D playerInfoTwo;
         float sizeBalken = 0.3f;
 
-        bool shoot = true;
-        bool nachladen = false;
+        
+        bool[] nachladen = new bool[2];
 
         //Xposition//YPosition//X-Länge//Y-Länge
-        Box2D oneLife;
-        Box2D oneAmmo;
-        Box2D oneBoost;
+        Box2D[] Life = new Box2D[2];
+        Box2D[] Ammo = new Box2D[2];
+        Box2D[] Boost = new Box2D[2];
 
-        Box2D twoLife;
-        Box2D twoAmmo;
-        Box2D twoBoost;
+
 
         /**W steht für den weißen hintergrund*/
         Box2D oneLifeW;
@@ -33,19 +31,20 @@ namespace Computergrafik
         Box2D twoAmmoW;
         Box2D twoBoostW;
 
-        Player[] players;
+     
         public Lebensleiste(Model model)
         {
             playerInfoOne = model.PlayerInfoOne;
             playerInfoTwo = model.PlayerInfoTwo;
-             
-            oneLife = new Box2D(-0.95f, 0.925f, sizeBalken - 0.2f, 0.05f);
-            oneAmmo = new Box2D(-0.95f, 0.825f, sizeBalken, 0.05f);
-            oneBoost = new Box2D(-0.95f, 0.725f, sizeBalken, 0.05f);
+            nachladen[0] = false;
+            nachladen[1] = false;
+            Life[0] = new Box2D(-0.95f, 0.925f, sizeBalken, 0.05f);
+            Ammo[0] = new Box2D(-0.95f, 0.825f, sizeBalken, 0.05f);
+            Boost[0] = new Box2D(-0.95f, 0.725f, sizeBalken, 0.05f);
 
-            twoLife = new Box2D(0.65f, 0.925f, sizeBalken-0.1f, 0.05f);
-            twoAmmo = new Box2D(0.65f, 0.825f, sizeBalken, 0.05f);
-            twoBoost = new Box2D(0.65f, 0.725f, sizeBalken, 0.05f);
+            Life[1] = new Box2D(0.65f, 0.925f, sizeBalken, 0.05f);
+            Ammo[1] = new Box2D(0.65f, 0.825f, sizeBalken, 0.05f);
+            Boost[1] = new Box2D(0.65f, 0.725f, sizeBalken, 0.05f);
 
             oneLifeW = new Box2D(-0.95f, 0.925f, sizeBalken, 0.05f);
             oneAmmoW = new Box2D(-0.95f, 0.825f, sizeBalken, 0.05f);
@@ -60,19 +59,21 @@ namespace Computergrafik
         }
 
 
-        public void OneLiveDown(int damage) {
-
+        public void OneLiveDown(Player player) {
+            int num = player.PlayerNr;
             //getMaxLife();
-            int maxLife = 2;
-            damage = 5;
-
-            float lifeAbziehen = sizeBalken / maxLife;
-            oneLife.X = oneLife.X - damage;
-
+            float maxLife = 100;
+            float currentLife = player.Life;
+            float lifeDazu = sizeBalken / maxLife;
+            if (currentLife >= 0)
+            {
+                Life[num].SizeX = (lifeDazu * currentLife);
+            }
         }
 
         public void OneGetShoot(Player player) {
             //getMaxShoot()
+            int num = player.PlayerNr;
             float maxShoot = 100;
             float currentAmmo = player.Ammo;
             float ammoDazu = sizeBalken / maxShoot;
@@ -80,21 +81,21 @@ namespace Computergrafik
 
             if(currentAmmo == 0)
             {
-                nachladen = true;
+                nachladen[num] = true;
             }
             /*Leert die Anzeige*/
-            if (shoot == true && nachladen == false)
+            if (nachladen[num] == false)
             {
-                oneAmmo.SizeX = (ammoDazu * currentAmmo);
+                Ammo[num].SizeX = (ammoDazu * currentAmmo);
                 
             }
           
-            if (nachladen == true) {
-                 oneAmmo.SizeX = oneAmmo.SizeX + ammoDazu;
-                if (oneAmmo.SizeX >= sizeBalken)
+            if (nachladen[num] == true) {
+                 Ammo[num].SizeX = Ammo[num].SizeX + ammoDazu;
+                if (Ammo[num].SizeX > sizeBalken)
                 {
                     player.Ammo = maxShoot;
-                    nachladen = false;
+                    nachladen[num] = false;
                 }
                
 
@@ -105,17 +106,18 @@ namespace Computergrafik
 
         public void OneGetBoost(Player player) {
             //GetMaxBoost
+            int num = player.PlayerNr;
             float maxBoost = 100;
             float currentBoost =  player.Boost;
             float boostDazu = sizeBalken / maxBoost;
 
             
-                oneBoost.SizeX =  (boostDazu * currentBoost);
+                Boost[num].SizeX =  (boostDazu * currentBoost);
             
-            if (currentBoost <= 100 && oneBoost.SizeX <= sizeBalken) {
+            if (currentBoost <= 100 && Boost[num].SizeX <= sizeBalken) {
 
                 player.Boost = currentBoost  +0.05f;
-                oneBoost.SizeX = oneBoost.SizeX + boostDazu;
+                Boost[num].SizeX = Boost[num].SizeX + boostDazu;
             }
         }
 
@@ -137,15 +139,13 @@ namespace Computergrafik
             DrawWhite(twoAmmoW);
             DrawWhite(twoBoostW);
 
-            DrawLife(oneLife);
-            DrawAmmo(oneAmmo);
-            DrawBoost(oneBoost);
+          
+            for(int i = 0; i <= 1; i++) {
+            DrawLife(Life[i]);
+            DrawAmmo(Ammo[i]);
+            DrawBoost(Boost[i]);
+            }
 
-            DrawLife(twoLife);
-            DrawAmmo(twoAmmo);
-            DrawBoost(twoBoost);
-
-         
         }
 
 

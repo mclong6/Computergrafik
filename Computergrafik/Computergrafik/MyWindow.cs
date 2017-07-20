@@ -62,8 +62,10 @@ namespace Computergrafik
 
                 lebensleiste.OneGetBoost(logic.Player[0]);
                 lebensleiste.OneGetShoot(logic.Player[0]);
+                lebensleiste.OneLiveDown(logic.Player[0]);
                 lebensleiste.OneGetBoost(logic.Player[1]);
                 lebensleiste.OneGetShoot(logic.Player[1]);
+                lebensleiste.OneLiveDown(logic.Player[1]);
 
                 logic.updateLogic();
                 logic.updateOpponent();
