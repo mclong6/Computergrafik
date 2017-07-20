@@ -15,6 +15,7 @@ namespace Computergrafik
         Box2D selectButton;
         Box2D[] obstacles   = new Box2D[5];
         Box2D[] player      = new Box2D[2];
+        Box2D[] playerGun   = new Box2D[2];
         Box2D[] opponent    = new Box2D[2];
 
         public Model()
@@ -26,11 +27,12 @@ namespace Computergrafik
             selectButton    = new Box2D(-0.4f, 0.2f, 0.8f, 0.4f);
 
             /*Boxen fürs Spiel*/
-            opponent[0]     = new Box2D(0.0f, 0.0f, 0.2f, 0.2f);
+            opponent[0]     = new Box2D(0.0f, 0.4f, 0.2f, 0.2f);
 
             for(int index = 0; index<2; index++)
             {
                 player[index] = new Box2D(0f, 0f, 0.1f, 0.1f);
+                PlayerGun[index] = new Box2D(0f, 0f, 0.5f, 0.1f);
             }
 
         }
@@ -99,6 +101,19 @@ namespace Computergrafik
 
             set
             { startButton = value; }
+        }
+
+        public Box2D[] PlayerGun
+        {
+            get
+            {
+                return playerGun;
+            }
+
+            set
+            {
+                playerGun = value;
+            }
         }
     }
 }
