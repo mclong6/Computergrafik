@@ -43,14 +43,14 @@ namespace Computergrafik
                         opponent.CenterX <= (myModel.Player[i].CenterX +(myModel.Player[i].SizeX / 2)))
                     {
                         opponentVector.Y = opponentVector.Y * minus;
-                        Console.WriteLine("Y wert wird berechnet");
+                        Console.WriteLine("Y wert wird verändern");
                     }
                     //Collision from the left and right
-                    if (opponent.CenterY >= (myModel.Player[i].CenterY - (myModel.Player[i].SizeY / 2)) &&
+                    else if (opponent.CenterY >= (myModel.Player[i].CenterY - (myModel.Player[i].SizeY / 2)) &&
                         opponent.CenterY <= (myModel.Player[i].CenterY + (myModel.Player[i].SizeY / 2)))
                     {
                         opponentVector.X = opponentVector.X * minus;
-                       // Console.WriteLine(opponentVector.X);
+                       Console.WriteLine("X wert wird verändern");
                     }
 
                     /*opponentVector.Y = obstacleOponentResponseY(myModel.Player[i], opponent);
