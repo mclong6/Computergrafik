@@ -78,8 +78,8 @@ namespace Computergrafik
             visuals.DrawPlayer(model.Player[0]);
             visuals.DrawPlayer(model.Player[1]);
 
-            visuals.DrawPlayerGun(model.Player[0]);
-            visuals.DrawPlayerGun(model.Player[1]);
+            visuals.DrawPlayerGun(model.PlayerGun[0]);
+            visuals.DrawPlayerGun(model.PlayerGun[1]);
 
 
 
