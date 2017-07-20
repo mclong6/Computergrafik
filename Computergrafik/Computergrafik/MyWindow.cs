@@ -82,8 +82,7 @@ namespace Computergrafik
                 visuals.DrawPlayerGun(model.PlayerGun[1]);
 
                 visuals.DrawOpponent(model.Opponent[0].CenterX, model.Opponent[0].CenterY, 0.5f * model.Opponent[0].SizeX);
-                lebensleiste.DrawPlayerLife();
-                lebensleiste.DrawPlayerLifeTwo();
+       
                 GL.Disable(EnableCap.Blend);
             }
 
