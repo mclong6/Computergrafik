@@ -8,7 +8,7 @@ namespace Computergrafik
 {
     class Opponent
     {
-        private Vector2 opponentVector = new Vector2(1.0f, -1.0f);
+        private Vector2 opponentVector = new Vector2(1.0f, -0.3f);
         private Model myModel;
         private float minus = -1.0f;
 
@@ -39,18 +39,18 @@ namespace Computergrafik
                 if (myModel.Player[i].Intersects(opponent))
                 {
                     //Collision from underneath and above
-                    if (opponent.CenterX >= (myModel.Player[i].CenterX - (myModel.Player[i].MaxX / 2))||
-                        opponent.CenterX <= (myModel.Player[i].CenterX +(myModel.Player[i].MaxX / 2)))
+                    if (opponent.CenterX >= (myModel.Player[i].CenterX - (myModel.Player[i].SizeX / 2))  &&
+                        opponent.CenterX <= (myModel.Player[i].CenterX +(myModel.Player[i].SizeX / 2)))
                     {
                         opponentVector.Y = opponentVector.Y * minus;
-                        Console.WriteLine(opponentVector.Y);
+                        Console.WriteLine("Y wert wird berechnet");
                     }
                     //Collision from the left and right
-                    if (opponent.CenterY >= (myModel.Player[i].CenterY - (myModel.Player[i].MaxY / 2)) ||
-                        opponent.CenterY <= (myModel.Player[i].CenterY + (myModel.Player[i].MaxY / 2)))
+                    if (opponent.CenterY >= (myModel.Player[i].CenterY - (myModel.Player[i].SizeY / 2)) &&
+                        opponent.CenterY <= (myModel.Player[i].CenterY + (myModel.Player[i].SizeY / 2)))
                     {
                         opponentVector.X = opponentVector.X * minus;
-                        Console.WriteLine(opponentVector.X);
+                       // Console.WriteLine(opponentVector.X);
                     }
 
                     /*opponentVector.Y = obstacleOponentResponseY(myModel.Player[i], opponent);
