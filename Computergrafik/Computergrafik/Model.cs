@@ -17,6 +17,7 @@ namespace Computergrafik
         Box2D[] player      = new Box2D[2];
         Box2D[] playerGun   = new Box2D[2];
         Box2D[] opponent    = new Box2D[2];
+        private float minus = -1f;
 
         public Model()
         {
@@ -31,8 +32,10 @@ namespace Computergrafik
 
             for(int index = 0; index<2; index++)
             {
-                player[index] = new Box2D(0f, 0f, 0.1f, 0.1f);
-                PlayerGun[index] = new Box2D(0f, 0f, 0.5f, 0.1f);
+                float xTerm = 0.7f * minus;
+                player[index] = new Box2D(xTerm, 0f, 0.1f, 0.1f);
+                PlayerGun[index] = new Box2D(xTerm, 0f, 0.5f, 0.1f);
+                minus = minus * minus;
             }
 
         }

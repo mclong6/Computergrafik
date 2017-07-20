@@ -37,9 +37,16 @@ namespace Computergrafik
             {
                 if (myModel.Player[i].Intersects(opponent))
                 {
-                    opponentVector.Y = obstacleOponentResponseY(myModel.Player[i], opponent);
+                    if (opponent.CenterX >= (myModel.Player[i].CenterX - (myModel.Player[i].MaxX / 2))||
+                        opponent.CenterX <= (myModel.Player[i].CenterX +(myModel.Player[i].MaxX / 2)))
+                    {
+                        opponentVector.Y = opponentVector.Y * (-1.0f);
+                        Console.WriteLine(opponentVector.Y);
+                    }
+                    
+                            /*opponentVector.Y = obstacleOponentResponseY(myModel.Player[i], opponent);
                     //opponentVector.X = obstacleOponentResponseY(myModel.Player[i], opponent);
-                    opponentVector.X = 1.0f;
+                    opponentVector.X = 1.0f;*/
                 }
 
             }
