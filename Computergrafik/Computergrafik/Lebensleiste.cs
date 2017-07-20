@@ -16,9 +16,9 @@ namespace Computergrafik
         Box2D oneAmmo = new Box2D(-0.95f, 0.825f, 0.3f, 0.05f);
         Box2D oneBoost = new Box2D(-0.95f, 0.725f, 0.3f, 0.05f);
 
-        Box2D twoLife = new Box2D(0.55f, 0.925f, 0.3f, 0.05f);
-        Box2D twoAmmo = new Box2D(0.55f, 0.825f, 0.3f, 0.05f);
-        Box2D twoBoost = new Box2D(0.55f, 0.725f, 0.3f, 0.05f);
+        Box2D twoLife = new Box2D(0.65f, 0.925f, 0.3f, 0.05f);
+        Box2D twoAmmo = new Box2D(0.65f, 0.825f, 0.3f, 0.05f);
+        Box2D twoBoost = new Box2D(0.65f, 0.725f, 0.3f, 0.05f);
         public Lebensleiste(Model model)
         {
             playerInfoOne = model.PlayerInfoOne;
@@ -34,9 +34,9 @@ namespace Computergrafik
             DrawOneAmmo(oneAmmo);
             DrawOneBoost(oneBoost);
 
-            DrawOneLife(oneLife);
-            DrawOneAmmo(oneAmmo);
-            DrawOneBoost(oneBoost);
+            DrawOneLife(twoLife);
+            DrawOneAmmo(twoAmmo);
+            DrawOneBoost(twoBoost);
         }
 
 

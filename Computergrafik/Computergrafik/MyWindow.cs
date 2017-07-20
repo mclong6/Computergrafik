@@ -41,7 +41,7 @@ namespace Computergrafik
             this.menu = new StartMenu(model);
 
             /*Lebensmenü*/
-            this.lebensleiste = new Lebensleiste();
+            this.lebensleiste = new Lebensleiste(model);
            // gameWindow.WindowState = WindowState.Fullscreen;
             gameWindow.UpdateFrame  += GameWindow_UpdateFrame;
             gameWindow.RenderFrame  += GameWindow_RenderFrame;
