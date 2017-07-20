@@ -26,7 +26,7 @@ namespace Computergrafik
             selectButton    = new Box2D(-0.4f, 0.2f, 0.8f, 0.4f);
 
             /*Boxen fürs Spiel*/
-            opponent[0]     = new Box2D(0.0f, 0.0f, 0.2f, 0.2f);
+            opponent[0]     = new Box2D(0.0f, 0.4f, 0.2f, 0.2f);
 
             for(int index = 0; index<2; index++)
             {

@@ -8,10 +8,11 @@ namespace Computergrafik
 {
     class Opponent
     {
-        private Vector2 opponentVector = new Vector2(1.0f, 0.5f);
+        private Vector2 opponentVector = new Vector2(0.0f, -1.0f);
+        private Model myModel;
 
-        public Opponent() {
-
+        public Opponent(Model model) {
+            myModel = model;
         } 
                 
         /*
@@ -32,6 +33,17 @@ namespace Computergrafik
             {
                 opponentVector.X = -opponentVector.X;
             }
+            for (int i=0; i<myModel.Player.Length; i++)
+            {
+                if (myModel.Player[i].Intersects(opponent))
+                {
+                    opponent.Y = obstacleOponentResponseY(myModel.Player[i], opponent);
+                    opponent.X = obstacleOponentResponseY(myModel.Player[i], opponent);
+                    //opponentVector.X = 1.0f;
+                }
+
+            }
+           
 
             /* 
              * 
@@ -49,7 +61,19 @@ namespace Computergrafik
                  ballV.Y = paddleBallResponse(paddle2, ball);
                  ballV.X = -1.0f;
              }*/
-        } 
+        }
+        private float obstacleOponentResponseY(Box2D player, Box2D opponent)
+        {
+            float vectorY = (player.CenterY - opponent.CenterY) / (0.5f * player.SizeY);
+            vectorY = OpenTK.MathHelper.Clamp(vectorY, -2.0f, 2.0f);
+            return vectorY;
+        }
+        private float obstacleOponentResponseX(Box2D player, Box2D opponent)
+        {
+            float vectorX = (player.CenterX - opponent.CenterX) / (0.5f * player.SizeX);
+            vectorX = OpenTK.MathHelper.Clamp(vectorX, -2.0f, 2.0f);
+            return vectorX;
+        }
     }
 }
 
