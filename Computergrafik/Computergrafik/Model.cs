@@ -32,7 +32,7 @@ namespace Computergrafik
             for(int index = 0; index<2; index++)
             {
                 player[index] = new Box2D(0f, 0f, 0.1f, 0.1f);
-                PlayerGun[index] = new Box2D(0f, 0f, 0.5f, 0.1f);
+                PlayerGun[index] = new Box2D(0f, 0f, 0.1f, 0.05f);
             }
 
         }
