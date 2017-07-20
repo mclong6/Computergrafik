@@ -89,45 +89,29 @@ namespace Computergrafik
             }
 
 
-            /*GameRender*/
-            /*Rendern im Menü*/
-            if (GameState == StateMenu)
-            {
-                this.DrawStartScreen(startScreen);
-                this.DrawStartButton(startButton);
-                this.DrawEndButton(endButton);
-                this.DrawSelectButton(selectButton);
-
-            }
-            /*Rendern beim GameRun und GameStart*/
-            if (GameState == StateStart)
-            {
-
-
-            }
-
 
         }
         public void DrawMenu()
         {
             this.DrawStartScreen(startScreen);
+            this.DrawSelectButton(selectButton);
             this.DrawStartButton(startButton);
             this.DrawEndButton(endButton);
-            this.DrawSelectButton(selectButton);
+         
 
         }
 
         private void DrawStartScreen(Box2D rect)
         {
             GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.YellowGreen);
             GL.Vertex2(rect.X, rect.Y);
             GL.Color3(Color.YellowGreen);
             GL.Vertex2(rect.MaxX, rect.Y);
             GL.Color3(Color.YellowGreen);
             GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.YellowGreen);
+            GL.Color3(Color.YellowGreen);      
             GL.Vertex2(rect.X, rect.MaxY);
-            GL.Color3(Color.YellowGreen);
             GL.End();
         }
 
@@ -135,6 +119,7 @@ namespace Computergrafik
         private void DrawStartButton(Box2D rect)
         {
             GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.Blue);
             GL.Vertex2(rect.X, rect.Y);
             GL.Color3(Color.Blue);
             GL.Vertex2(rect.MaxX, rect.Y);
@@ -142,13 +127,13 @@ namespace Computergrafik
             GL.Vertex2(rect.MaxX, rect.MaxY);
             GL.Color3(Color.Blue);
             GL.Vertex2(rect.X, rect.MaxY);
-            GL.Color3(Color.Blue);
             GL.End();
         }
 
         private void DrawEndButton(Box2D rect)
         {
             GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.Blue);
             GL.Vertex2(rect.X, rect.Y);
             GL.Color3(Color.Blue);
             GL.Vertex2(rect.MaxX, rect.Y);
@@ -156,21 +141,20 @@ namespace Computergrafik
             GL.Vertex2(rect.MaxX, rect.MaxY);
             GL.Color3(Color.Blue);
             GL.Vertex2(rect.X, rect.MaxY);
-            GL.Color3(Color.Blue);
             GL.End();
         }
 
         private void DrawSelectButton(Box2D rect)
         {
             GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.White);
             GL.Vertex2(rect.X, rect.Y);
             GL.Color3(Color.White);
             GL.Vertex2(rect.MaxX, rect.Y);
             GL.Color3(Color.White);
             GL.Vertex2(rect.MaxX, rect.MaxY);
             GL.Color3(Color.White);
-            GL.Vertex2(rect.X, rect.MaxY);
-            GL.Color3(Color.White);
+            GL.Vertex2(rect.X, rect.MaxY);       
             GL.End();
         }
     }
