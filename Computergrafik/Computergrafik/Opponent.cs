@@ -36,41 +36,52 @@ namespace Computergrafik
                 opponentVector.X = -opponentVector.X;
             }
            
-                for (int i = 0; i < myModel.Player.Length; i++)
+            for (int i = 0; i < myModel.Player.Length; i++)
+            {
+                if (myModel.Player[i].Intersects(opponent))
                 {
-                    if (myModel.Player[i].Intersects(opponent))
-                    { 
-                        if ((opponent.CenterX > myModel.Player[i].MaxX || opponent.CenterX < (myModel.Player[i].MaxX - myModel.Player[i].SizeX)) &&
-                            (opponent.CenterY > myModel.Player[i].MaxY || opponent.CenterY < (myModel.Player[i].MaxY - myModel.Player[i].SizeY)))
-                        {
-                            Console.WriteLine("Kollision");
-                            opponentVector.Y = opponentVector.Y * minus;
-                            opponentVector.X = opponentVector.X * minus;
-                            Console.WriteLine("111");
-                        }
-                   
-
-                        //Collision from underneath and above
-                        else if (opponent.CenterX > (myModel.Player[i].CenterX - (myModel.Player[i].SizeX / 2)) &&
-                                opponent.CenterX < (myModel.Player[i].CenterX + (myModel.Player[i].SizeX / 2)))
-                            {
-                                opponentVector.Y = opponentVector.Y * minus;
-                                Console.WriteLine("Y wert wird verändern");
-                            }
-                            //Collision from the left and right
-                        else if (opponent.CenterY > (myModel.Player[i].CenterY - (myModel.Player[i].SizeY / 2)) &&
-                                opponent.CenterY < (myModel.Player[i].CenterY + (myModel.Player[i].SizeY / 2)))
-                            {
-                            opponentVector.X = opponentVector.X * minus;
-                            Console.WriteLine("X wert wird verändern");
-                            }
-                  
-                   
+                    controlIntersects(myModel.Player[i], opponent);
                 }
+             }
+            if (myModel.PlayerInfoOne.Intersects(opponent))
+            {
+                controlIntersects(myModel.PlayerInfoOne, opponent);
+            }
+            if (myModel.PlayerInfoTwo.Intersects(opponent))
+            {
+                controlIntersects(myModel.PlayerInfoTwo, opponent);
+            }
 
-                }
+        }
+
+        private void controlIntersects(Box2D obstacle, Box2D opponent)
+        {
+            if ((opponent.CenterX > obstacle.MaxX || opponent.CenterX < (obstacle.MaxX - obstacle.SizeX)) &&
+                           (opponent.CenterY > obstacle.MaxY || opponent.CenterY < (obstacle.MaxY - obstacle.SizeY)))
+            {
+                Console.WriteLine("Kollision");
+                opponentVector.Y = opponentVector.Y * minus;
+                opponentVector.X = opponentVector.X * minus;
+                Console.WriteLine("111");
+            }
+
+
+            //Collision from underneath and above
+            else if (opponent.CenterX > (obstacle.CenterX - (obstacle.SizeX / 2)) &&
+                    opponent.CenterX < (obstacle.CenterX + (obstacle.SizeX / 2)))
+            {
+                opponentVector.Y = opponentVector.Y * minus;
+                Console.WriteLine("Y wert wird verändern");
+            }
+            //Collision from the left and right
+            else if (opponent.CenterY > (obstacle.CenterY - (obstacle.SizeY / 2)) &&
+                    opponent.CenterY < (obstacle.CenterY + (obstacle.SizeY / 2)))
+            {
+                opponentVector.X = opponentVector.X * minus;
+                Console.WriteLine("X wert wird verändern");
             }
         }
+    }
 
     }
 
