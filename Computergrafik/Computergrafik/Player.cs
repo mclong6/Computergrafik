@@ -25,6 +25,7 @@ namespace Computergrafik
         private Vector2 direcction;
         private Vector2 gunDirection;
         private Boolean shootcontrol = true;
+        private Boolean colisionControl = true;
 
 
         public Player(Model model, int playerNr) {
@@ -72,10 +73,13 @@ namespace Computergrafik
             if (player.Intersects(model.Opponent[0]))
             {
                 speed = 0;
-
+                colisionControl = false;
             }
-
-            else speed = 0.006f;
+            else if (!player.Intersects(model.Opponent[0]) && colisionControl == false)
+            {
+                speed = 0.006f;
+                colisionControl = true;
+            }
 
         }
 
