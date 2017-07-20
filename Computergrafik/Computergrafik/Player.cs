@@ -43,6 +43,7 @@ namespace Computergrafik
             getControllerState();
             boostPressed();
             shootPressed();
+            Colisuion();
             calculatePlayerPosition();
             moveGun();
         }
@@ -63,6 +64,18 @@ namespace Computergrafik
 
             if (gunDirection.X < 0.2f && gunDirection.X > -0.2f) gunDirection.X = 0; // da Joysticks nie genau 0
             if (gunDirection.Y < 0.2f && gunDirection.Y > -0.2f) gunDirection.Y = 0; // da Joysticks nie genau 0
+
+        }
+
+        private void Colisuion()
+        {
+            if (player.Intersects(model.Opponent[0]))
+            {
+                speed = 0;
+
+            }
+
+            else speed = 0.006f;
 
         }
 
@@ -122,9 +135,10 @@ namespace Computergrafik
 
         private void shoot(int x, int y)
         {
-            Bullet bullet = new Bullet(x,y);
-            Thread bulledThread = new Thread(bullet.fligh);
-            bulledThread.Start();
+            Bullet bullet = new Bullet(x,y,this);
+            bullet.fligh();
+           // Thread bulledThread = new Thread(bullet.fligh);
+           // bulledThread.Start();
 
         }
 
