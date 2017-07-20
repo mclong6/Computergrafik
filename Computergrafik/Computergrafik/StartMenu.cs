@@ -11,7 +11,7 @@ namespace Computergrafik
         const int StateMenu = 0;
         const int StateStart = 1;
 
-
+        float vibrationAmount = 0.0f;
 
         int joyStickUp = 0;
         int joyStickDown = 0;
@@ -20,10 +20,14 @@ namespace Computergrafik
         Box2D startButton;
         Box2D endButton;
         Box2D selectButton;
+        GamePadState previousGamePadState;
+        GamePadState gamepadState;
 
-
-        public StartMenu(Model model)
+        public StartMenu(Model model, GamePadState pgamepadState)
         {
+            gamepadState = pgamepadState;
+           
+            previousGamePadState = pgamepadState;
             startScreen = model.StartScreen;
             startButton = model.StartButton;
             endButton = model.EndButton;
@@ -38,8 +42,12 @@ namespace Computergrafik
             {
                 /*Bei drücken der Taste A*/
                 /*currentState.Buttons.LeftStick == ButtonState.Pressed*/
-                if (Keyboard.GetState()[Key.Left])
+          
+                if (gamepadState.Buttons.IsAnyButtonPressed || Keyboard.GetState()[Key.Left])
                 {
+
+                    vibrationAmount = MathHelper.Clamp(vibrationAmount + 0.03f, 0.0f, 1.0f);
+                    GamePad.SetVibration(1, vibrationAmount, vibrationAmount);
                     if (startButton.Intersects(selectButton))
                     {          
                         mywindow.GameState1 = StateStart;
@@ -52,6 +60,7 @@ namespace Computergrafik
                         Environment.Exit(1);
                     }
                 }
+                previousGamePadState = gamepadState;
 
                 /*Bei Hoch oder Runter*/
                 if (Keyboard.GetState()[Key.Up])
@@ -83,7 +92,7 @@ namespace Computergrafik
                         selectButton.Y = selectButton.Y - 0.4f;
                     }
                 }
-
+        
 
 
 

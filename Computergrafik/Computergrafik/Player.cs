@@ -33,6 +33,11 @@ namespace Computergrafik
         private float bulledInterval = 100;     // mill sec
 
 
+        //informations
+        private float life;
+        private float ammo;
+        private float boost;
+
         public Player(Model model, int playerNr) {
 
             
@@ -47,6 +52,10 @@ namespace Computergrafik
             this.timer.Elapsed += OnTimedEvent;
             this.timer.AutoReset= true;
             this.timer.Enabled  = true;
+
+            this.life = 100;
+            this.ammo = 100;
+            this.boost = 100;
         }
 
 
@@ -128,14 +137,22 @@ namespace Computergrafik
         private void boostPressed()             // if post is presst speed will rise 
         {
 
-            if (currentControllerState.Triggers.Right == 1.0f)
+            if(currentControllerState.Triggers.Right == 1.0f && this.boost >= 0)
             {
+                this.boost = boost -1;
+                if (this.boost > 0)
+                {
+                    speed = 0.02f;
+                }
+                else {
 
-                speed = 0.02f;
+                    speed = 0.006f;
+                }
             }
 
-            if (currentControllerState.Triggers.Right == 0.0f)
+            if (currentControllerState.Triggers.Right == 0.0f )
             {
+                
                 speed = 0.006f;
             }
 
@@ -163,7 +180,8 @@ namespace Computergrafik
 
             if (currentControllerState.Triggers.Left > 0.5f && shootcontrol == true)
             {
-                 shootcontrol = false;
+               
+                shootcontrol = false;
             }
 
             if (currentControllerState.Triggers.Left == 0.0f)
@@ -176,8 +194,9 @@ namespace Computergrafik
 
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-            if (shootcontrol == false)
+            if (shootcontrol == false && ammo >=0)
             {
+                this.ammo = ammo - 1;
                 shoot(gunDirection.X, gunDirection.Y);
             }
            // Console.WriteLine("The Elapsed event was raised at {0}", e.SignalTime);
@@ -196,6 +215,7 @@ namespace Computergrafik
             bullet = new Bullet(x, y, this);
             Bullets.Add(bullet);
             
+
             // Thread bulledThread = new Thread(bullet.fligh);
             // bulledThread.Start();
 
@@ -249,6 +269,58 @@ namespace Computergrafik
             set
             {
                 playerNr = value;
+            }
+        }
+
+        public float Life
+        {
+            get
+            {
+                return life;
+            }
+
+            set
+            {
+                life = value;
+            }
+        }
+
+        public float Ammo
+        {
+            get
+            {
+                return ammo;
+            }
+
+            set
+            {
+                ammo = value;
+            }
+        }
+
+        public float Boost
+        {
+            get
+            {
+                return boost;
+            }
+
+            set
+            {
+                boost = value;
+            }
+        }
+
+        public GamePadState CurrentControllerState
+        {
+            get
+            {
+                return currentControllerState;
+            }
+
+            set
+            {
+                currentControllerState = value;
             }
         }
     }
