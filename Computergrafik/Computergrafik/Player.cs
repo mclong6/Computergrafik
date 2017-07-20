@@ -1,5 +1,6 @@
 ﻿using DMS.Geometry;
 using OpenTK;
+using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System;
 using System.Collections.Generic;
@@ -18,21 +19,37 @@ namespace Computergrafik
         private float speed = 0.006f;
         private Box2D player;
         private Box2D gun;
-        private float JS1x;
-        private float JS1y;
         private GamePadState currentControllerState;
         private GamePadThumbSticks thumber;
         private Vector2 direcction;
         private Vector2 gunDirection;
-        private Boolean shootcontrol = true;
-        private Boolean colisionControl = true;
+        private bool shootcontrol = true;
+        private bool colisionControl = true;
+        private IList<Bullet> bullets = new List<Bullet>();
+        private Bullet bullet;
+        private float bulledSpeed = 0.01f;
+
+        public Box2D pplayer
+        {
+            get
+            {
+                return player;
+            }
+
+            set
+            {
+                player = value;
+            }
+        }
+
 
 
         public Player(Model model, int playerNr) {
 
+            
             this.model          = model;
             this.playerNr       = playerNr;
-            this.player         = model.Player[playerNr];
+            this.pplayer         = model.Player[playerNr];
             this.gun            = model.PlayerGun[playerNr];
             this.direcction     = new Vector2(0f, 0f);
             this.gunDirection   = new Vector2(0f,0f);
@@ -46,7 +63,10 @@ namespace Computergrafik
             shootPressed();
             Colisuion();
             calculatePlayerPosition();
+            calculateBullets();
+            recycleBullets();
             moveGun();
+
         }
 
         private void getControllerState() {         // takes the current controller state 
@@ -60,6 +80,16 @@ namespace Computergrafik
             gunDirection.X = thumber.Right.X;       // gun direction
             gunDirection.Y = thumber.Right.Y;
 
+            if(gunDirection.X < 0.2f && gunDirection.X > -0.2f && gunDirection.Y <0.2f && gunDirection.Y > -0.2f) {
+
+                gunDirection.X = direcction.X;
+                gunDirection.Y = direcction.Y;
+
+            }
+
+
+            gunDirection.NormalizeFast();
+
             if (direcction.X < 0.2f && direcction.X > -0.2f) direcction.X = 0; // da Joysticks nie genau 0
             if (direcction.Y < 0.2f && direcction.Y > -0.2f) direcction.Y = 0; // da Joysticks nie genau 
 
@@ -70,12 +100,12 @@ namespace Computergrafik
 
         private void Colisuion()
         {
-            if (player.Intersects(model.Opponent[0]))
+            if (pplayer.Intersects(model.Opponent[0]))
             {
                 speed = 0;
                 colisionControl = false;
             }
-            else if (!player.Intersects(model.Opponent[0]) && colisionControl == false)
+            else if (!pplayer.Intersects(model.Opponent[0]) && colisionControl == false)
             {
                 speed = 0.006f;
                 colisionControl = true;
@@ -90,8 +120,8 @@ namespace Computergrafik
                 direcction.NormalizeFast();
             }
 
-            player.CenterX = player.CenterX + (direcction.X * speed);
-            player.CenterY = player.CenterY + (direcction.Y * speed);
+            pplayer.CenterX = pplayer.CenterX + (direcction.X * speed);
+            pplayer.CenterY = pplayer.CenterY + (direcction.Y * speed);
 
         }
 
@@ -112,13 +142,30 @@ namespace Computergrafik
 
         }
 
+        public void recycleBullets() {
+
+            for(int i = 0; i<Bullets.Count; i++)
+            {
+                if(Bullets[i].Bbullet.X < -1 || Bullets[i].Bbullet.X > 1 || Bullets[i].Bbullet.Y < -1 || Bullets[i].Bbullet.Y > 1)
+                {
+                    Bullets.RemoveAt(i);
+                    Console.WriteLine("Bullet enfernt");
+                }
+
+                
+
+            }
+        }
+
+
+
         private void shootPressed()             // if post is presst speed will rise 
         {
 
-            if (currentControllerState.Triggers.Left == 1.0f && shootcontrol == true)
+            if (currentControllerState.Triggers.Left > 0.5f && shootcontrol == true)
             {
-                shoot(1,1);
-                shootcontrol = false;
+                shoot(gunDirection.X,gunDirection.Y);
+               // shootcontrol = false;
             }
 
             if (currentControllerState.Triggers.Left == 0.0f)
@@ -137,13 +184,43 @@ namespace Computergrafik
             
         }
 
-        private void shoot(int x, int y)
+        private void shoot(float x, float y)
         {
-            Bullet bullet = new Bullet(x,y,this);
-            bullet.fligh();
-           // Thread bulledThread = new Thread(bullet.fligh);
-           // bulledThread.Start();
 
+            bullet = new Bullet(x, y, this);
+            Bullets.Add(bullet);
+            
+            // Thread bulledThread = new Thread(bullet.fligh);
+            // bulledThread.Start();
+
+        }
+
+
+        private void calculateBullets()
+        {
+
+            for (int i = 0; i< Bullets.Count; i++)
+            {
+                Bullets[i].Bbullet.CenterX = Bullets[i].Bbullet.CenterX + Bullets[i].X_Dir*bulledSpeed;
+                Bullets[i].Bbullet.CenterY = Bullets[i].Bbullet.CenterY + Bullets[i].Y_Dir*bulledSpeed;
+
+            }
+
+
+
+        }
+
+        public IList<Bullet> Bullets
+        {
+            get
+            {
+                return bullets;
+            }
+
+            set
+            {
+                bullets = value;
+            }
         }
 
 

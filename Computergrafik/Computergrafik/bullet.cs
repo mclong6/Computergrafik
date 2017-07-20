@@ -14,50 +14,77 @@ namespace Computergrafik
     class Bullet
     {
 
-        float x;
-        float y;
-        Box2D bullet;
+        float x_Dir;
+        float y_Dir;
+        Box2D bbullet;
+
+   
 
         public Bullet(float x, float y, Player player) {
 
-            this.x = x;
-            this.y = y;
-            bullet = new Box2D(0f,0.5f,0.15f,0.15f);
+            this.X_Dir = x;
+            this.Y_Dir = y;
+            Bbullet = new Box2D(player.pplayer.CenterX,player.pplayer.CenterY,0.005f,0.005f);
+            Console.WriteLine("bullet erstellt");
 
         }
 
-        public void fligh() {
-
-            while (moveBulled()) { }
-            
-        }
-
-        private void DrawBulled(Box2D rect)
+        public void DrawBulled()
         {
+
+            
             GL.Begin(PrimitiveType.LineLoop);
             GL.Color3(Color.Yellow);
-            GL.Vertex2(rect.X, rect.Y);
+            GL.Vertex2(Bbullet.X, Bbullet.Y);
             GL.Color3(Color.Yellow);
-            GL.Vertex2(rect.MaxX, rect.Y);
+            GL.Vertex2(Bbullet.MaxX, Bbullet.Y);
             GL.Color3(Color.Yellow);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.Vertex2(Bbullet.MaxX, Bbullet.MaxY);
             GL.Color3(Color.Yellow);
-            GL.Vertex2(rect.X, rect.MaxY);
+            GL.Vertex2(Bbullet.X, Bbullet.MaxY);
             GL.End();
 
         }
 
-        private bool moveBulled() {
+       
 
-            bullet.CenterX = bullet.CenterX + x;
-            bullet.CenterY = bullet.CenterY + y;
+        public Box2D Bbullet
+        {
+            get
+            {
+                return bbullet;
+            }
 
-            DrawBulled(bullet);
-
-            return true;
-
+            set
+            {
+                bbullet = value;
+            }
         }
 
+        public float X_Dir
+        {
+            get
+            {
+                return x_Dir;
+            }
 
+            set
+            {
+                x_Dir = value;
+            }
+        }
+
+        public float Y_Dir
+        {
+            get
+            {
+                return y_Dir;
+            }
+
+            set
+            {
+                y_Dir = value;
+            }
+        }
     }
 }

@@ -81,7 +81,15 @@ namespace Computergrafik
             visuals.DrawPlayerGun(model.PlayerGun[0]);
             visuals.DrawPlayerGun(model.PlayerGun[1]);
 
+                for (int i = 0; i < logic.Player[0].Bullets.Count; i++)
+                {
+                    logic.Player[0].Bullets[i].DrawBulled();
+                }
 
+                for (int i = 0; i < logic.Player[1].Bullets.Count; i++)
+                {
+                    logic.Player[1].Bullets[i].DrawBulled();
+                }
 
                 visuals.DrawOpponent(model.Opponent[0].CenterX, model.Opponent[0].CenterY, 0.5f * model.Opponent[0].SizeX);
            
