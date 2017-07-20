@@ -37,7 +37,7 @@ namespace Computergrafik
 
             
             this.model          = model;
-            this.playerNr       = playerNr;
+            this.PlayerNr       = playerNr;
             this.pplayer        = model.Player[playerNr];
             this.gun            = model.PlayerGun[playerNr];
             this.direcction     = new Vector2(0f, 0f);
@@ -65,7 +65,7 @@ namespace Computergrafik
 
         private void getControllerState() {         // takes the current controller state 
 
-            currentControllerState = GamePad.GetState(playerNr);
+            currentControllerState = GamePad.GetState(PlayerNr);
             thumber = currentControllerState.ThumbSticks;
 
             direcction.X = thumber.Left.X;          // movemend dierection
@@ -101,7 +101,7 @@ namespace Computergrafik
                 pplayer.Y = pplayer.Y + direcction.Y * -0.1f;
 
                 pplayer.Y = 0f;
-                pplayer.X = playerNr - 0.25f;
+                pplayer.X = PlayerNr - 0.25f;
 
                 colisionControl = false;
             }
@@ -149,7 +149,6 @@ namespace Computergrafik
                 if(Bullets[i].Bbullet.X < -1 || Bullets[i].Bbullet.X > 1 || Bullets[i].Bbullet.Y < -1 || Bullets[i].Bbullet.Y > 1)
                 {
                     Bullets.RemoveAt(i);
-                    Console.WriteLine("Bullet enfernt");
                 }
 
                 
@@ -240,6 +239,17 @@ namespace Computergrafik
             }
         }
 
+        public int PlayerNr
+        {
+            get
+            {
+                return playerNr;
+            }
 
+            set
+            {
+                playerNr = value;
+            }
+        }
     }
 }

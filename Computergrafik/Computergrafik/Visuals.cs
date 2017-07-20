@@ -19,7 +19,7 @@ namespace Computergrafik
         public void DrawPlayerGun(Box2D rect)
         {
 
-            GL.Begin(PrimitiveType.LineLoop);
+            GL.Begin(PrimitiveType.Quads);
             GL.Color3(Color.Yellow);
             GL.Vertex2(rect.X, rect.Y);
             GL.Color3(Color.Yellow);
@@ -33,7 +33,7 @@ namespace Computergrafik
 
         public void DrawPlayerOne(Box2D rect){
 
-            GL.Begin(PrimitiveType.LineLoop);
+            GL.Begin(PrimitiveType.Quads);
             GL.Color3(Color.Blue);
             GL.Vertex2(rect.X, rect.Y);
             GL.Color3(Color.Blue);
@@ -48,7 +48,7 @@ namespace Computergrafik
         public void DrawPlayerTwo(Box2D rect)
         {
 
-            GL.Begin(PrimitiveType.LineLoop);
+            GL.Begin(PrimitiveType.Quads);
             GL.Color3(Color.Red);
             GL.Vertex2(rect.X, rect.Y);
             GL.Color3(Color.Red);
