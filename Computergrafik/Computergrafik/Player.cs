@@ -21,6 +21,7 @@ namespace Computergrafik
         private GamePadState currentControllerState;
         private GamePadThumbSticks thumber;
         private Vector2 direcction;
+        private Vector2 gunDirection;
 
 
         public Player(Model model, int playerNr) {
@@ -29,26 +30,34 @@ namespace Computergrafik
             this.playerNr   = playerNr;
             this.player     = model.Player[playerNr];
             this.direcction = new Vector2(0f, 0f);
+
         }
 
 
-        public void updatePosition()
+        public void updatePosition()        //Updates the position of the player
         {
             getControllerState();
+            boostPressed();
             calculatePlayerPosition();
 
         }
 
-        private void getControllerState() {
+        private void getControllerState() {         // takes the current controller state 
 
             currentControllerState = GamePad.GetState(playerNr);
             thumber = currentControllerState.ThumbSticks;
 
-            direcction.X = thumber.Left.X;
+            direcction.X = thumber.Left.X;          // movemend dierection
             direcction.Y = thumber.Left.Y;
 
+            gunDirection.X = thumber.Right.X;       // gun direction
+            gunDirection.Y = thumber.Right.Y;
+
             if (direcction.X < 0.2f && direcction.X > -0.2f) direcction.X = 0; // da Joysticks nie genau 0
-            if (direcction.Y < 0.2f && direcction.Y > -0.2f) direcction.Y = 0; // da Joysticks nie genau 0
+            if (direcction.Y < 0.2f && direcction.Y > -0.2f) direcction.Y = 0; // da Joysticks nie genau 
+
+            if (gunDirection.X < 0.2f && gunDirection.X > -0.2f) gunDirection.X = 0; // da Joysticks nie genau 0
+            if (gunDirection.Y < 0.2f && gunDirection.Y > -0.2f) gunDirection.Y = 0; // da Joysticks nie genau 0
 
         }
 
@@ -59,7 +68,16 @@ namespace Computergrafik
                 direcction.NormalizeFast();
             }
 
-           if(currentControllerState.Buttons.X == ButtonState.Pressed){
+            player.CenterX = player.CenterX + (direcction.X * speed);
+            player.CenterY = player.CenterY + (direcction.Y * speed);
+
+        }
+
+        private void boostPressed()             // if post is presst speed will rise 
+        {
+
+            if (currentControllerState.Buttons.X == ButtonState.Pressed)
+            {
 
                 speed = 0.02f;
             }
@@ -69,8 +87,13 @@ namespace Computergrafik
                 speed = 0.006f;
             }
 
-            player.CenterX = player.CenterX + (direcction.X * speed);
-            player.CenterY = player.CenterY + (direcction.Y * speed);
+
+        }
+
+        private void moveGun() {
+
+
+
 
         }
 
