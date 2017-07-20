@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Computergrafik
@@ -16,21 +17,24 @@ namespace Computergrafik
         private Model model;
         private float speed = 0.006f;
         private Box2D player;
+        private Box2D gun;
         private float JS1x;
         private float JS1y;
         private GamePadState currentControllerState;
         private GamePadThumbSticks thumber;
         private Vector2 direcction;
         private Vector2 gunDirection;
+        private Boolean shootcontrol = true;
 
 
         public Player(Model model, int playerNr) {
 
-            this.model      = model;
-            this.playerNr   = playerNr;
-            this.player     = model.Player[playerNr];
-            this.direcction = new Vector2(0f, 0f);
-
+            this.model          = model;
+            this.playerNr       = playerNr;
+            this.player         = model.Player[playerNr];
+            this.gun            = model.PlayerGun[playerNr];
+            this.direcction     = new Vector2(0f, 0f);
+            this.gunDirection   = new Vector2(0f,0f);
         }
 
 
@@ -38,8 +42,9 @@ namespace Computergrafik
         {
             getControllerState();
             boostPressed();
+            shootPressed();
             calculatePlayerPosition();
-
+            moveGun();
         }
 
         private void getControllerState() {         // takes the current controller state 
@@ -76,13 +81,13 @@ namespace Computergrafik
         private void boostPressed()             // if post is presst speed will rise 
         {
 
-            if (currentControllerState.Buttons.X == ButtonState.Pressed)
+            if (currentControllerState.Triggers.Right == 1.0f)
             {
 
                 speed = 0.02f;
             }
 
-            if (currentControllerState.Buttons.X == ButtonState.Released)
+            if (currentControllerState.Triggers.Right == 0.0f)
             {
                 speed = 0.006f;
             }
@@ -90,10 +95,36 @@ namespace Computergrafik
 
         }
 
+        private void shootPressed()             // if post is presst speed will rise 
+        {
+
+            if (currentControllerState.Triggers.Left == 1.0f && shootcontrol == true)
+            {
+                shoot(1,1);
+                shootcontrol = false;
+            }
+
+            if (currentControllerState.Triggers.Left == 0.0f)
+            {
+                shootcontrol = true;
+            }
+
+
+        }
+
+
+
         private void moveGun() {
 
 
+            
+        }
 
+        private void shoot(int x, int y)
+        {
+            Bullet bullet = new Bullet(x,y);
+            Thread bulledThread = new Thread(bullet.fligh);
+            bulledThread.Start();
 
         }
 

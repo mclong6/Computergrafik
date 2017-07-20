@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bullet.cs" />
     <Compile Include="Lebensleiste.cs" />
     <Compile Include="Logic.cs" />
     <Compile Include="Model.cs" />
