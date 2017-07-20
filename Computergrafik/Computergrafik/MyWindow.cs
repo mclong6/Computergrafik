@@ -23,6 +23,7 @@ namespace Computergrafik
         private Model model;
         private Visuals visuals;
         private Logic logic;
+        private Lebensleiste lebensleiste;
 
         /*Hauptmenu*/
         private StartMenu menu;
@@ -34,9 +35,13 @@ namespace Computergrafik
             this.model              = new Model();
             this.visuals            = new Visuals();
             this.logic              = new Logic(model);
+            
 
             /*Hauptmenü*/
             this.menu = new StartMenu(model);
+
+            /*Lebensmenü*/
+            this.lebensleiste = new Lebensleiste();
            // gameWindow.WindowState = WindowState.Fullscreen;
             gameWindow.UpdateFrame  += GameWindow_UpdateFrame;
             gameWindow.RenderFrame  += GameWindow_RenderFrame;
@@ -69,10 +74,13 @@ namespace Computergrafik
             }
             if (GameState == StateStart)
             {
+               
             visuals.DrawPlayer(model.Player[0]);
             visuals.DrawPlayer(model.Player[1]);
             visuals.DrawOpponent(model.Opponent[0].CenterX, model.Opponent[0].CenterY, 0.5f * model.Opponent[0].SizeX);
-            GL.Disable(EnableCap.Blend);
+                lebensleiste.DrawPlayerLife();
+                lebensleiste.DrawPlayerLifeTwo();
+                GL.Disable(EnableCap.Blend);
             }
 
         }
