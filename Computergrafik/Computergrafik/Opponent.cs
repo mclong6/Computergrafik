@@ -65,114 +65,89 @@ namespace Computergrafik
             if ((opponent.CenterX > obstacle.MaxX || opponent.CenterX < (obstacle.MaxX - obstacle.SizeX)) &&
                            (opponent.CenterY > obstacle.MaxY || opponent.CenterY < (obstacle.MaxY - obstacle.SizeY)))
             {
-                Console.WriteLine("Kollision Corner");
-                //Corner above the centrum
+                //Corner-Collision above the centrum
                 if (above)
                 {
                     //Vector minus and plus
                     if ((opponentVector.Y < 0 && opponentVector.X > 0))
                     {
                         if (left)
-                        {
-                            opponentVector.Y = opponentVector.Y * minus;
-                            opponentVector.X = opponentVector.X * minus;
-                        }
+                        {opponentVector.Y = opponentVector.Y * minus;
+                            opponentVector.X = opponentVector.X * minus;}
                         if (right)
-                        {
-                            opponentVector.Y = opponentVector.Y * minus;
-                        }
+                        {opponentVector.Y = opponentVector.Y * minus;}
                     }
                     //Vector minus and minus
                     else if ((opponentVector.Y < 0 && opponentVector.X < 0))
                     {
                         if (right)
-                        {
-                            opponentVector.Y = opponentVector.Y * minus;
-                            opponentVector.X = opponentVector.X * minus;
-                        }
+                        {   opponentVector.Y = opponentVector.Y * minus;
+                            opponentVector.X = opponentVector.X * minus;}
+
                         if (left)
-                        {
-                            opponentVector.Y = opponentVector.Y * minus;
-                        }
+                        {opponentVector.Y = opponentVector.Y * minus;}
                     }
                     //Vector plus and plus
                     else if (opponentVector.Y > 0 && opponentVector.X > 0)
                     {
                         if (left)
-                        {
-                            opponentVector.X = opponentVector.X * minus;
-                        }
+                        { opponentVector.X = opponentVector.X * minus; }
                     }
                     //Vector plus and minus
                     else if (opponentVector.Y > 0 && opponentVector.X < 0)
                     {
                         if (right)
-                        {
-                            opponentVector.X = opponentVector.X * minus;
-                        }
+                        { opponentVector.X = opponentVector.X * minus;}
                     }
-
                 }
-                if (under)
+
+                //Corner-Collision under the centrum
+                else if (under)
                 {
                     //Vector minus and plus
                     if ((opponentVector.Y < 0 && opponentVector.X > 0))
                     {
                         if (left)
-                        {
-                            opponentVector.X = opponentVector.X * minus;
-                        }
+                        { opponentVector.X = opponentVector.X * minus;}
                        
                     }
                     //Vector minus and minus
                     else if ((opponentVector.Y < 0 && opponentVector.X < 0))
                     {
                         if (right)
-                        {
-                           
-                            opponentVector.X = opponentVector.X * minus;
-                        }
+                        {opponentVector.X = opponentVector.X * minus;}
                     }
                     //Vector plus and plus
                     else if (opponentVector.Y > 0 && opponentVector.X > 0)
                     {
                         if (left)
-                        {
-                            opponentVector.X = opponentVector.X * minus;
-                            opponentVector.Y = opponentVector.Y * minus;
-                        }
+                        {opponentVector.X = opponentVector.X * minus;
+                            opponentVector.Y = opponentVector.Y * minus;}
+
                         if (right)
-                        {
-                            opponentVector.Y = opponentVector.Y * minus;
-                        }
+                        {opponentVector.Y = opponentVector.Y * minus;}
                     }
                     //Vector plus and minus
                     else if (opponentVector.Y > 0 && opponentVector.X < 0)
                     {
                         if (right)
-                        {
-                            opponentVector.X = opponentVector.X * minus;
-                            opponentVector.Y = opponentVector.Y * minus;
-                        }
+                        {opponentVector.X = opponentVector.X * minus;
+                            opponentVector.Y = opponentVector.Y * minus;}
+
                         if (left)
-                        {
-                            opponentVector.Y = opponentVector.Y * minus;
-                        }
+                        {opponentVector.Y = opponentVector.Y * minus;}
                     }
-
                 }
-
-
-
             }
+
             //Collision from underneath and above
             else if (opponent.CenterX > (obstacle.CenterX - (obstacle.SizeX / 2)) &&
                     opponent.CenterX < (obstacle.CenterX + (obstacle.SizeX / 2)))
             {
                 Console.WriteLine("Kollision oben oder unten:" + opponentVector.Y);
                 opponentVector.Y = opponentVector.Y * minus;
-
             }
+
             //Collision from the left and right
             else if (opponent.CenterY > (obstacle.CenterY - (obstacle.SizeY / 2)) &&
                     opponent.CenterY < (obstacle.CenterY + (obstacle.SizeY / 2)))
@@ -181,7 +156,6 @@ namespace Computergrafik
                 Console.WriteLine("Kollision rechts oder links:" + opponentVector.X);
             }
         }
-
     }
 }
 
