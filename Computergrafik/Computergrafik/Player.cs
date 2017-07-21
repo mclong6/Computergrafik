@@ -22,10 +22,14 @@ namespace Computergrafik
         private float speed = 0.006f;
         private Box2D player;
         private Box2D gun;
-      
+
+        private int joyStickShoot = 0;
+        private int joyStickBoost = 0;
+
         private GamePadState currentControllerState;
         private GamePadThumbSticks thumber;
         private Vector2 direcction;
+
         private Vector2 gunDirection;
         private bool shootcontrol = true;
         private bool colisionControl = true;
@@ -137,6 +141,21 @@ namespace Computergrafik
                     }
          
                 }
+
+
+               
+                if (bullets.Count > 0)
+                {
+   
+                    for (int k = 0; k < bullets.Count; k++)
+                    {
+                        if (bullets[k].Bbullet.Intersects(model.Obstacles[i]))
+                        {
+                          
+                            this.Bullets.RemoveAt(k);
+                        }
+                    }
+                }
             }
         }
 
@@ -200,23 +219,13 @@ namespace Computergrafik
                         direcction.X = 0;
                     }
 
-                    if (Keyboard.GetState()[Key.Space])
-                    {
 
-              
-                        shootPressed(false);
 
-                    }
-                if (Keyboard.GetState()[Key.V])
-                {
+                /*Schießen*/
 
-                    this.boost = boost - 1;
-                    if (this.boost > 0)
-                    {
-                        speed = 0.02f;
-                    }
-
-                }
+                shootPressed(false);
+             
+                /*Boost*/
                 if (Keyboard.GetState()[Key.V] && this.boost >= 0)
                 {
                     this.boost = boost - 1;
@@ -228,6 +237,13 @@ namespace Computergrafik
                     {
                         speed = 0.006f;
                     }
+                    joyStickBoost = 1;
+                }
+                if (joyStickBoost == 1 & !(Keyboard.GetState()[Key.V] && this.boost >= 0))
+                {
+                  
+                        speed = 0.006f;
+                    
                 }
 
                 
@@ -312,7 +328,7 @@ namespace Computergrafik
                 }
             }
 
-            if (currentControllerState.Triggers.Right == 0.0f)
+            if (currentControllerState.Triggers.Right < 0.99f)
             {
                 speed = 0.006f;
             }
@@ -336,7 +352,7 @@ namespace Computergrafik
 
 
 
-        private void shootPressed(bool k)             // if post is presst speed will rise 
+        public void shootPressed(bool k)             // if post is presst speed will rise 
         {
             if (k == true)     // controler
             {
@@ -357,19 +373,18 @@ namespace Computergrafik
             else                    // tastatur
             {
 
-                if ( Keyboard.GetState()[Key.Space] && shootcontrol == true)
+                if (Keyboard.GetState()[Key.Space] && shootcontrol == true)
                 {
                     shootcontrol = false;
+                    joyStickShoot = 1;
+
                 }
 
-                if (!Keyboard.GetState()[Key.Space])
+                if (joyStickShoot == 1 & !(Keyboard.GetState()[Key.Space]))
                 {
-
+                    joyStickShoot = 0;
                     shootcontrol = true;
-                    Console.WriteLine(shootcontrol);
-
                 }
-
 
             }
 
@@ -534,6 +549,32 @@ namespace Computergrafik
             set
             {
                 currentControllerState = value;
+            }
+        }
+
+        public Vector2 Direcction
+        {
+            get
+            {
+                return direcction;
+            }
+
+            set
+            {
+                direcction = value;
+            }
+        }
+
+        public float Speed
+        {
+            get
+            {
+                return speed;
+            }
+
+            set
+            {
+                speed = value;
             }
         }
     }
