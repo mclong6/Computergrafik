@@ -9,6 +9,7 @@ namespace Computergrafik
 {
     class Model
     {
+        Box2D window;
         Box2D startScreen;
         Box2D startButton;
         Box2D endButton;
@@ -24,6 +25,8 @@ namespace Computergrafik
         Box2D playerInfoTwo;
         public Model()
         {
+            Window          = new Box2D(-1.0f, -1.0f, 2.0f, 2.0f);
+
             /*Alle Boxen fürs Menü*/
             startScreen     = new Box2D(-1.0f, -1.0f, 2.0f, 2.0f);
             startButton     = new Box2D(-0.3f, 0.3f, 0.6f, 0.2f);
@@ -139,6 +142,19 @@ namespace Computergrafik
 
             set
             { playerInfoTwo = value; }
+        }
+
+        public Box2D Window
+        {
+            get
+            {
+                return window;
+            }
+
+            set
+            {
+                window = value;
+            }
         }
     }
 }
