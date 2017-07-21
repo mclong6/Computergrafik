@@ -79,20 +79,10 @@ namespace Computergrafik
             recycleBullets();
             moveGun();
 
-            //hurtOpponent();
 
         }
 
-        private void hurtOpponent()
-        {
-            if (bullets.Count > 0)
-            {
-                if (bullets.First().Bbullet.Intersects(opponent))
-                {
-                    this.life = this.life - 5;
-                }
-            }
-        }
+   
 
         private void getControllerState() {         // takes the current controller state 
 
