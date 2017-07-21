@@ -79,7 +79,7 @@ namespace Computergrafik
             recycleBullets();
             moveGun();
 
-            hurtOpponent();
+            //hurtOpponent();
 
         }
 
