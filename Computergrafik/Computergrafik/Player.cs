@@ -22,7 +22,7 @@ namespace Computergrafik
         private float speed = 0.006f;
         private Box2D player;
         private Box2D gun;
-        private int life = 100;
+      
         private GamePadState currentControllerState;
         private GamePadThumbSticks thumber;
         private Vector2 direcction;
@@ -33,6 +33,10 @@ namespace Computergrafik
         private Bullet bullet;
         private float bulledSpeed = 0.02f;
         private float bulledInterval = 100;     // mill sec
+
+        private float life = 100;
+        private float ammo = 100;
+        private float boost = 100;
 
 
         public Player(Model model,Logic logic, int playerNr) {
@@ -107,6 +111,7 @@ namespace Computergrafik
                 pplayer.Y = 0f;
                 pplayer.X = PlayerNr - 0.25f;
 
+                this.life = life - 10;
                 colisionControl = false;
             }
             else if (!pplayer.Intersects(model.Opponent[0]) && colisionControl == false)
@@ -132,10 +137,16 @@ namespace Computergrafik
         private void boostPressed()             // if post is presst speed will rise 
         {
 
-            if (currentControllerState.Triggers.Right == 1.0f)
+            if (currentControllerState.Triggers.Right == 1.0f && this.boost >=0)
             {
-
-                speed = 0.02f;
+                this.boost = boost - 1;
+                if (this.boost > 0)
+                {
+                    speed = 0.02f;
+                }
+                else {
+                    speed = 0.006f;
+                }
             }
 
             if (currentControllerState.Triggers.Right == 0.0f)
@@ -180,8 +191,9 @@ namespace Computergrafik
 
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-            if (shootcontrol == false)
+            if (shootcontrol == false && ammo >=0)
             {
+                this.ammo = ammo - 1;
                 shoot(gunDirection.X, gunDirection.Y);
             }
            // Console.WriteLine("The Elapsed event was raised at {0}", e.SignalTime);
@@ -279,7 +291,7 @@ namespace Computergrafik
             }
         }
 
-        public int Life
+        public float Life
         {
             get
             {
@@ -289,6 +301,45 @@ namespace Computergrafik
             set
             {
                 life = value;
+            }
+        }
+
+        public float Ammo
+        {
+            get
+            {
+                return ammo;
+            }
+
+            set
+            {
+                ammo = value;
+            }
+        }
+
+        public float Boost
+        {
+            get
+            {
+                return boost;
+            }
+
+            set
+            {
+                boost = value;
+            }
+        }
+
+        public GamePadState CurrentControllerState
+        {
+            get
+            {
+                return currentControllerState;
+            }
+
+            set
+            {
+                currentControllerState = value;
             }
         }
     }
