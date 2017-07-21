@@ -18,10 +18,11 @@ namespace Computergrafik
         private Timer timer;
         private int playerNr;
         private Model model;
+        private Logic logic;
         private float speed = 0.006f;
         private Box2D player;
-        private Box2D opponent;
         private Box2D gun;
+      
         private GamePadState currentControllerState;
         private GamePadThumbSticks thumber;
         private Vector2 direcction;
@@ -33,26 +34,17 @@ namespace Computergrafik
         private float bulledSpeed = 0.02f;
         private float bulledInterval = 100;     // mill sec
 
+        private float life = 100;
+        private float ammo = 100;
+        private float boost = 100;
 
-        //informations
-        private float life;
-        private float ammo;
-        private float boost;
 
-        public Player(Model model, int playerNr) {
+        public Player(Model model,Logic logic, int playerNr) {
 
-          
+            
             this.model          = model;
             this.PlayerNr       = playerNr;
             this.pplayer        = model.Player[playerNr];
-            if (PlayerNr == 1) {
-                this.opponent = model.Player[0];
-            }
-            if (PlayerNr == 0)
-            {
-                this.opponent = model.Player[1];
-            }
-
             this.gun            = model.PlayerGun[playerNr];
             this.direcction     = new Vector2(0f, 0f);
             this.gunDirection   = new Vector2(0f,0f);
@@ -61,10 +53,7 @@ namespace Computergrafik
             this.timer.Elapsed += OnTimedEvent;
             this.timer.AutoReset= true;
             this.timer.Enabled  = true;
-
-            this.life = 100;
-            this.ammo = 100;
-            this.boost = 100;
+            this.logic          = logic;
         }
 
 
@@ -76,22 +65,10 @@ namespace Computergrafik
             Colisuion();
             calculatePlayerPosition();
             calculateBullets();
+            bulledColission();
             recycleBullets();
             moveGun();
 
-            //hurtOpponent();
-
-        }
-
-        private void hurtOpponent()
-        {
-            if (bullets.Count > 0)
-            {
-                if (bullets.First().Bbullet.Intersects(opponent))
-                {
-                    this.life = this.life - 5;
-                }
-            }
         }
 
         private void getControllerState() {         // takes the current controller state 
@@ -160,22 +137,20 @@ namespace Computergrafik
         private void boostPressed()             // if post is presst speed will rise 
         {
 
-            if(currentControllerState.Triggers.Right == 1.0f && this.boost >= 0)
+            if (currentControllerState.Triggers.Right == 1.0f && this.boost >=0)
             {
-                this.boost = boost -1;
+                this.boost = boost - 1;
                 if (this.boost > 0)
                 {
                     speed = 0.02f;
                 }
                 else {
-
                     speed = 0.006f;
                 }
             }
 
-            if (currentControllerState.Triggers.Right == 0.0f )
+            if (currentControllerState.Triggers.Right == 0.0f)
             {
-                
                 speed = 0.006f;
             }
 
@@ -203,8 +178,7 @@ namespace Computergrafik
 
             if (currentControllerState.Triggers.Left > 0.5f && shootcontrol == true)
             {
-               
-                shootcontrol = false;
+                 shootcontrol = false;
             }
 
             if (currentControllerState.Triggers.Left == 0.0f)
@@ -237,9 +211,7 @@ namespace Computergrafik
 
             bullet = new Bullet(x, y, this);
             Bullets.Add(bullet);
-
-         
-
+            
             // Thread bulledThread = new Thread(bullet.fligh);
             // bulledThread.Start();
 
@@ -255,6 +227,29 @@ namespace Computergrafik
                 Bullets[i].Bbullet.CenterY = Bullets[i].Bbullet.CenterY + Bullets[i].Y_Dir*bulledSpeed;
 
             }
+        }
+
+        private void bulledColission()
+        {
+           for(int i= 0; i < 2; i++)
+            {
+                if(logic.Player[i] != this)
+                {
+                    for(int k = 0; k< logic.Player[i].Bullets.Count; k++)
+                    {
+                        if (logic.Player[i].Bullets[k].Bbullet.Intersects(this.pplayer))
+                        {
+                            logic.Player[i].Bullets.RemoveAt(k);
+                            life = life - 10;
+                            Console.WriteLine("getroffen " +life);
+                        }
+
+                    }
+
+                }
+
+            }
+
         }
 
         public Box2D pplayer
@@ -345,19 +340,6 @@ namespace Computergrafik
             set
             {
                 currentControllerState = value;
-            }
-        }
-
-        public Box2D PlayerWho
-        {
-            get
-            {
-                return player;
-            }
-
-            set
-            {
-                player = value;
             }
         }
     }
