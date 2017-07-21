@@ -176,7 +176,7 @@ namespace Computergrafik
         private void shootPressed()             // if post is presst speed will rise 
         {
 
-            if (currentControllerState.Triggers.Left > 0.5f && shootcontrol == true)
+            if (currentControllerState.Triggers.Left < 0.8f && shootcontrol == true)
             {
                  shootcontrol = false;
             }
@@ -191,12 +191,11 @@ namespace Computergrafik
 
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-            if (shootcontrol == false && ammo >=0)
+            if (shootcontrol == false && ammo >=0 && CurrentControllerState.IsConnected)
             {
                 this.ammo = ammo - 1;
                 shoot(gunDirection.X, gunDirection.Y);
             }
-           // Console.WriteLine("The Elapsed event was raised at {0}", e.SignalTime);
         }
 
 
@@ -241,7 +240,6 @@ namespace Computergrafik
                         {
                             logic.Player[i].Bullets.RemoveAt(k);
                             life = life - 10;
-                            Console.WriteLine("getroffen " +life);
                         }
 
                     }
