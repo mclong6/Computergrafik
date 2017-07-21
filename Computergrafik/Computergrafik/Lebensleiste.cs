@@ -11,6 +11,8 @@ namespace Computergrafik
         Box2D playerInfoOne;
         Box2D playerInfoTwo;
         float sizeBalken = 0.3f;
+        float boostLoad = 0.09f;
+        float ammoLoad = 0.01f;
 
         
         bool[] nachladen = new bool[2];
@@ -91,7 +93,7 @@ namespace Computergrafik
             }
           
             if (nachladen[num] == true) {
-                 Ammo[num].SizeX = Ammo[num].SizeX + ammoDazu;
+                 Ammo[num].SizeX = Ammo[num].SizeX + ammoLoad;
                 if (Ammo[num].SizeX > sizeBalken)
                 {
                     player.Ammo = maxShoot;
@@ -116,7 +118,7 @@ namespace Computergrafik
             
             if (currentBoost <= 100 && Boost[num].SizeX <= sizeBalken) {
 
-                player.Boost = currentBoost  +0.05f;
+                player.Boost = currentBoost  +boostLoad;
                 Boost[num].SizeX = Boost[num].SizeX + boostDazu;
             }
         }

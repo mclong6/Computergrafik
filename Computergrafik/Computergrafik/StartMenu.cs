@@ -43,7 +43,7 @@ namespace Computergrafik
                 /*Bei drücken der Taste A*/
                 /*currentState.Buttons.LeftStick == ButtonState.Pressed*/
           
-                if (gamepadState.Buttons.IsAnyButtonPressed || Keyboard.GetState()[Key.Left])
+                if (gamepadState.Buttons.Start == ButtonState.Pressed || Keyboard.GetState()[Key.Left])
                 {
 
                     vibrationAmount = MathHelper.Clamp(vibrationAmount + 0.03f, 0.0f, 1.0f);
