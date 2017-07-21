@@ -33,6 +33,7 @@ namespace Computergrafik
         private Bullet bullet;
         private float bulledSpeed = 0.02f;
         private float bulledInterval = 100;     // mill sec
+        private int playerChosen = -1;
 
         private float life = 100;
         private float ammo = 100;
@@ -61,7 +62,7 @@ namespace Computergrafik
         {
             getControllerState();
             boostPressed();
-            shootPressed();
+            shootPressed(true);
             Colisuion();
             calculatePlayerPosition();
             calculateBullets();
@@ -76,11 +77,73 @@ namespace Computergrafik
             currentControllerState = GamePad.GetState(PlayerNr);
             thumber = currentControllerState.ThumbSticks;
 
-            direcction.X = thumber.Left.X;          // movemend dierection
-            direcction.Y = thumber.Left.Y;
+            if (currentControllerState.IsConnected)
+            {
 
-            gunDirection.X = thumber.Right.X;       // gun direction
-            gunDirection.Y = thumber.Right.Y;
+                direcction.X = thumber.Left.X;          // movemend dierection
+                direcction.Y = thumber.Left.Y;
+
+                gunDirection.X = thumber.Right.X;       // gun direction
+                gunDirection.Y = thumber.Right.Y;
+
+            }
+            else
+            {
+                if (Keyboard.GetState()[Key.M])
+                {
+                    playerChosen = 0;
+                }
+
+                if (Keyboard.GetState()[Key.N])
+                {
+                    playerChosen = 1;
+                }
+
+
+                if (playerChosen == PlayerNr)
+                {
+
+                    if (Keyboard.GetState()[Key.W])
+                    {
+                        direcction.Y = 1;
+                    }
+
+                    if (Keyboard.GetState()[Key.S])
+                    {
+                        direcction.Y = -1;
+                    }
+
+                    if (!Keyboard.GetState()[Key.W] && !Keyboard.GetState()[Key.S]) {
+                        direcction.Y = 0;
+                    }
+
+                    if (Keyboard.GetState()[Key.D])
+                    {
+                        direcction.X = 1;
+                    }
+
+                    if (Keyboard.GetState()[Key.A])
+                    {
+                        direcction.X = -1;
+                    }
+
+                    if (!Keyboard.GetState()[Key.A] && !Keyboard.GetState()[Key.D])
+                    {
+                        direcction.X = 0;
+                    }
+
+                    if (Keyboard.GetState()[Key.Space])
+                    {
+
+              
+                        shootPressed(false);
+
+                    }
+
+                }
+            }
+
+           
 
             if(gunDirection.X < 0.2f && gunDirection.X > -0.2f && gunDirection.Y <0.2f && gunDirection.Y > -0.2f) {
 
@@ -129,6 +192,8 @@ namespace Computergrafik
                 direcction.NormalizeFast();
             }
 
+
+
             pplayer.CenterX = pplayer.CenterX + (direcction.X * speed);
             pplayer.CenterY = pplayer.CenterY + (direcction.Y * speed);
 
@@ -173,25 +238,48 @@ namespace Computergrafik
 
 
 
-        private void shootPressed()             // if post is presst speed will rise 
+        private void shootPressed(bool k)             // if post is presst speed will rise 
         {
-
-            if (currentControllerState.Triggers.Left > 0.8f && shootcontrol == true)
+            if (k == true)     // controler
             {
-                 shootcontrol = false;
-            }
+                if (currentControllerState.IsConnected)
+                {
 
-            if (currentControllerState.Triggers.Left == 0.0f)
+                    if (currentControllerState.Triggers.Left > 0.8f && shootcontrol == true)
+                    {
+                        shootcontrol = false;
+                    }
+
+                    if (currentControllerState.Triggers.Left == 0.0f)
+                    {
+                        shootcontrol = true;
+                    }
+                }
+            }
+            else                    // tastatur
             {
-                shootcontrol = true;
-            }
 
+                if ( Keyboard.GetState()[Key.Space] && shootcontrol == true)
+                {
+                    shootcontrol = false;
+                }
+
+                if (!Keyboard.GetState()[Key.Space])
+                {
+
+                    shootcontrol = true;
+                    Console.WriteLine(shootcontrol);
+
+                }
+
+
+            }
 
         }
 
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-            if (shootcontrol == false && ammo >=0 && CurrentControllerState.IsConnected)
+            if (shootcontrol == false && ammo >=0 )
             {
                 this.ammo = ammo - 1;
                 shoot(gunDirection.X, gunDirection.Y);
@@ -232,6 +320,16 @@ namespace Computergrafik
         {
            for(int i= 0; i < 2; i++)
             {
+                for(int j= 0; j< logic.Player[i].bullets.Count; j++)
+                {
+                  
+                    if (logic.Player[i].Bullets[j].Bbullet.Intersects(model.Opponent[0]))
+                        {
+                            logic.Player[i].Bullets.RemoveAt(j);
+                        }
+                    
+                }
+
                 if(logic.Player[i] != this)
                 {
                     for(int k = 0; k< logic.Player[i].Bullets.Count; k++)
