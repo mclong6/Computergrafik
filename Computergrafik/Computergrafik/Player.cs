@@ -18,9 +18,11 @@ namespace Computergrafik
         private Timer timer;
         private int playerNr;
         private Model model;
+        private Logic logic;
         private float speed = 0.006f;
         private Box2D player;
         private Box2D gun;
+        private int life = 100;
         private GamePadState currentControllerState;
         private GamePadThumbSticks thumber;
         private Vector2 direcction;
@@ -33,7 +35,7 @@ namespace Computergrafik
         private float bulledInterval = 100;     // mill sec
 
 
-        public Player(Model model, int playerNr) {
+        public Player(Model model,Logic logic, int playerNr) {
 
             
             this.model          = model;
@@ -47,6 +49,7 @@ namespace Computergrafik
             this.timer.Elapsed += OnTimedEvent;
             this.timer.AutoReset= true;
             this.timer.Enabled  = true;
+            this.logic          = logic;
         }
 
 
@@ -58,6 +61,7 @@ namespace Computergrafik
             Colisuion();
             calculatePlayerPosition();
             calculateBullets();
+            bulledColission();
             recycleBullets();
             moveGun();
 
@@ -213,6 +217,29 @@ namespace Computergrafik
             }
         }
 
+        private void bulledColission()
+        {
+           for(int i= 0; i < 2; i++)
+            {
+                if(logic.Player[i] != this)
+                {
+                    for(int k = 0; k< logic.Player[i].Bullets.Count; k++)
+                    {
+                        if (logic.Player[i].Bullets[k].Bbullet.Intersects(this.pplayer))
+                        {
+                            logic.Player[i].Bullets.RemoveAt(k);
+                            life = life - 10;
+                            Console.WriteLine("getroffen " +life);
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
         public Box2D pplayer
         {
             get
@@ -249,6 +276,19 @@ namespace Computergrafik
             set
             {
                 playerNr = value;
+            }
+        }
+
+        public int Life
+        {
+            get
+            {
+                return life;
+            }
+
+            set
+            {
+                life = value;
             }
         }
     }

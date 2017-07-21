@@ -17,8 +17,8 @@ namespace Computergrafik
         public Logic(Model model) {
 
             this.model = model;
-            this.Player[0] = new Player(model, 0);
-            this.Player[1] = new Player(model, 1);
+            this.Player[0] = new Player(model,this,0);
+            this.Player[1] = new Player(model,this,1);
             this.opponent[0] = new Opponent(model);
 
         }
