@@ -78,22 +78,26 @@ namespace Computergrafik
 
         private void beHard(Box2D beHard, Box2D driver){
 
+
+            /*Linke Seite*/
             if (driver.X <= beHard.MaxX && driver.X >= beHard.MaxX - 0.05f)
             {
                 driver.X = beHard.MaxX;
             }
 
+            /*Obere Seite*/
             if (driver.Y <= beHard.MaxY && driver.Y >= beHard.MaxY - 0.05f)
             {
                 driver.Y = beHard.MaxY;
             }
 
-
+            /*Rechte Seite*/
             if (beHard.X <= driver.MaxX && beHard.X + 0.05f >= driver.MaxX)
             {
                 driver.X = beHard.X - driver.SizeX;
             }
 
+            /*Untere Seite*/
             if (beHard.Y <= driver.MaxY && beHard.Y + 0.05f >= driver.MaxY)
             {
                 driver.Y = beHard.Y - driver.SizeY;
