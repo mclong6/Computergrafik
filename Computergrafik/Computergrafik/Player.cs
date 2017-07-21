@@ -192,10 +192,17 @@ namespace Computergrafik
                 direcction.NormalizeFast();
             }
 
-
-
             pplayer.CenterX = pplayer.CenterX + (direcction.X * speed);
             pplayer.CenterY = pplayer.CenterY + (direcction.Y * speed);
+
+            if (pplayer.X +pplayer.SizeX > 1) pplayer.X = 1-pplayer.SizeX;
+            if (pplayer.X < -1) pplayer.X = -1;
+          if (pplayer.Y+pplayer.SizeY >1) pplayer.Y = 1-pplayer.SizeY;
+            if (pplayer.Y < -1) pplayer.Y = -1;
+
+
+
+
 
         }
 

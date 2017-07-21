@@ -58,6 +58,17 @@ namespace Computergrafik
             GL.Color3(Color.Red);
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
+
+            GL.Begin(PrimitiveType.LineLoop);
+            GL.Color3(Color.Red);
+            GL.Vertex2(rect.X - 0.05f, rect.Y - 0.05f);
+            GL.Color3(Color.Red);
+            GL.Vertex2(rect.MaxX + 0.05f, rect.Y - 0.05f);
+            GL.Color3(Color.Red);
+            GL.Vertex2(rect.MaxX + 0.05f, rect.MaxY + 0.05f);
+            GL.Color3(Color.Red);
+            GL.Vertex2(rect.X - 0.05f, rect.MaxY + 0.05f);
+            GL.End();
         }
 
         /*
