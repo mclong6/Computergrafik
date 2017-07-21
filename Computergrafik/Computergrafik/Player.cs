@@ -176,7 +176,7 @@ namespace Computergrafik
         private void shootPressed()             // if post is presst speed will rise 
         {
 
-            if (currentControllerState.Triggers.Left < 0.8f && shootcontrol == true)
+            if (currentControllerState.Triggers.Left > 0.8f && shootcontrol == true)
             {
                  shootcontrol = false;
             }
