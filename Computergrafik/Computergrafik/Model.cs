@@ -27,6 +27,13 @@ namespace Computergrafik
         {
             Window          = new Box2D(-1.0f, -1.0f, 2.0f, 2.0f);
 
+            /*Obstacle*/
+            obstacles[0] = new Box2D(-0.4f, -1.0f, 0.2f, 0.4f);
+            obstacles[1] = new Box2D(0.6f, -0.7f, 0.1f, 0.2f);
+            obstacles[2] = new Box2D(0.4f, 0.4f, 0.2f, 0.2f);
+            obstacles[3] = new Box2D(-0.4f, 0.4f, 0.2f, 0.2f);
+            obstacles[4] = new Box2D(-0.1f, -0.1f, 0.4f, 0.3f);
+          
             /*Alle Boxen fürs Menü*/
             startScreen     = new Box2D(-1.0f, -1.0f, 2.0f, 2.0f);
             startButton     = new Box2D(-0.3f, 0.3f, 0.6f, 0.2f);
@@ -48,6 +55,7 @@ namespace Computergrafik
                 minus = minus * minus;
             }
 
+            
         }
 
       
@@ -156,5 +164,7 @@ namespace Computergrafik
                 window = value;
             }
         }
+
+     
     }
 }

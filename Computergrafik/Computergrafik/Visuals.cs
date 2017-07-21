@@ -63,6 +63,21 @@ namespace Computergrafik
         /*
         * Draw of Opponent
         */
+
+        public void DrawObstacle(Box2D rect)
+        {
+
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.Green);
+            GL.Vertex2(rect.X, rect.Y);
+            GL.Color3(Color.Green);
+            GL.Vertex2(rect.MaxX, rect.Y);
+            GL.Color3(Color.Green);
+            GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.Color3(Color.Green);
+            GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+        }
         public void DrawOpponent(float centerX, float centerY, float radius)
         {
             GL.Begin(PrimitiveType.Polygon);

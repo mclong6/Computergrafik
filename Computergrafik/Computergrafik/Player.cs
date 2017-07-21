@@ -69,7 +69,21 @@ namespace Computergrafik
             bulledColission();
             recycleBullets();
             moveGun();
+            obstacleIntersection();
 
+        }
+
+        /*ObstacleIntersection*/
+
+        private void obstacleIntersection() {
+
+            for (int i = 0; i < model.Obstacles.Length; i++)
+            {
+
+                if (model.Obstacles[i].Intersect(pplayer)) {
+
+                }
+            }
         }
 
         private void getControllerState() {         // takes the current controller state 

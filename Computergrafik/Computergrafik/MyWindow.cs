@@ -101,6 +101,11 @@ namespace Computergrafik
 
                 visuals.DrawOpponent(model.Opponent[0].CenterX, model.Opponent[0].CenterY, 0.5f * model.Opponent[0].SizeX);
            
+                
+                for (int i = 0; i < model.Obstacles.Length; i++) {
+                    
+                    visuals.DrawObstacle(model.Obstacles[i]);
+                }
                 GL.Disable(EnableCap.Blend);
                 lebensleiste.DrawPlayerInfo();
             }
