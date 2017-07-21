@@ -79,14 +79,25 @@ namespace Computergrafik
         {
 
             GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.Green);
+
             GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Green);
+          
             GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Green);
+           
             GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Green);
             GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+            float value = 0.025f;
+
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.Green);
+            GL.Vertex2(rect.X - value, rect.Y - value);
+            GL.Color3(Color.Green);
+            GL.Vertex2(rect.MaxX + value, rect.Y - value);
+            GL.Color3(Color.Green);
+            GL.Vertex2(rect.MaxX + value, rect.MaxY + value);
+            GL.Color3(Color.Green);
+            GL.Vertex2(rect.X - value, rect.MaxY + value);
             GL.End();
         }
         public void DrawOpponent(float centerX, float centerY, float radius)

@@ -73,15 +73,65 @@ namespace Computergrafik
 
         }
 
+      
+        /*beHard Box in diese kann der driver nicht hinein fahren*/
+
+        private void beHard(Box2D beHard, Box2D driver){
+
+            if (driver.X <= beHard.MaxX && driver.X >= beHard.MaxX - 0.05f)
+            {
+                driver.X = beHard.MaxX;
+            }
+
+            if (driver.Y <= beHard.MaxY && driver.Y >= beHard.MaxY - 0.05f)
+            {
+                driver.Y = beHard.MaxY;
+            }
+
+
+            if (beHard.X <= driver.MaxX && beHard.X + 0.05f >= driver.MaxX)
+            {
+                driver.X = beHard.X - driver.SizeX;
+            }
+
+            if (beHard.Y <= driver.MaxY && beHard.Y + 0.05f >= driver.MaxY)
+            {
+                driver.Y = beHard.Y - driver.SizeY;
+            }
+
+        }
+
         /*ObstacleIntersection*/
 
         private void obstacleIntersection() {
 
+            float bounce = 0.0f;
             for (int i = 0; i < model.Obstacles.Length; i++)
             {
 
-                if (model.Obstacles[i].Intersect(pplayer)) {
+                if (model.Obstacles[i].Intersects(pplayer)) {
 
+                    if (pplayer.X <= model.Obstacles[i].MaxX && pplayer.X >= model.Obstacles[i].MaxX -0.05f)
+                    { 
+                    pplayer.X = model.Obstacles[i].MaxX + bounce;
+                    }
+
+                    if (pplayer.Y <= model.Obstacles[i].MaxY && pplayer.Y >= model.Obstacles[i].MaxY - 0.05f)
+                    {
+                        pplayer.Y = model.Obstacles[i].MaxY +bounce;
+                    }
+
+                   
+                    if(model.Obstacles[i].X <=  pplayer.MaxX  && model.Obstacles[i].X + 0.05f  >= pplayer.MaxX)
+                    {
+                        pplayer.X = model.Obstacles[i].X -player.SizeX - bounce;
+                    }
+
+                    if (model.Obstacles[i].Y <= pplayer.MaxY && model.Obstacles[i].Y + 0.05f >= pplayer.MaxY)
+                    {
+                        pplayer.Y = model.Obstacles[i].Y - player.SizeY - bounce;
+                    }
+         
                 }
             }
         }
@@ -101,8 +151,8 @@ namespace Computergrafik
                 gunDirection.Y = thumber.Right.Y;
 
             }
-            else
-            {
+
+         
                 if (Keyboard.GetState()[Key.M])
                 {
                     playerChosen = 0;
@@ -153,8 +203,31 @@ namespace Computergrafik
                         shootPressed(false);
 
                     }
+                if (Keyboard.GetState()[Key.V])
+                {
+
+                    this.boost = boost - 1;
+                    if (this.boost > 0)
+                    {
+                        speed = 0.02f;
+                    }
 
                 }
+                if (Keyboard.GetState()[Key.V] && this.boost >= 0)
+                {
+                    this.boost = boost - 1;
+                    if (this.boost > 0)
+                    {
+                        speed = 0.02f;
+                    }
+                    else
+                    {
+                        speed = 0.006f;
+                    }
+                }
+
+                
+
             }
 
            
