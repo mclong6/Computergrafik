@@ -18,7 +18,7 @@ namespace Computergrafik
         Box2D[] playerGun   = new Box2D[2];
         Box2D[] opponent    = new Box2D[2];
         private float minus = -1.0f;
-
+        
 
         Box2D playerInfoOne;
         Box2D playerInfoTwo;

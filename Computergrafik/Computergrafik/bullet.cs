@@ -27,7 +27,7 @@ namespace Computergrafik
             this.X_Dir = x;
             this.Y_Dir = y;
             Bbullet = new Box2D(player.pplayer.CenterX,player.pplayer.CenterY,0.01f,0.01f);
-
+         
         }
 
         public void DrawBulledOne()

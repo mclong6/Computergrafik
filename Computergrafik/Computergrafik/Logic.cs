@@ -11,7 +11,7 @@ namespace Computergrafik
         Model model;
         Player[] player     = new Player[2];
         Opponent[] opponent = new Opponent[2];
-
+        Hurt hurt;
     
 
         public Logic(Model model) {
@@ -20,14 +20,14 @@ namespace Computergrafik
             this.Player[0] = new Player(model,this,0);
             this.Player[1] = new Player(model,this,1);
             this.opponent[0] = new Opponent(model);
-
+            hurt = new Hurt(player);
         }
 
         public void updateLogic()
         {
             this.Player[0].updatePosition();
             this.Player[1].updatePosition();
-
+            this.hurt.hurtLogic();
         }
 
         public void updateOpponent()

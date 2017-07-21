@@ -38,7 +38,7 @@ namespace Computergrafik
             
 
             /*Hauptmenü*/
-            this.menu = new StartMenu(model);
+            this.menu = new StartMenu(model,logic.Player[0].CurrentControllerState);
 
             /*Lebensmenü*/
             this.lebensleiste = new Lebensleiste(model);
@@ -59,6 +59,14 @@ namespace Computergrafik
             }
             if (GameState == StateStart)
             {
+
+                lebensleiste.OneGetBoost(logic.Player[0]);
+                lebensleiste.OneGetShoot(logic.Player[0]);
+                lebensleiste.OneLiveDown(logic.Player[0]);
+                lebensleiste.OneGetBoost(logic.Player[1]);
+                lebensleiste.OneGetShoot(logic.Player[1]);
+                lebensleiste.OneLiveDown(logic.Player[1]);
+
                 logic.updateLogic();
                 logic.updateOpponent();
             }
@@ -100,24 +108,32 @@ namespace Computergrafik
         }
 
 
-        public int GameState1
-        {
-            get
-            {
-                return GameState;
-            }
+  
 
-            set
-            {
-                GameState = value;
-            }
-        }
         [STAThread]
         public static void Main()
         {
             MyWindow app;
             app = new MyWindow();
             app.gameWindow.Run(60.0);
+        }
+
+        public int GameState1
+        {
+            get
+            { return GameState; }
+
+            set
+            { GameState = value; }
+        }
+
+        internal Lebensleiste Lebensleiste
+        {
+            get
+            { return lebensleiste; }
+
+            set
+            { lebensleiste = value; }
         }
     }
 }
