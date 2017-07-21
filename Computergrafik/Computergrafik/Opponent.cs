@@ -11,7 +11,7 @@ namespace Computergrafik
         private Vector2 opponentVector = new Vector2(1.0f, -1.0f);
         private Model myModel;
         private float minus = -1.0f;
-        private bool test = true;
+        private bool intersectsIsTrue = false;
 
         public Opponent(Model model)
         {
@@ -24,6 +24,7 @@ namespace Computergrafik
         public void updatePosition(Box2D opponent)
         {
             //move Opponent
+           
             opponent.X += 1.0f / 200.0f * opponentVector.X;
             opponent.Y += 1.0f / 200.0f * opponentVector.Y;
 
@@ -53,15 +54,26 @@ namespace Computergrafik
                 controlIntersects(myModel.PlayerInfoTwo, opponent);
             }
 
+            /*
+             *!!!!!!!!!!!!!!!!!!!!!! Query to follow Player!!!! Vector is needed!!!!!!!!!!!!!!!!!!!!!!!!
+             * 
+             * if (((myModel.Player[0].CenterX-opponent.CenterX)<0.3f)&&((myModel.Player[0].CenterY - opponent.CenterY) < 0.3f)&&!intersectsIsTrue)
+            {
+                opponentVector.X = myModel.Player[0].CenterX;
+                opponentVector.Y = myModel.Player[0].CenterY;
+            }
+            */
         }
 
         private void controlIntersects(Box2D obstacle, Box2D opponent)
         {
+            intersectsIsTrue = true;
             bool under = opponent.CenterY < obstacle.CenterY;
             bool above = opponent.CenterY > obstacle.CenterY;
             bool right = opponent.CenterX > obstacle.MaxX;
             bool left = opponent.CenterX < (obstacle.CenterX - (obstacle.SizeX / 2));
 
+            //Query if it is an Corner-Collision
             if ((opponent.CenterX > obstacle.MaxX || opponent.CenterX < (obstacle.MaxX - obstacle.SizeX)) &&
                            (opponent.CenterY > obstacle.MaxY || opponent.CenterY < (obstacle.MaxY - obstacle.SizeY)))
             {
@@ -155,6 +167,7 @@ namespace Computergrafik
                 opponentVector.X = opponentVector.X * minus;
                 Console.WriteLine("Kollision rechts oder links:" + opponentVector.X);
             }
+            intersectsIsTrue = false;
         }
     }
 }
