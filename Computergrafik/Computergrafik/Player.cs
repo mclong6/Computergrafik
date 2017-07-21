@@ -20,6 +20,7 @@ namespace Computergrafik
         private Model model;
         private float speed = 0.006f;
         private Box2D player;
+        private Box2D opponent;
         private Box2D gun;
         private GamePadState currentControllerState;
         private GamePadThumbSticks thumber;
@@ -40,10 +41,18 @@ namespace Computergrafik
 
         public Player(Model model, int playerNr) {
 
-            
+          
             this.model          = model;
             this.PlayerNr       = playerNr;
             this.pplayer        = model.Player[playerNr];
+            if (PlayerNr == 1) {
+                this.opponent = model.Player[0];
+            }
+            if (PlayerNr == 0)
+            {
+                this.opponent = model.Player[1];
+            }
+
             this.gun            = model.PlayerGun[playerNr];
             this.direcction     = new Vector2(0f, 0f);
             this.gunDirection   = new Vector2(0f,0f);
@@ -70,6 +79,19 @@ namespace Computergrafik
             recycleBullets();
             moveGun();
 
+            hurtOpponent();
+
+        }
+
+        private void hurtOpponent()
+        {
+            if (bullets.Count > 0)
+            {
+                if (bullets.First().Bbullet.Intersects(opponent))
+                {
+                    this.life = this.life - 5;
+                }
+            }
         }
 
         private void getControllerState() {         // takes the current controller state 
@@ -215,7 +237,8 @@ namespace Computergrafik
 
             bullet = new Bullet(x, y, this);
             Bullets.Add(bullet);
-            
+
+         
 
             // Thread bulledThread = new Thread(bullet.fligh);
             // bulledThread.Start();
@@ -322,6 +345,19 @@ namespace Computergrafik
             set
             {
                 currentControllerState = value;
+            }
+        }
+
+        public Box2D PlayerWho
+        {
+            get
+            {
+                return player;
+            }
+
+            set
+            {
+                player = value;
             }
         }
     }

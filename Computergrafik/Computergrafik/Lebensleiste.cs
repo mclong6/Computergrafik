@@ -161,6 +161,17 @@ namespace Computergrafik
             GL.Color3(Color.Blue);
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
+
+            GL.Begin(PrimitiveType.LineLoop);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.X, rect.Y);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.MaxX, rect.Y);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
         }
 
         private void DrawWhite(Box2D rect)
@@ -198,6 +209,17 @@ namespace Computergrafik
             GL.Color3(Color.Red);
             GL.Vertex2(rect.MaxX, rect.MaxY);
             GL.Color3(Color.Red);
+            GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+
+            GL.Begin(PrimitiveType.LineLoop);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.X, rect.Y);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.MaxX, rect.Y);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.Color3(Color.Black);
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
         }
