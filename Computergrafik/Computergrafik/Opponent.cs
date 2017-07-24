@@ -66,6 +66,7 @@ namespace Computergrafik
             {
                 controlIntersects(myModel.PlayerInfoTwo, opponent);
             }
+            
 
             /*
              *!!!!!!!!!!!!!!!!!!!!!! Query to follow Player!!!! Vector is needed!!!!!!!!!!!!!!!!!!!!!!!!
@@ -99,7 +100,7 @@ namespace Computergrafik
                         if (left)
                         {opponentVector.Y = opponentVector.Y * minus;
                             opponentVector.X = opponentVector.X * minus;}
-                        if (right)
+                        else if (right)
                         {opponentVector.Y = opponentVector.Y * minus;}
                     }
                     //Vector minus and minus
@@ -109,7 +110,7 @@ namespace Computergrafik
                         {   opponentVector.Y = opponentVector.Y * minus;
                             opponentVector.X = opponentVector.X * minus;}
 
-                        if (left)
+                        else if (left)
                         {opponentVector.Y = opponentVector.Y * minus;}
                     }
                     //Vector plus and plus
@@ -169,16 +170,37 @@ namespace Computergrafik
             else if (opponent.CenterX > (obstacle.CenterX - (obstacle.SizeX / 2)) &&
                     opponent.CenterX < (obstacle.CenterX + (obstacle.SizeX / 2)))
             {
-                Console.WriteLine("Kollision oben oder unten:" + opponentVector.Y);
-                opponentVector.Y = opponentVector.Y * minus;
+                //Collision Opponent above
+                if (above&& !(opponentVector.Y >0))
+                {
+                    Console.WriteLine("Kollision oben:" + opponentVector.Y);
+                    opponentVector.Y = opponentVector.Y * minus;
+                }
+                //Collision Opponent underneath
+                else if (under && !(opponentVector.Y < 0))
+                {
+                    Console.WriteLine("Kollision unten:" + opponentVector.Y);
+                    opponentVector.Y = opponentVector.Y * minus;
+                }
+
             }
 
             //Collision from the left and right
             else if (opponent.CenterY > (obstacle.CenterY - (obstacle.SizeY / 2)) &&
                     opponent.CenterY < (obstacle.CenterY + (obstacle.SizeY / 2)))
             {
-                opponentVector.X = opponentVector.X * minus;
-                Console.WriteLine("Kollision rechts oder links:" + opponentVector.X);
+                //Collision Opponent right
+                if (right && !(opponentVector.X > 0))
+                {
+                    Console.WriteLine("Kollision rechts:" + opponentVector.X);
+                    opponentVector.X = opponentVector.X * minus;
+                }
+                //Collision Opponent left
+                else if (left && !(opponentVector.X < 0))
+                {
+                    Console.WriteLine("Kollision links:" + opponentVector.Y);
+                    opponentVector.X = opponentVector.X * minus;
+                }
             }
             intersectsIsTrue = false;
         }
