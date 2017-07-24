@@ -38,6 +38,7 @@ namespace Computergrafik
                 opponentVector.X = -opponentVector.X;
             }
 
+            //Collision with Player
             for (int i = 0; i < myModel.Player.Length; i++)
             {
                 if (myModel.Player[i].Intersects(opponent))
@@ -45,16 +46,22 @@ namespace Computergrafik
                     controlIntersects(myModel.Player[i], opponent);
                 }
             }
+
+            //Collision with Obstacles
             for (int i = 0; i < myModel.Obstacles.Length; i++) {
                 if (myModel.Obstacles[i].Intersects(opponent))
                 {
                     controlIntersects(myModel.Obstacles[i], opponent);
                 }
             }
+
+            //Collision with PlayerInfoOne-Box
             if (myModel.PlayerInfoOne.Intersects(opponent))
             {
                 controlIntersects(myModel.PlayerInfoOne, opponent);
             }
+
+            //Collision with PlayerInfoOne-Box
             if (myModel.PlayerInfoTwo.Intersects(opponent))
             {
                 controlIntersects(myModel.PlayerInfoTwo, opponent);
