@@ -25,8 +25,8 @@ namespace Computergrafik
         {
             //move Opponent
            
-            opponent.X += 1.0f / 200.0f * opponentVector.X;
-            opponent.Y += 1.0f / 200.0f * opponentVector.Y;
+            opponent.X += 1.0f / 400.0f * opponentVector.X;
+            opponent.Y += 1.0f / 400.0f * opponentVector.Y;
 
             //reflect Opponent
             if (opponent.MaxY > 1.0f || opponent.Y < -1.0)
@@ -43,6 +43,12 @@ namespace Computergrafik
                 if (myModel.Player[i].Intersects(opponent))
                 {
                     controlIntersects(myModel.Player[i], opponent);
+                }
+            }
+            for (int i = 0; i < myModel.Obstacles.Length; i++) {
+                if (myModel.Obstacles[i].Intersects(opponent))
+                {
+                    controlIntersects(myModel.Obstacles[i], opponent);
                 }
             }
             if (myModel.PlayerInfoOne.Intersects(opponent))
