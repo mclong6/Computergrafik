@@ -17,6 +17,9 @@ namespace Computergrafik
         const int StateMenu = 0;
         const int StateStart = 1;
 
+        int gameLevel;
+
+        private bool doOnce = true;
 
 
         private GameWindow gameWindow = new GameWindow(1024, 1024);
@@ -59,14 +62,20 @@ namespace Computergrafik
             }
             if (GameState == StateStart)
             {
+                if (doOnce == true) {
 
+                    model.createLevel(gameLevel);
+                    doOnce = false;
+                }
                 lebensleiste.OneGetBoost(logic.Player[0]);
                 lebensleiste.OneGetShoot(logic.Player[0]);
                 lebensleiste.OneLiveDown(logic.Player[0]);
+
                 lebensleiste.OneGetBoost(logic.Player[1]);
                 lebensleiste.OneGetShoot(logic.Player[1]);
                 lebensleiste.OneLiveDown(logic.Player[1]);
 
+              
                 logic.updateLogic();
                 logic.updateOpponent();
             }
@@ -139,6 +148,19 @@ namespace Computergrafik
 
             set
             { lebensleiste = value; }
+        }
+
+        public int GameLevel
+        {
+            get
+            {
+                return gameLevel;
+            }
+
+            set
+            {
+                gameLevel = value;
+            }
         }
     }
 }

@@ -80,13 +80,7 @@ namespace Computergrafik
                         selectButton.Y = selectButton.Y - 0.4f;
                     }
                 }
-        
-
-
-
             }
-
-
 
         }
 
@@ -96,7 +90,8 @@ namespace Computergrafik
             {
                 if (menuButton[i].Intersects(selectButton))
                 {
-                    mywindow.GameState1 = i;
+                    mywindow.GameState1 = StateStart;
+                    mywindow.GameLevel = i ;
 
                     //Exit Game
                     if (i == 3) {
