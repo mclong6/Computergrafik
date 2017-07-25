@@ -74,37 +74,48 @@ namespace Computergrafik
             recycleBullets();
             moveGun();
             obstacleIntersection();
+            beHard(model.PlayerInfoOne, this.pplayer);
+            beHard(model.PlayerInfoTwo, this.pplayer);
+            beHard(logic.Player[0].pplayer, logic.Player[1].pplayer);
+            beHard(logic.Player[1].pplayer, logic.Player[0].pplayer);
 
         }
 
-      
+
         /*beHard Box in diese kann der driver nicht hinein fahren*/
 
         private void beHard(Box2D beHard, Box2D driver){
 
-
-            /*Linke Seite*/
-            if (driver.X <= beHard.MaxX && driver.X >= beHard.MaxX - 0.05f)
+            float intervall = 0.02f;
+            float bounce = 0.05f;
+            if (beHard.Intersects(driver))
             {
-                driver.X = beHard.MaxX;
-            }
+                /*Linke Seite*/
+                if (driver.X <= beHard.MaxX && driver.X >= beHard.MaxX - intervall)
+                {
+                    driver.X = beHard.MaxX + bounce;
+                }
 
-            /*Obere Seite*/
-            if (driver.Y <= beHard.MaxY && driver.Y >= beHard.MaxY - 0.05f)
-            {
-                driver.Y = beHard.MaxY;
-            }
 
-            /*Rechte Seite*/
-            if (beHard.X <= driver.MaxX && beHard.X + 0.05f >= driver.MaxX)
-            {
-                driver.X = beHard.X - driver.SizeX;
-            }
+                /*Obere Seite*/
+                if (driver.Y <= beHard.MaxY && driver.Y >= beHard.MaxY - intervall)
+                {
+                    driver.Y = beHard.MaxY + bounce;
+                }
 
-            /*Untere Seite*/
-            if (beHard.Y <= driver.MaxY && beHard.Y + 0.05f >= driver.MaxY)
-            {
-                driver.Y = beHard.Y - driver.SizeY;
+                /*Rechte Seite*/
+                if (beHard.X <= driver.MaxX && beHard.X + intervall >= driver.MaxX)
+                {
+                    driver.X = beHard.X - driver.SizeX - bounce;
+                }
+
+
+
+                /*Untere Seite*/
+                if (beHard.Y <= driver.MaxY && beHard.Y + intervall >= driver.MaxY)
+                {
+                    driver.Y = beHard.Y - driver.SizeY - bounce;
+                }
             }
 
         }
@@ -114,28 +125,29 @@ namespace Computergrafik
         private void obstacleIntersection() {
 
             float bounce = 0.0f;
+            float intervall = 0.01f;
             for (int i = 0; i < model.Obstacles.Length; i++)
             {
 
                 if (model.Obstacles[i].Intersects(pplayer)) {
 
-                    if (pplayer.X <= model.Obstacles[i].MaxX && pplayer.X >= model.Obstacles[i].MaxX -0.05f)
+                    if (pplayer.X <= model.Obstacles[i].MaxX && pplayer.X >= model.Obstacles[i].MaxX - intervall)
                     { 
                     pplayer.X = model.Obstacles[i].MaxX + bounce;
                     }
 
-                    if (pplayer.Y <= model.Obstacles[i].MaxY && pplayer.Y >= model.Obstacles[i].MaxY - 0.05f)
+                    if (pplayer.Y <= model.Obstacles[i].MaxY && pplayer.Y >= model.Obstacles[i].MaxY - intervall)
                     {
-                        pplayer.Y = model.Obstacles[i].MaxY +bounce;
+                        pplayer.Y = model.Obstacles[i].MaxY + bounce;
                     }
 
                    
-                    if(model.Obstacles[i].X <=  pplayer.MaxX  && model.Obstacles[i].X + 0.05f  >= pplayer.MaxX)
+                    if(model.Obstacles[i].X <=  pplayer.MaxX  && model.Obstacles[i].X + intervall >= pplayer.MaxX)
                     {
                         pplayer.X = model.Obstacles[i].X -player.SizeX - bounce;
                     }
 
-                    if (model.Obstacles[i].Y <= pplayer.MaxY && model.Obstacles[i].Y + 0.05f >= pplayer.MaxY)
+                    if (model.Obstacles[i].Y <= pplayer.MaxY && model.Obstacles[i].Y + intervall >= pplayer.MaxY)
                     {
                         pplayer.Y = model.Obstacles[i].Y - player.SizeY - bounce;
                     }
