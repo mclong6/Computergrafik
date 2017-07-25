@@ -3,6 +3,7 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Drawing;
+using System.Timers;
 
 namespace Computergrafik
 {
@@ -12,13 +13,23 @@ namespace Computergrafik
         private Model myModel;
         private float minus = -1.0f;
         private bool intersectsIsTrue = false;
+        private bool intersectsTime = false;
         private Logic myLogic;
-        private Vector2 playerVector;
-        private float speedOpponent = 0.008f;
+        private float interval = 100;  //mill second
+        private float speedOpponent = 0.003f;
+        private Timer timer;
+        private int intersectsCounter = 0;
+        private int i = 0;
+
         public Opponent(Model model, Logic logic)
         {
-            myModel = model;
-            myLogic = logic;
+            this.myModel = model;
+            this.myLogic = logic;
+            this.timer = new Timer();
+            this.timer.Interval = interval;
+            this.timer.Elapsed += OnTimedEvent;
+            this.timer.AutoReset = true;
+            this.timer.Enabled = true;
         }
 
         /*
@@ -26,30 +37,35 @@ namespace Computergrafik
          */
         public void updatePosition(Box2D opponent)
         {
-            openIntersects(opponent);
+            Console.WriteLine(intersectsTime);
 
-            /*
-            *!!!!!!!!!!!!!!!!!!!!!! Query to follow Player!!!! Vector is needed!!!!!!!!!!!!!!!!!!!!!!!!
-            * 
-            */
-            if (((Math.Abs(myModel.Player[0].CenterX - opponent.CenterX)) < 0.4f) && (Math.Abs(myModel.Player[0].CenterY - opponent.CenterY) < 0.4f) && intersectsIsTrue == false)
+            if (intersectsTime == false)
             {
-                float pitch;
-                float y2 = myModel.Player[0].CenterY;
-                float y1 = opponent.CenterY;
-                float x2 = myModel.Player[0].CenterX;
-                float x1 = opponent.CenterX;
-
-                pitch = (y2 - y1) / (x2 - x1);
-                Vector2 steigungm = new Vector2((x2 - x1),(y2-y1));
-                steigungm.Normalize();
-                
-                opponent.X += speedOpponent * steigungm.X;
-                opponent.Y += speedOpponent * steigungm.Y;
-
-                /*Console.WriteLine("X:" + Math.Abs(myModel.Player[0].CenterX - opponent.CenterX));
-                Console.WriteLine("Y:" + Math.Abs(myModel.Player[0].CenterY - opponent.CenterY));*/
+                openIntersects(opponent);
             }
+                /*
+                *!!!!!!!!!!!!!!!!!!!!!! Query to follow Player!!!! Vector is needed!!!!!!!!!!!!!!!!!!!!!!!!
+                * 
+                */
+                if (((Math.Abs(myModel.Player[0].CenterX - opponent.CenterX)) < 0.4f) && (Math.Abs(myModel.Player[0].CenterY - opponent.CenterY) < 0.4f) && intersectsIsTrue == false && intersectsTime == false)
+                {
+                    float pitch;
+                    float y2 = myModel.Player[0].CenterY;
+                    float y1 = opponent.CenterY;
+                    float x2 = myModel.Player[0].CenterX;
+                    float x1 = opponent.CenterX;
+
+                    pitch = (y2 - y1) / (x2 - x1);
+                    Vector2 steigungm = new Vector2((x2 - x1), (y2 - y1));
+                    steigungm.Normalize();
+
+                    opponent.X += speedOpponent * steigungm.X;
+                    opponent.Y += speedOpponent * steigungm.Y;
+
+                    /*Console.WriteLine("X:" + Math.Abs(myModel.Player[0].CenterX - opponent.CenterX));
+                    Console.WriteLine("Y:" + Math.Abs(myModel.Player[0].CenterY - opponent.CenterY));*/
+                }
+            
             else
             {
                 //move Opponent
@@ -59,6 +75,7 @@ namespace Computergrafik
             }
 
             intersectsIsTrue = false;
+        
         }
 
         private void openIntersects(Box2D opponent)
@@ -110,6 +127,7 @@ namespace Computergrafik
         private void controlIntersects(Box2D obstacle, Box2D opponent)
         {
             intersectsIsTrue = true;
+            intersectsCounter += 1;
             bool under = opponent.CenterY < obstacle.CenterY;
             bool above = opponent.CenterY > obstacle.CenterY;
             bool right = opponent.CenterX > obstacle.MaxX;
@@ -230,6 +248,35 @@ namespace Computergrafik
                     opponentVector.X = opponentVector.X * minus;
                 }
             }
+        }
+        private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            
+            
+            if (intersectsCounter >=15)
+            {
+                Console.WriteLine("Sekunde rum:"+intersectsCounter);
+                intersectsTime = true;
+                intersectsIsTrue = true;
+
+                i += 1;
+            }
+            
+            if (i >= 10)
+            {
+                intersectsTime = false;
+                intersectsIsTrue = false;
+                intersectsCounter = 0;
+                i = 0;
+            }
+            
+            
+
+            /* if (shootcontrol == false && ammo >= 0)
+             {
+                 this.ammo = ammo - 1;
+                 shoot(gunDirection.X, gunDirection.Y);
+             }*/
         }
     }
 }
