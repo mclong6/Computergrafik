@@ -76,8 +76,14 @@ namespace Computergrafik
             obstacleIntersection();
             beHard(model.PlayerInfoOne, this.pplayer);
             beHard(model.PlayerInfoTwo, this.pplayer);
-            beHard(logic.Player[0].pplayer, logic.Player[1].pplayer);
-            beHard(logic.Player[1].pplayer, logic.Player[0].pplayer);
+            if (playerNr == 0)
+            {
+                beHard(logic.Player[0].pplayer, logic.Player[1].pplayer);
+            }
+            if (playerNr == 1)
+            {
+                beHard(logic.Player[1].pplayer, logic.Player[0].pplayer);
+            }
 
         }
 
@@ -86,8 +92,8 @@ namespace Computergrafik
 
         private void beHard(Box2D beHard, Box2D driver){
 
-            float intervall = 0.02f;
-            float bounce = 0.05f;
+            float intervall = 0.04f;
+            float bounce = 0.00f;
             if (beHard.Intersects(driver))
             {
                 /*Linke Seite*/
