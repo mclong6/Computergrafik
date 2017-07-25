@@ -17,21 +17,19 @@ namespace Computergrafik
         int joyStickDown = 0;
 
         Box2D startScreen;
-        Box2D startButton;
-        Box2D endButton;
         Box2D selectButton;
+
+        Box2D[] menuButton = new Box2D[4];
         GamePadState previousGamePadState;
         GamePadState gamepadState;
 
         public StartMenu(Model model, GamePadState pgamepadState)
         {
             gamepadState = pgamepadState;
-           
+            menuButton = model.MenuButton;
             previousGamePadState = pgamepadState;
-            startScreen = model.StartScreen;
-            startButton = model.StartButton;
-            endButton = model.EndButton;
             selectButton = model.SelectButton;
+            startScreen = model.StartScreen;
         }
 
         public void changeMenu(int GameState, MyWindow mywindow)
@@ -42,26 +40,14 @@ namespace Computergrafik
             {
                 /*Bei drücken der Taste A*/
                 /*currentState.Buttons.LeftStick == ButtonState.Pressed*/
-          
-                if (gamepadState.Buttons.Start == ButtonState.Pressed || Keyboard.GetState()[Key.Left])
+                if (Keyboard.GetState()[Key.Left])
                 {
-
-                    vibrationAmount = MathHelper.Clamp(vibrationAmount + 0.03f, 0.0f, 1.0f);
-                    GamePad.SetVibration(1, vibrationAmount, vibrationAmount);
-                    if (startButton.Intersects(selectButton))
-                    {          
-                        mywindow.GameState1 = StateStart;
-                       mywindow.GameState1 = StateStart;
-                    }
-
-                    if (endButton.Intersects(selectButton))
-                    {
-                        //Exit Game
-                        Environment.Exit(1);
-                    }
+                    menuSelection(mywindow);
                 }
-                previousGamePadState = gamepadState;
-
+         
+               
+                
+           
                 /*Bei Hoch oder Runter*/
                 if (Keyboard.GetState()[Key.Up])
                 {
@@ -72,11 +58,13 @@ namespace Computergrafik
                 {
                     joyStickUp = 0;
                     /*SelectBox nach oben setzen*/
-                    if (selectButton.MaxY < (startButton.MaxY))
+                    if (selectButton.MaxY < (menuButton[0].MaxY))
                     {
                         selectButton.Y = selectButton.Y + 0.4f;
                     }
                 }
+
+
                 /*Bei Key Down muss noch mit JoyStick ersetzt werden*/
                 else if (Keyboard.GetState()[Key.Down])
                 {
@@ -87,7 +75,7 @@ namespace Computergrafik
                 {
                     joyStickDown = 0;
                     /*SelectBox nach unten setzen*/
-                    if (selectButton.Y > (endButton.Y))
+                    if (selectButton.Y > (menuButton[3].Y))
                     {
                         selectButton.Y = selectButton.Y - 0.4f;
                     }
@@ -101,13 +89,34 @@ namespace Computergrafik
 
 
         }
+
+        public void menuSelection(MyWindow mywindow)
+        {
+            for (int i = 0; i < menuButton.Length; i++)
+            {
+                if (menuButton[i].Intersects(selectButton))
+                {
+                    mywindow.GameState1 = i;
+
+                    //Exit Game
+                    if (i == 3) {
+                        Environment.Exit(1);
+                    }
+                   
+                }
+            }
+            /*Startet Level 1*/
+           
+        }
         public void DrawMenu()
         {
             this.DrawStartScreen(startScreen);
             this.DrawSelectButton(selectButton);
-            this.DrawStartButton(startButton);
-            this.DrawEndButton(endButton);
-         
+
+            for (int i = 0; i < menuButton.Length; i++)
+            {
+                this.DrawEndButton(menuButton[i]);
+            }
 
         }
 

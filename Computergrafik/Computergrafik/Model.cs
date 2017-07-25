@@ -11,8 +11,7 @@ namespace Computergrafik
     {
         Box2D window;
         Box2D startScreen;
-        Box2D startButton;
-        Box2D endButton;
+        Box2D[] menuButton = new Box2D[4];
         Box2D selectButton;
         Box2D[] obstacles   = new Box2D[5];
         Box2D[] player      = new Box2D[2];
@@ -36,9 +35,13 @@ namespace Computergrafik
           
             /*Alle Boxen fürs Menü*/
             startScreen     = new Box2D(-1.0f, -1.0f, 2.0f, 2.0f);
-            startButton     = new Box2D(-0.3f, 0.3f, 0.6f, 0.2f);
-            endButton       = new Box2D(-0.3f, -0.1f, 0.6f, 0.2f);
-            selectButton    = new Box2D(-0.4f, 0.2f, 0.8f, 0.4f);
+            float high = 0.5f;
+
+            for (int i = 0; i < menuButton.Length; i++) {
+                menuButton[i] = new Box2D(-0.3f, high - (i * 0.4f), 0.6f, 0.2f);
+            }
+
+            selectButton    = new Box2D(-0.4f, high -0.1f, 0.8f, 0.4f);
 
             /*PlayerInfoBox*/
 
@@ -89,14 +92,7 @@ namespace Computergrafik
 
 
         /*Getter und Setter für Menü*/
-        public Box2D EndButton
-        {
-            get
-            { return endButton;}
 
-            set
-            {endButton = value;}
-        }
 
         public Box2D SelectButton
         {
@@ -115,14 +111,7 @@ namespace Computergrafik
             { startScreen = value; }
         }
 
-        public Box2D StartButton
-        {
-            get
-            { return startButton; }
-
-            set
-            { startButton = value; }
-        }
+ 
 
         public Box2D[] PlayerGun
         {
@@ -165,6 +154,17 @@ namespace Computergrafik
             }
         }
 
-     
+        public Box2D[] MenuButton
+        {
+            get
+            {
+                return menuButton;
+            }
+
+            set
+            {
+                menuButton = value;
+            }
+        }
     }
 }
