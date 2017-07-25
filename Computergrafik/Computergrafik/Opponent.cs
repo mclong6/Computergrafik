@@ -12,10 +12,13 @@ namespace Computergrafik
         private Model myModel;
         private float minus = -1.0f;
         private bool intersectsIsTrue = false;
-
-        public Opponent(Model model)
+        private Logic myLogic;
+        private Vector2 playerVector;
+        private float speedOpponent = 0.008f;
+        public Opponent(Model model, Logic logic)
         {
             myModel = model;
+            myLogic = logic;
         }
 
         /*
@@ -23,11 +26,44 @@ namespace Computergrafik
          */
         public void updatePosition(Box2D opponent)
         {
-            //move Opponent
-           
-            opponent.X += 1.0f / 400.0f * opponentVector.X;
-            opponent.Y += 1.0f / 400.0f * opponentVector.Y;
+            openIntersects(opponent);
 
+            /*
+            *!!!!!!!!!!!!!!!!!!!!!! Query to follow Player!!!! Vector is needed!!!!!!!!!!!!!!!!!!!!!!!!
+            * 
+            */
+            if (((Math.Abs(myModel.Player[0].CenterX - opponent.CenterX)) < 0.4f) && (Math.Abs(myModel.Player[0].CenterY - opponent.CenterY) < 0.4f) && intersectsIsTrue == false)
+            {
+                float pitch;
+                float y2 = myModel.Player[0].CenterY;
+                float y1 = opponent.CenterY;
+                float x2 = myModel.Player[0].CenterX;
+                float x1 = opponent.CenterX;
+
+                pitch = (y2 - y1) / (x2 - x1);
+                Vector2 steigungm = new Vector2((x2 - x1),(y2-y1));
+                steigungm.Normalize();
+                
+                opponent.X += speedOpponent * steigungm.X;
+                opponent.Y += speedOpponent * steigungm.Y;
+
+                /*Console.WriteLine("X:" + Math.Abs(myModel.Player[0].CenterX - opponent.CenterX));
+                Console.WriteLine("Y:" + Math.Abs(myModel.Player[0].CenterY - opponent.CenterY));*/
+            }
+            else
+            {
+                //move Opponent
+
+                opponent.X += speedOpponent * opponentVector.X;
+                opponent.Y += speedOpponent * opponentVector.Y;
+            }
+
+            intersectsIsTrue = false;
+        }
+
+        private void openIntersects(Box2D opponent)
+        {
+           
             //reflect Opponent
             if (opponent.MaxY > 1.0f || opponent.Y < -1.0)
             {
@@ -48,9 +84,11 @@ namespace Computergrafik
             }
 
             //Collision with Obstacles
-            for (int i = 0; i < myModel.Obstacles.Length; i++) {
+            for (int i = 0; i < myModel.Obstacles.Length; i++)
+            {
                 if (myModel.Obstacles[i].Intersects(opponent))
                 {
+                    Console.WriteLine("In openIntersects");
                     controlIntersects(myModel.Obstacles[i], opponent);
                 }
             }
@@ -66,17 +104,7 @@ namespace Computergrafik
             {
                 controlIntersects(myModel.PlayerInfoTwo, opponent);
             }
-            
 
-            /*
-             *!!!!!!!!!!!!!!!!!!!!!! Query to follow Player!!!! Vector is needed!!!!!!!!!!!!!!!!!!!!!!!!
-             * 
-             * if (((myModel.Player[0].CenterX-opponent.CenterX)<0.3f)&&((myModel.Player[0].CenterY - opponent.CenterY) < 0.3f)&&!intersectsIsTrue)
-            {
-                opponentVector.X = myModel.Player[0].CenterX;
-                opponentVector.Y = myModel.Player[0].CenterY;
-            }
-            */
         }
 
         private void controlIntersects(Box2D obstacle, Box2D opponent)
@@ -202,7 +230,6 @@ namespace Computergrafik
                     opponentVector.X = opponentVector.X * minus;
                 }
             }
-            intersectsIsTrue = false;
         }
     }
 }
