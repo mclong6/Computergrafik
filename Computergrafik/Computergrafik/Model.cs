@@ -13,10 +13,13 @@ namespace Computergrafik
         Box2D startScreen;
         Box2D[] menuButton = new Box2D[4];
         Box2D selectButton;
+
         Box2D[] obstacles   = new Box2D[5];
         Box2D[] player      = new Box2D[2];
-        Box2D[] playerGun   = new Box2D[2];
+     
         Box2D[] opponent    = new Box2D[2];
+
+        Box2D[] saveZone = new Box2D[2];
         private float minus = -1.0f;
         
 
@@ -53,12 +56,17 @@ namespace Computergrafik
             for(int index = 0; index<2; index++)
             {
                 float xTerm = 0.7f * minus;
-                player[index] = new Box2D(xTerm, 0f, 0.1f, 0.1f);
-                PlayerGun[index] = new Box2D(xTerm, 0f, 0.1f, 0.05f);
+                float xTerm2 = -0.975f + index * 1.85f;
+                player[index] = new Box2D(xTerm2, -0.05f, 0.1f, 0.1f);
+              
                 minus = minus * minus;
             }
 
-            
+            for (int i = 0; i < saveZone.Length; i++)
+            {
+                saveZone[i] = new Box2D(-1.0f + i * 1.85f, -0.1f, 0.15f, 0.2f);
+            }
+
         }
         public void createLevel(int level)
         {
@@ -142,14 +150,7 @@ namespace Computergrafik
 
  
 
-        public Box2D[] PlayerGun
-        {
-            get
-            {return playerGun;}
-
-            set
-            { playerGun = value;}
-        }
+    
 
         /*Player Info */
         public Box2D PlayerInfoOne
@@ -193,6 +194,19 @@ namespace Computergrafik
             set
             {
                 menuButton = value;
+            }
+        }
+
+        public Box2D[] SaveZone
+        {
+            get
+            {
+                return saveZone;
+            }
+
+            set
+            {
+                saveZone = value;
             }
         }
     }

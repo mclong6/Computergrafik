@@ -131,8 +131,8 @@ namespace Computergrafik
             bool under = opponent.CenterY < obstacle.CenterY;
             bool above = opponent.CenterY > obstacle.CenterY;
             bool right = opponent.CenterX > obstacle.MaxX;
-            bool left = opponent.CenterX < (obstacle.CenterX - (obstacle.SizeX / 2));
-
+          //  bool left = opponent.CenterX < (obstacle.CenterX - (obstacle.SizeX / 2));
+            bool left = opponent.CenterX < obstacle.CenterX;
             //Query if it is an Corner-Collision
             if ((opponent.CenterX > obstacle.MaxX || opponent.CenterX < (obstacle.MaxX - obstacle.SizeX)) &&
                            (opponent.CenterY > obstacle.MaxY || opponent.CenterY < (obstacle.MaxY - obstacle.SizeY)))

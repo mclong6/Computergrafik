@@ -91,12 +91,12 @@ namespace Computergrafik
             }
             if (GameState == StateStart)
             {
-               
-            visuals.DrawPlayerOne(model.Player[0]);
-            visuals.DrawPlayerTwo(model.Player[1]);
 
-            visuals.DrawPlayerGun(model.PlayerGun[0]);
-            visuals.DrawPlayerGun(model.PlayerGun[1]);
+                visuals.DrawSaveZone(model.SaveZone[0]);
+                visuals.DrawSaveZone(model.SaveZone[1]);
+
+                visuals.DrawPlayerOne(model.Player[0]);
+               visuals.DrawPlayerTwo(model.Player[1]);
 
                 for (int i = 0; i < logic.Player[0].Bullets.Count; i++)
                 {
