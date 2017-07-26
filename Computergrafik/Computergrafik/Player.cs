@@ -22,6 +22,7 @@ namespace Computergrafik
         private float speed = 0.006f;
         private Box2D player;
         private Box2D gun;
+        private double angle;
 
         private int joyStickShoot = 0;
         private int joyStickBoost = 0;
@@ -29,6 +30,7 @@ namespace Computergrafik
         private GamePadState currentControllerState;
         private GamePadThumbSticks thumber;
         private Vector2 direcction;
+        private Vector2 vector1;
 
         private Vector2 gunDirection;
         private bool shootcontrol = true;
@@ -53,6 +55,7 @@ namespace Computergrafik
             this.gun            = model.PlayerGun[playerNr];
             this.direcction     = new Vector2(0f, 0f);
             this.gunDirection   = new Vector2(0f,0f);
+            this.vector1        = new Vector2(0, 1);
             this.timer          = new Timer();
             this.timer.Interval = bulledInterval;
             this.timer.Elapsed += OnTimedEvent;
@@ -76,6 +79,7 @@ namespace Computergrafik
             obstacleIntersection();
             beHard(model.PlayerInfoOne, this.pplayer);
             beHard(model.PlayerInfoTwo, this.pplayer);
+            getGunAngle();
             if (playerNr == 0)
             {
                 beHard(logic.Player[0].pplayer, logic.Player[1].pplayer);
@@ -288,6 +292,70 @@ namespace Computergrafik
 
         }
 
+
+        private void getGunAngle()
+        {
+            AngleBetween(gunDirection);
+
+        }
+
+       
+
+        public double AngleBetween(Vector2 vector2)
+        {
+            //int k = Convert.ToInt32(Math.Abs(vector2.X) *Math.Abs(vector2.Y)*10);
+
+            int k = -100;
+            double x = vector2.X*10;
+            double y = vector2.Y*10;
+            
+
+            if (vector2.Y > 0)
+            {
+                if (vector2.X >0 ) //1
+                {
+                    x = Math.Abs(x);
+                    y = Math.Abs(y);
+
+                    angle = Math.Atan(x / y)*180/Math.PI;
+
+
+
+                }
+                else if (vector2.X < 0) //2
+                {
+                    x = Math.Abs(x);
+                    y = Math.Abs(y);
+
+                    angle = (Math.Atan(y / x) * 180 / Math.PI)+270;
+
+
+                }
+
+            }
+            else
+            {
+                if (vector2.X > 0) //3
+                {
+
+                     k = Convert.ToInt32(Math.Atan(Math.Abs(vector2.Y) * Math.Abs(vector2.X)) * 10);
+
+
+                }
+                else if (vector2.X < 0) //4
+                {
+
+                     k = Convert.ToInt32(Math.Atan(Math.Abs(vector2.X) * Math.Abs(vector2.Y)) * 10);
+
+                }
+
+            }
+
+            return k;
+
+        }
+
+
         private void Colisuion()
         {
             if (pplayer.Intersects(model.Opponent[0]))
@@ -322,7 +390,7 @@ namespace Computergrafik
 
             if (pplayer.X +pplayer.SizeX > 1) pplayer.X = 1-pplayer.SizeX;
             if (pplayer.X < -1) pplayer.X = -1;
-          if (pplayer.Y+pplayer.SizeY >1) pplayer.Y = 1-pplayer.SizeY;
+            if (pplayer.Y+pplayer.SizeY >1) pplayer.Y = 1-pplayer.SizeY;
             if (pplayer.Y < -1) pplayer.Y = -1;
 
 
@@ -410,6 +478,9 @@ namespace Computergrafik
 
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
+            Console.WriteLine("winkel " + angle);
+
+
             if (shootcontrol == false && ammo >=0 )
             {
                 this.ammo = ammo - 1;
