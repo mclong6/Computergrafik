@@ -59,6 +59,7 @@
     <Compile Include="Opponent.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sound.cs" />
     <Compile Include="StartMenu.cs" />
     <Compile Include="Visuals.cs" />
     <Compile Include="XBoxSteuerung.cs" />
