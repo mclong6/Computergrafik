@@ -52,7 +52,7 @@ namespace Computergrafik
             this.model          = model;
             this.PlayerNr       = playerNr;
             this.pplayer        = model.Player[playerNr];
-            this.gun            = model.PlayerGun[playerNr];
+          
             this.direcction     = new Vector2(0f, 0f);
             this.gunDirection   = new Vector2(0f,0f);
             this.vector1        = new Vector2(0, 1);
@@ -93,42 +93,41 @@ namespace Computergrafik
 
 
         /*beHard Box in diese kann der driver nicht hinein fahren*/
-
-        private void beHard(Box2D beHard, Box2D driver){
-
-            float intervall = 0.04f;
+     
+        private void beHard(Box2D beHard, Box2D driver)
+        {
             float bounce = 0.00f;
+            float intervall = 0.006f * 4;
             if (beHard.Intersects(driver))
+                       {
+                           /*Linke Seite*/
+            if (driver.X <= beHard.MaxX && driver.X >= beHard.MaxX - intervall)
             {
-                /*Linke Seite*/
-                if (driver.X <= beHard.MaxX && driver.X >= beHard.MaxX - intervall)
-                {
-                    driver.X = beHard.MaxX + bounce;
-                }
-
-
-                /*Obere Seite*/
-                if (driver.Y <= beHard.MaxY && driver.Y >= beHard.MaxY - intervall)
-                {
-                    driver.Y = beHard.MaxY + bounce;
-                }
-
-                /*Rechte Seite*/
-                if (beHard.X <= driver.MaxX && beHard.X + intervall >= driver.MaxX)
-                {
-                    driver.X = beHard.X - driver.SizeX - bounce;
-                }
-
-
-
-                /*Untere Seite*/
-                if (beHard.Y <= driver.MaxY && beHard.Y + intervall >= driver.MaxY)
-                {
-                    driver.Y = beHard.Y - driver.SizeY - bounce;
-                }
+                driver.X = beHard.MaxX + bounce;
             }
 
-        }
+            
+            /*Obere Seite*/
+             if (driver.Y <= beHard.MaxY && driver.Y >= beHard.MaxY - intervall)
+             {
+                 driver.Y = beHard.MaxY + bounce;
+             }
+
+            /*Rechte Seite*/
+            if (beHard.X <= driver.MaxX && beHard.X + intervall >= driver.MaxX)
+            {
+                driver.X = beHard.X - driver.SizeX - bounce;
+            }
+
+
+
+            /*Untere Seite*/
+             if (beHard.Y <= driver.MaxY && beHard.Y + intervall >= driver.MaxY)
+             {
+                 driver.Y = beHard.Y - driver.SizeY - bounce;
+             }
+         }
+       }
 
         /*ObstacleIntersection*/
 
@@ -139,28 +138,11 @@ namespace Computergrafik
             for (int i = 0; i < model.Obstacles.Length; i++)
             {
 
+           
+
                 if (model.Obstacles[i].Intersects(pplayer)) {
 
-                    if (pplayer.X <= model.Obstacles[i].MaxX && pplayer.X >= model.Obstacles[i].MaxX - intervall)
-                    { 
-                    pplayer.X = model.Obstacles[i].MaxX + bounce;
-                    }
-
-                    if (pplayer.Y <= model.Obstacles[i].MaxY && pplayer.Y >= model.Obstacles[i].MaxY - intervall)
-                    {
-                        pplayer.Y = model.Obstacles[i].MaxY + bounce;
-                    }
-
-                   
-                    if(model.Obstacles[i].X <=  pplayer.MaxX  && model.Obstacles[i].X + intervall >= pplayer.MaxX)
-                    {
-                        pplayer.X = model.Obstacles[i].X -player.SizeX - bounce;
-                    }
-
-                    if (model.Obstacles[i].Y <= pplayer.MaxY && model.Obstacles[i].Y + intervall >= pplayer.MaxY)
-                    {
-                        pplayer.Y = model.Obstacles[i].Y - player.SizeY - bounce;
-                    }
+                    beHard(model.Obstacles[i], pplayer);
          
                 }
 
@@ -364,8 +346,8 @@ namespace Computergrafik
                 pplayer.X = pplayer.X + direcction.X*-0.1f;
                 pplayer.Y = pplayer.Y + direcction.Y * -0.1f;
 
-                pplayer.Y = 0f;
-                pplayer.X = PlayerNr - 0.25f;
+                pplayer.Y = model.SaveZone[playerNr].Y + 0.05f;
+                pplayer.X = model.SaveZone[playerNr].X + 0.025f;
 
                 this.life = life - 10;
                 colisionControl = false;

@@ -19,7 +19,7 @@ namespace Computergrafik
             this.model = model;
             this.Player[0] = new Player(model,this,0);
             this.Player[1] = new Player(model,this,1);
-            this.opponent[0] = new Opponent(model);
+            this.opponent[0] = new Opponent(model, this);
             //hurt = new Hurt(player);
 
         }

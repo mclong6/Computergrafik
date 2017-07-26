@@ -32,6 +32,7 @@ namespace Computergrafik
         Box2D twoLifeW;
         Box2D twoAmmoW;
         Box2D twoBoostW;
+      
 
      
         public Lebensleiste(Model model)
