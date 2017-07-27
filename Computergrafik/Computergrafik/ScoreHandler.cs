@@ -16,14 +16,15 @@ namespace Computergrafik
         int maxScore = 2;
         int noLife = 0;
         int scorePlus = 1;
-
+        Model model;
       
         private TextureFont font;
 
 
         /*sore[0] Punktzahl für Player 1 */
-        public ScoreHandler(Player[] pplayers)
+        public ScoreHandler(Player[] pplayers, Model pmodel)
         {
+            model = pmodel;
             score[0] = 0;
             score[1] = 0;
             players = pplayers;
@@ -64,7 +65,12 @@ namespace Computergrafik
             {
                 for (int k = 0; k < players[i].Bullets.Count; k++)
                 {
-                    players[i].Bullets.RemoveAt(k);
+
+                    if (model.Window.Intersects(players[i].Bullets[k].Bbullet))
+                    {
+                        players[i].Bullets.RemoveAt(k);
+                    }
+                    
                 }
 
             }
