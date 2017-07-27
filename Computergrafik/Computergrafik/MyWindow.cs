@@ -1,15 +1,9 @@
-﻿using DMS.Application;
-using OpenTK;
+﻿using OpenTK;
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-    using DMS.Geometry;
 using OpenTK.Graphics.OpenGL;
-using OpenTK.Input;
+
 
 namespace Computergrafik
 {
@@ -31,6 +25,8 @@ namespace Computergrafik
         private Logic logic;
         private Lebensleiste lebensleiste;
 
+
+
         /*Hauptmenu*/
         private StartMenu menu;
 
@@ -41,8 +37,8 @@ namespace Computergrafik
             this.model              = new Model();
             this.visuals            = new Visuals();
             this.logic              = new Logic(model);
-            
 
+   
             /*Hauptmenü*/
             this.menu = new StartMenu(model,logic.Player[0].CurrentControllerState);
 
@@ -60,33 +56,57 @@ namespace Computergrafik
 
         public void GameWindow_UpdateFrame(object sender, FrameEventArgs e)
         {
+            if (logic.Scorehandler.Score[0] == 2)
+            {
+                GameState = StateMenu;
+        
+                //Environment.Exit(1);
+                logic.Scorehandler.Score[0] = 0;
+
+            }
             if (GameState == StateMenu)
             {
                 menu.changeMenu(GameState, this);
             }
             if (GameState == StateStart)
             {
-                if (doOnce == true) {
 
+                if (doOnce == true) {
+                   // this.logic = new Logic(model);
                     model.createLevel(gameLevel);
+                    for (int i = 0; i < logic.Player.Length; i++)
+                    {
+                        logic.Player[i].Life = 100;
+                        logic.Player[i].Ammo = 100;
+                        logic.Player[i].Boost = 100;
+
+                    }
+
+                    logic.Player[0].Life = 100;
+                    logic.Player[0].Ammo = 100;
+                    logic.Player[0].Boost = 100;
+
+                    logic.Player[1].Life = 100;
+                    logic.Player[1].Ammo = 100;
+                    logic.Player[1].Boost = 100;
+
+                    logicLebensleiste();
                     doOnce = false;
                 }
-                lebensleiste.OneGetBoost(logic.Player[0]);
-                lebensleiste.OneGetShoot(logic.Player[0]);
-                lebensleiste.OneLiveDown(logic.Player[0]);
 
-                lebensleiste.OneGetBoost(logic.Player[1]);
-                lebensleiste.OneGetShoot(logic.Player[1]);
-                lebensleiste.OneLiveDown(logic.Player[1]);
+                logicLebensleiste();
 
+                logic.Scorehandler.scoreLogic();
               
                 logic.updateLogic();
                 logic.updateOpponent();
+
             }
         }
 
         public void GameWindow_RenderFrame(object sender, FrameEventArgs e)
         {
+     
             GL.Color3(Color.White);
             GL.Clear(ClearBufferMask.ColorBufferBit);
            
@@ -126,16 +146,15 @@ namespace Computergrafik
                 }
 
 
-
                 GL.Enable(EnableCap.Blend);
-                
+                logic.Scorehandler.drawScore();
 
                 GL.Color3(Color.White);
 
                 visuals.DrawPlayerOne(model.Player[0], logic.Player[0].CurrentTexture);
 
                 GL.Color3(Color.White);
-
+                
                 visuals.DrawPlayerTwo(model.Player[1], logic.Player[1].CurrentTexture);
               
                 GL.Disable(EnableCap.Blend);
@@ -145,7 +164,17 @@ namespace Computergrafik
         }
 
 
-  
+
+        void logicLebensleiste() {
+            lebensleiste.OneGetBoost(logic.Player[0]);
+            lebensleiste.OneGetShoot(logic.Player[0]);
+            lebensleiste.OneLiveDown(logic.Player[0]);
+
+            lebensleiste.OneGetBoost(logic.Player[1]);
+            lebensleiste.OneGetShoot(logic.Player[1]);
+            lebensleiste.OneLiveDown(logic.Player[1]);
+        }
+
 
         [STAThread]
         public static void Main()
