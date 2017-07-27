@@ -8,16 +8,19 @@ using System.IO;
 
 using DMS.Sound;
 using DMS.Base;
+using DMS.OpenGL;
+using System.Drawing;
 
 namespace ConsoleApplication1.Main
 {
 
-
+   
     public class Sound : Disposable
     {
         public Sound()
         {
             soundEngine = new AudioPlaybackEngine();
+     
         }
 
         public void Background()
