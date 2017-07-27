@@ -64,11 +64,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource2.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resource3.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource3.resx</DependentUpon>
-    </Compile>
     <Compile Include="Sound.cs" />
     <Compile Include="StartMenu.cs" />
     <Compile Include="Visuals.cs" />
@@ -111,10 +106,6 @@
     <EmbeddedResource Include="Resource2.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource2.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource3.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource3.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

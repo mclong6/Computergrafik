@@ -85,30 +85,30 @@ namespace Computergrafik
             Texture[22] = TextureLoader.FromBitmap(Resource2._23b);
             Texture[23] = TextureLoader.FromBitmap(Resource2._24b);
 
-            Texture1[0] = TextureLoader.FromBitmap(Resource3._1);
-            Texture1[1] = TextureLoader.FromBitmap(Resource3._2);
-            Texture1[2] = TextureLoader.FromBitmap(Resource3._3);
-            Texture1[3] = TextureLoader.FromBitmap(Resource3._4);
-            Texture1[4] = TextureLoader.FromBitmap(Resource3._5);
-            Texture1[5] = TextureLoader.FromBitmap(Resource3._6);
-            Texture1[6] = TextureLoader.FromBitmap(Resource3._7);
-            Texture1[7] = TextureLoader.FromBitmap(Resource3._8);
-            Texture1[8] = TextureLoader.FromBitmap(Resource3._9);
-            Texture1[9] = TextureLoader.FromBitmap(Resource3._10);
-            Texture1[10] = TextureLoader.FromBitmap(Resource3._11);
-            Texture1[11] = TextureLoader.FromBitmap(Resource3._12);
-            Texture1[12] = TextureLoader.FromBitmap(Resource3._13);
-            Texture1[13] = TextureLoader.FromBitmap(Resource3._14);
-            Texture1[14] = TextureLoader.FromBitmap(Resource3._15);
-            Texture1[15] = TextureLoader.FromBitmap(Resource3._16);
-            Texture1[16] = TextureLoader.FromBitmap(Resource3._17);
-            Texture1[17] = TextureLoader.FromBitmap(Resource3._18);
-            Texture1[18] = TextureLoader.FromBitmap(Resource3._19);
-            Texture1[19] = TextureLoader.FromBitmap(Resource3._20);
-            Texture1[20] = TextureLoader.FromBitmap(Resource3._21);
-            Texture1[21] = TextureLoader.FromBitmap(Resource3._22);
-            Texture1[22] = TextureLoader.FromBitmap(Resource3._23);
-            Texture1[23] = TextureLoader.FromBitmap(Resource3._24);
+            Texture1[0] = TextureLoader.FromBitmap(Resource2._1);
+            Texture1[1] = TextureLoader.FromBitmap(Resource2._2);
+            Texture1[2] = TextureLoader.FromBitmap(Resource2._3);
+            Texture1[3] = TextureLoader.FromBitmap(Resource2._4);
+            Texture1[4] = TextureLoader.FromBitmap(Resource2._5);
+            Texture1[5] = TextureLoader.FromBitmap(Resource2._6);
+            Texture1[6] = TextureLoader.FromBitmap(Resource2._7);
+            Texture1[7] = TextureLoader.FromBitmap(Resource2._8);
+            Texture1[8] = TextureLoader.FromBitmap(Resource2._9);
+            Texture1[9] = TextureLoader.FromBitmap(Resource2._10);
+            Texture1[10] = TextureLoader.FromBitmap(Resource2._11);
+            Texture1[11] = TextureLoader.FromBitmap(Resource2._12);
+            Texture1[12] = TextureLoader.FromBitmap(Resource2._13);
+            Texture1[13] = TextureLoader.FromBitmap(Resource2._14);
+            Texture1[14] = TextureLoader.FromBitmap(Resource2._15);
+            Texture1[15] = TextureLoader.FromBitmap(Resource2._16);
+            Texture1[16] = TextureLoader.FromBitmap(Resource2._17);
+            Texture1[17] = TextureLoader.FromBitmap(Resource2._18);
+            Texture1[18] = TextureLoader.FromBitmap(Resource2._19);
+            Texture1[19] = TextureLoader.FromBitmap(Resource2._20);
+            Texture1[20] = TextureLoader.FromBitmap(Resource2._21);
+            Texture1[21] = TextureLoader.FromBitmap(Resource2._22);
+            Texture1[22] = TextureLoader.FromBitmap(Resource2._23);
+            Texture1[23] = TextureLoader.FromBitmap(Resource2._24);
 
 
 
@@ -439,7 +439,7 @@ namespace Computergrafik
 
             }
 
-            if(PlayerNr==0)
+            if(PlayerNr==1)
             {
 
                 if (Angle < 15 && Angle >= 0)
