@@ -129,6 +129,8 @@ namespace Computergrafik
 
             GL.Color3(Color.White);
             GL.Clear(ClearBufferMask.ColorBufferBit);
+           
+            GL.Color3(Color.White);
 
             if (GameState == StateMenu)
             {
