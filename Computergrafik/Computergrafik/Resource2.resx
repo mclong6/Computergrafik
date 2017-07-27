@@ -274,4 +274,31 @@
   <data name="old_hazard_stripes_texture" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\old-hazard-stripes-texture.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ammo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ammo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fire_bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\fire-bar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fire_bar_r" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\fire-bar-r.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="health" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\health.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="health_bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\health-bar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\jet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jet_bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\jet-bar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reload_bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\reload-bar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vest_bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\vest-bar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

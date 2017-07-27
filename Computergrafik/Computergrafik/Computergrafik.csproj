@@ -263,6 +263,15 @@
     <None Include="Resources\9b.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\vest-bar.png" />
+    <None Include="Resources\reload-bar.png" />
+    <None Include="Resources\ammo.png" />
+    <None Include="Resources\fire-bar.png" />
+    <None Include="Resources\fire-bar-r.png" />
+    <None Include="Resources\health.png" />
+    <None Include="Resources\health-bar.png" />
+    <None Include="Resources\jet.png" />
+    <None Include="Resources\jet-bar.png" />
     <Content Include="Resources\karierter-background.jpg" />
     <None Include="Resources\old-hazard-stripes-texture.jpg" />
   </ItemGroup>

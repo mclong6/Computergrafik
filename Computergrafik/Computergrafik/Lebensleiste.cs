@@ -1,4 +1,5 @@
 ﻿using DMS.Geometry;
+using DMS.OpenGL;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System;
@@ -24,7 +25,9 @@ namespace Computergrafik
         Box2D[] Ammo = new Box2D[2];
         Box2D[] Boost = new Box2D[2];
 
-
+        Box2D[] LifeIcon = new Box2D[2];
+        Box2D[] AmmoIcon = new Box2D[2];
+        Box2D[] BoostIcon = new Box2D[2];
 
         /**W steht für den weißen hintergrund*/
         Box2D oneLifeW;
@@ -34,14 +37,24 @@ namespace Computergrafik
         Box2D twoLifeW;
         Box2D twoAmmoW;
         Box2D twoBoostW;
-      
 
-     
+
+        Texture texLife;
+        Texture texAmmo;
+        Texture texBoost;
+
+
+
         public Lebensleiste(Model model)
         {
             
             playerInfoOne = model.PlayerInfoOne;
             playerInfoTwo = model.PlayerInfoTwo;
+
+            texLife = Tex;
+            texAmmo;
+            texBoost;
+
             nachladen[0] = false;
             nachladen[1] = false;
             Life[0] = new Box2D(-0.95f, 0.925f, sizeBalken, 0.05f);
