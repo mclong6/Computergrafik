@@ -16,7 +16,7 @@ namespace Computergrafik
 {
     class Visuals
     {
-        private Texture backgroundTexture = new Texture();
+        private Texture backgroundTexture;
         public Visuals()
         {
             backgroundTexture = TextureLoader.FromBitmap(Resource2.karierter_background);
