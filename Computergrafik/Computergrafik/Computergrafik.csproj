@@ -59,6 +59,17 @@
     <Compile Include="Opponent.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource2.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource3.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Sound.cs" />
     <Compile Include="StartMenu.cs" />
     <Compile Include="Visuals.cs" />
     <Compile Include="XBoxSteuerung.cs" />
@@ -95,6 +106,166 @@
       <Project>{54156018-0f41-4eef-aeb4-f1c99cf7a2ab}</Project>
       <Name>DMS.TimeTools</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource2.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource2.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource3.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource3.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\18b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\19b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\22b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\23b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\25b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\11b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\12b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\13b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\14b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\15b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\17b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1b.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

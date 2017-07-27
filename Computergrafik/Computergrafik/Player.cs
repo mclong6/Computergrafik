@@ -1,4 +1,6 @@
-﻿using DMS.Geometry;
+﻿using Computergrafik;
+using DMS.Geometry;
+using DMS.OpenGL;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
@@ -22,13 +24,19 @@ namespace Computergrafik
         private float speed = 0.006f;
         private Box2D player;
         private Box2D gun;
+        private int angle;
+        private Texture[] texture = new Texture[24];
+        private Texture[] texture1 = new Texture[24];
 
+        private Texture currentTexture = new Texture();
+       
         private int joyStickShoot = 0;
         private int joyStickBoost = 0;
 
         private GamePadState currentControllerState;
         private GamePadThumbSticks thumber;
         private Vector2 direcction;
+        private Vector2 vector1;
 
         private Vector2 gunDirection;
         private bool shootcontrol = true;
@@ -50,9 +58,64 @@ namespace Computergrafik
             this.model          = model;
             this.PlayerNr       = playerNr;
             this.pplayer        = model.Player[playerNr];
-          
+
+           
+            Texture[0] = TextureLoader.FromBitmap(Resource2._1b);
+            Texture[1] = TextureLoader.FromBitmap(Resource2._2b);
+            Texture[2] = TextureLoader.FromBitmap(Resource2._3b);
+            Texture[3] = TextureLoader.FromBitmap(Resource2._4b);
+            Texture[4] = TextureLoader.FromBitmap(Resource2._5b);
+            Texture[5] = TextureLoader.FromBitmap(Resource2._6b);
+            Texture[6] = TextureLoader.FromBitmap(Resource2._7b);
+            Texture[7] = TextureLoader.FromBitmap(Resource2._8b);
+            Texture[8] = TextureLoader.FromBitmap(Resource2._9b);
+            Texture[9] = TextureLoader.FromBitmap(Resource2._10b);
+            Texture[10] = TextureLoader.FromBitmap(Resource2._11b);
+            Texture[11] = TextureLoader.FromBitmap(Resource2._12b);
+            Texture[12] = TextureLoader.FromBitmap(Resource2._13b);
+            Texture[13] = TextureLoader.FromBitmap(Resource2._14b);
+            Texture[14] = TextureLoader.FromBitmap(Resource2._15b);
+            Texture[15] = TextureLoader.FromBitmap(Resource2._16b);
+            Texture[16] = TextureLoader.FromBitmap(Resource2._17b);
+            Texture[17] = TextureLoader.FromBitmap(Resource2._18b);
+            Texture[18] = TextureLoader.FromBitmap(Resource2._19b);
+            Texture[19] = TextureLoader.FromBitmap(Resource2._20b);
+            Texture[20] = TextureLoader.FromBitmap(Resource2._21b);
+            Texture[21] = TextureLoader.FromBitmap(Resource2._22b);
+            Texture[22] = TextureLoader.FromBitmap(Resource2._23b);
+            Texture[23] = TextureLoader.FromBitmap(Resource2._24b);
+
+            Texture1[0] = TextureLoader.FromBitmap(Resource3._1);
+            Texture1[1] = TextureLoader.FromBitmap(Resource3._2);
+            Texture1[2] = TextureLoader.FromBitmap(Resource3._3);
+            Texture1[3] = TextureLoader.FromBitmap(Resource3._4);
+            Texture1[4] = TextureLoader.FromBitmap(Resource3._5);
+            Texture1[5] = TextureLoader.FromBitmap(Resource3._6);
+            Texture1[6] = TextureLoader.FromBitmap(Resource3._7);
+            Texture1[7] = TextureLoader.FromBitmap(Resource3._8);
+            Texture1[8] = TextureLoader.FromBitmap(Resource3._9);
+            Texture1[9] = TextureLoader.FromBitmap(Resource3._10);
+            Texture1[10] = TextureLoader.FromBitmap(Resource3._11);
+            Texture1[11] = TextureLoader.FromBitmap(Resource3._12);
+            Texture1[12] = TextureLoader.FromBitmap(Resource3._13);
+            Texture1[13] = TextureLoader.FromBitmap(Resource3._14);
+            Texture1[14] = TextureLoader.FromBitmap(Resource3._15);
+            Texture1[15] = TextureLoader.FromBitmap(Resource3._16);
+            Texture1[16] = TextureLoader.FromBitmap(Resource3._17);
+            Texture1[17] = TextureLoader.FromBitmap(Resource3._18);
+            Texture1[18] = TextureLoader.FromBitmap(Resource3._19);
+            Texture1[19] = TextureLoader.FromBitmap(Resource3._20);
+            Texture1[20] = TextureLoader.FromBitmap(Resource3._21);
+            Texture1[21] = TextureLoader.FromBitmap(Resource3._22);
+            Texture1[22] = TextureLoader.FromBitmap(Resource3._23);
+            Texture1[23] = TextureLoader.FromBitmap(Resource3._24);
+
+
+
+
             this.direcction     = new Vector2(0f, 0f);
             this.gunDirection   = new Vector2(0f,0f);
+            this.vector1        = new Vector2(0, 1);
             this.timer          = new Timer();
             this.timer.Interval = bulledInterval;
             this.timer.Elapsed += OnTimedEvent;
@@ -70,9 +133,7 @@ namespace Computergrafik
             Colisuion();
             calculatePlayerPosition();
             calculateBullets();
-            bulledColission();
-            recycleBullets();
-            moveGun();
+            bulledColission();  
             obstacleIntersection();
             beHard(model.PlayerInfoOne, this.pplayer);
             beHard(model.PlayerInfoTwo, this.pplayer);
@@ -84,7 +145,7 @@ namespace Computergrafik
             {
                 beHard(logic.Player[1].pplayer, logic.Player[0].pplayer);
             }
-
+            recycleBullets();
         }
 
 
@@ -129,8 +190,6 @@ namespace Computergrafik
 
         private void obstacleIntersection() {
 
-            float bounce = 0.0f;
-            float intervall = 0.01f;
             for (int i = 0; i < model.Obstacles.Length; i++)
             {
 
@@ -149,10 +208,13 @@ namespace Computergrafik
    
                     for (int k = 0; k < bullets.Count; k++)
                     {
-                        if (bullets[k].Bbullet.Intersects(model.Obstacles[i]))
-                        {
-                          
-                            this.Bullets.RemoveAt(k);
+
+                        if (bullets[k] != null) {
+                            if (bullets[k].Bbullet.Intersects(model.Obstacles[i]))
+                            {
+
+                                this.Bullets.RemoveAt(k);
+                            }
                         }
                     }
                 }
@@ -238,16 +300,12 @@ namespace Computergrafik
                         speed = 0.006f;
                     }
                     joyStickBoost = 1;
+
                 }
                 if (joyStickBoost == 1 & !(Keyboard.GetState()[Key.V] && this.boost >= 0))
                 {
-                  
-                        speed = 0.006f;
-                    
-                }
-
-                
-
+                    speed = 0.006f;
+                }        
             }
 
            
@@ -269,6 +327,284 @@ namespace Computergrafik
             if (gunDirection.Y < 0.2f && gunDirection.Y > -0.2f) gunDirection.Y = 0; // da Joysticks nie genau 0
 
         }
+
+
+        private void getGunAngle()
+        {
+            AngleBetween(gunDirection);
+
+            if (PlayerNr == 0)
+            {
+
+                if (Angle < 15 && Angle >= 0)
+                {
+                    CurrentTexture = Texture[0];
+                }
+                else if (Angle < 30 && Angle >= 15)
+                {
+                    CurrentTexture = Texture[1];
+                }
+                else if (Angle < 45 && Angle >= 30)
+                {
+                    CurrentTexture = Texture[2];
+                }
+                else if (Angle < 60 && Angle >= 45)
+                {
+                    CurrentTexture = Texture[3];
+                }
+                else if (Angle < 75 && Angle >= 60)
+                {
+                    CurrentTexture = Texture[4];
+                }
+                else if (Angle < 90 && Angle >= 75)
+                {
+                    CurrentTexture = Texture[5];
+                }
+                if (Angle < 105 && Angle >= 90)
+                {
+                    CurrentTexture = Texture[6];
+                }
+                else if (Angle < 120 && Angle >= 105)
+                {
+                    CurrentTexture = Texture[7];
+                }
+                else if (Angle < 135 && Angle >= 120)
+                {
+                    CurrentTexture = Texture[8];
+                }
+                else if (Angle < 150 && Angle >= 135)
+                {
+                    CurrentTexture = Texture[9];
+                }
+                else if (Angle < 165 && Angle >= 150)
+                {
+                    CurrentTexture = Texture[10];
+                }
+                else if (Angle < 180 && Angle >= 165)
+                {
+                    CurrentTexture = Texture[11];
+                }
+                else if (Angle < 195 && Angle >= 180)
+                {
+                    CurrentTexture = Texture[12];
+                }
+                else if (Angle < 210 && Angle >= 195)
+                {
+                    CurrentTexture = Texture[13];
+                }
+                else if (Angle < 225 && Angle >= 210)
+                {
+                    CurrentTexture = Texture[14];
+                }
+                else if (Angle < 240 && Angle >= 225)
+                {
+                    CurrentTexture = Texture[15];
+                }
+                else if (Angle < 255 && Angle >= 240)
+                {
+                    CurrentTexture = Texture[16];
+                }
+                else if (Angle < 270 && Angle >= 255)
+                {
+                    CurrentTexture = Texture[17];
+                }
+                else if (Angle < 285 && Angle >= 270)
+                {
+                    CurrentTexture = Texture[18];
+                }
+                else if (Angle < 300 && Angle >= 285)
+                {
+                    CurrentTexture = Texture[19];
+                }
+                else if (Angle < 315 && Angle >= 300)
+                {
+                    CurrentTexture = Texture[20];
+                }
+                else if (Angle < 330 && Angle >= 315)
+                {
+                    CurrentTexture = Texture[21];
+                }
+                else if (Angle < 345 && Angle >= 330)
+                {
+                    CurrentTexture = Texture[22];
+                }
+                else if (Angle < 360 && Angle >= 345)
+                {
+                    CurrentTexture = Texture[23];
+                }
+                else if (Angle == 360)
+                {
+                    CurrentTexture = Texture[0];
+                }
+
+            }
+
+            if(PlayerNr==0)
+            {
+
+                if (Angle < 15 && Angle >= 0)
+                {
+                    CurrentTexture = Texture1[0];
+                }
+                else if (Angle < 30 && Angle >= 15)
+                {
+                    CurrentTexture = Texture1[1];
+                }
+                else if (Angle < 45 && Angle >= 30)
+                {
+                    CurrentTexture = Texture1[2];
+                }
+                else if (Angle < 60 && Angle >= 45)
+                {
+                    CurrentTexture = Texture1[3];
+                }
+                else if (Angle < 75 && Angle >= 60)
+                {
+                    CurrentTexture = Texture1[4];
+                }
+                else if (Angle < 90 && Angle >= 75)
+                {
+                    CurrentTexture = Texture1[5];
+                }
+                if (Angle < 105 && Angle >= 90)
+                {
+                    CurrentTexture = Texture1[6];
+                }
+                else if (Angle < 120 && Angle >= 105)
+                {
+                    CurrentTexture = Texture1[7];
+                }
+                else if (Angle < 135 && Angle >= 120)
+                {
+                    CurrentTexture = Texture1[8];
+                }
+                else if (Angle < 150 && Angle >= 135)
+                {
+                    CurrentTexture = Texture1[9];
+                }
+                else if (Angle < 165 && Angle >= 150)
+                {
+                    CurrentTexture = Texture1[10];
+                }
+                else if (Angle < 180 && Angle >= 165)
+                {
+                    CurrentTexture = Texture1[11];
+                }
+                else if (Angle < 195 && Angle >= 180)
+                {
+                    CurrentTexture = Texture1[12];
+                }
+                else if (Angle < 210 && Angle >= 195)
+                {
+                    CurrentTexture = Texture1[13];
+                }
+                else if (Angle < 225 && Angle >= 210)
+                {
+                    CurrentTexture = Texture1[14];
+                }
+                else if (Angle < 240 && Angle >= 225)
+                {
+                    CurrentTexture = Texture1[15];
+                }
+                else if (Angle < 255 && Angle >= 240)
+                {
+                    CurrentTexture = Texture1[16];
+                }
+                else if (Angle < 270 && Angle >= 255)
+                {
+                    CurrentTexture = Texture1[17];
+                }
+                else if (Angle < 285 && Angle >= 270)
+                {
+                    CurrentTexture = Texture1[18];
+                }
+                else if (Angle < 300 && Angle >= 285)
+                {
+                    CurrentTexture = Texture1[19];
+                }
+                else if (Angle < 315 && Angle >= 300)
+                {
+                    CurrentTexture = Texture1[20];
+                }
+                else if (Angle < 330 && Angle >= 315)
+                {
+                    CurrentTexture = Texture1[21];
+                }
+                else if (Angle < 345 && Angle >= 330)
+                {
+                    CurrentTexture = Texture1[22];
+                }
+                else if (Angle < 360 && Angle >= 345)
+                {
+                    CurrentTexture = Texture1[23];
+                }
+                else if (Angle == 360)
+                {
+                    CurrentTexture = Texture1[0];
+                }
+            }
+        }
+
+       
+
+        public void AngleBetween(Vector2 vector2)
+        {
+            //int k = Convert.ToInt32(Math.Abs(vector2.X) *Math.Abs(vector2.Y)*10);
+
+            int k = -100;
+            double x = vector2.X*100;
+            double y = vector2.Y*100;
+            
+
+            if (vector2.Y > 0)
+            {
+                if (vector2.X >0 ) //1
+                {
+                    x = Math.Abs(x);
+                    y = Math.Abs(y);
+
+                    Angle = Convert.ToInt32(Math.Atan(x / y)*180/Math.PI);
+
+
+
+                }
+                else if (vector2.X < 0) //2
+                {
+                    x = Math.Abs(x);
+                    y = Math.Abs(y);
+
+                    Angle = Convert.ToInt32((Math.Atan(y / x) * 180 / Math.PI)+270);
+
+
+                }
+
+            }
+            else
+            {
+                if (vector2.X > 0) //3
+                {
+
+                      x = Math.Abs(x);
+                    y = Math.Abs(y);
+
+                    Angle = Convert.ToInt32(Math.Atan(y / x)*180/Math.PI+90);
+
+
+                }
+                else if (vector2.X < 0) //4
+                {
+
+                    x = Math.Abs(x);
+                    y = Math.Abs(y);
+
+                    Angle = Convert.ToInt32(Math.Atan(x/ y) * 180 / Math.PI + 180);
+
+                }
+
+            }
+
+        }
+
 
         private void Colisuion()
         {
@@ -304,12 +640,8 @@ namespace Computergrafik
 
             if (pplayer.X +pplayer.SizeX > 1) pplayer.X = 1-pplayer.SizeX;
             if (pplayer.X < -1) pplayer.X = -1;
-          if (pplayer.Y+pplayer.SizeY >1) pplayer.Y = 1-pplayer.SizeY;
+            if (pplayer.Y+pplayer.SizeY >1) pplayer.Y = 1-pplayer.SizeY;
             if (pplayer.Y < -1) pplayer.Y = -1;
-
-
-
-
 
         }
 
@@ -392,6 +724,10 @@ namespace Computergrafik
 
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
+            getGunAngle();
+            Console.WriteLine("anzahl " + Bullets.Count);
+
+
             if (shootcontrol == false && ammo >=0 )
             {
                 this.ammo = ammo - 1;
@@ -399,13 +735,7 @@ namespace Computergrafik
             }
         }
 
-
-        private void moveGun() {
-
-
-            
-        }
-
+        
         private void shoot(float x, float y)
         {
 
@@ -435,22 +765,27 @@ namespace Computergrafik
             {
                 for(int j= 0; j< logic.Player[i].bullets.Count; j++)
                 {
-                  
-                    if (logic.Player[i].Bullets[j].Bbullet.Intersects(model.Opponent[0]))
+                    if (logic.Player[i].Bullets[j].Bbullet != null) {
+
+                        if (logic.Player[i].Bullets[j].Bbullet.Intersects(model.Opponent[0]))
                         {
                             logic.Player[i].Bullets.RemoveAt(j);
                         }
-                    
+                    }
                 }
 
                 if(logic.Player[i] != this)
                 {
                     for(int k = 0; k< logic.Player[i].Bullets.Count; k++)
                     {
-                        if (logic.Player[i].Bullets[k].Bbullet.Intersects(this.pplayer))
+                        if (logic.Player[i].Bullets[k].Bbullet != null)
                         {
-                            logic.Player[i].Bullets.RemoveAt(k);
-                            life = life - 10;
+
+                            if (logic.Player[i].Bullets[k].Bbullet.Intersects(this.pplayer))
+                            {
+                                logic.Player[i].Bullets.RemoveAt(k);
+                                life = life - 10;
+                            }
                         }
 
                     }
@@ -575,6 +910,71 @@ namespace Computergrafik
             set
             {
                 speed = value;
+            }
+        }
+
+        public int Angle
+        {
+            get
+            {
+                return Angle1;
+            }
+
+            set
+            {
+                Angle1 = value;
+            }
+        }
+
+        public int Angle1
+        {
+            get
+            {
+                return angle;
+            }
+
+            set
+            {
+                angle = value;
+            }
+        }
+
+        public Texture[] Texture
+        {
+            get
+            {
+                return texture;
+            }
+
+            set
+            {
+                texture = value;
+            }
+        }
+
+        public Texture CurrentTexture
+        {
+            get
+            {
+                return currentTexture;
+            }
+
+            set
+            {
+                currentTexture = value;
+            }
+        }
+
+        public Texture[] Texture1
+        {
+            get
+            {
+                return texture1;
+            }
+
+            set
+            {
+                texture1 = value;
             }
         }
     }
