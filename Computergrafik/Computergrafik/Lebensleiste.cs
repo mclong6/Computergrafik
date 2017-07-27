@@ -39,6 +39,7 @@ namespace Computergrafik
      
         public Lebensleiste(Model model)
         {
+            
             playerInfoOne = model.PlayerInfoOne;
             playerInfoTwo = model.PlayerInfoTwo;
             nachladen[0] = false;

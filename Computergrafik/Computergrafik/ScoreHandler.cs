@@ -69,9 +69,9 @@ namespace Computergrafik
                 players[p].pplayer.X = -0.975f + p * 1.85f;
                 players[p].pplayer.Y = -0.05f;
              
-                players[p].Life = 100;
-                players[p].Ammo = 100;
-                players[p].Boost = 100;
+                players[p].Life = players[p].StartLife;
+                players[p].Ammo = players[p].StartAmmo;
+                players[p].Boost = players[p].StartBoost;
             }
          
         }

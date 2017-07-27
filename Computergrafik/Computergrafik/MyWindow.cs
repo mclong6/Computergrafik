@@ -195,9 +195,9 @@ namespace Computergrafik
                 string winnerString = "Player " + winner.ToString() + " wins";
                 TextureFont font = new TextureFont(TextureLoader.FromBitmap(Resource2.Big_Cheese), 10, 32);
 
-                font.Print(-0.5f * font.Width(scoreString, 0.1f), 0.9f, 0.0f, 0.1f, scoreString);
+                font.Print(-0.5f * font.Width(scoreString, 0.1f), 0.2f, 0.0f, 0.1f, scoreString);
 
-                font.Print(-0.5f * font.Width(winnerString, 0.1f), 0.75f, 0.0f, 0.1f, winnerString);
+                font.Print(-0.5f * font.Width(winnerString, 0.1f), 0.0f, 0.0f, 0.1f, winnerString);
                 GL.Disable(EnableCap.Blend);
             }
 
@@ -220,9 +220,9 @@ namespace Computergrafik
 
             for (int i = 0; i < logic.Player.Length; i++)
             {
-                logic.Player[i].Life = 100;
-                logic.Player[i].Ammo = 100;
-                logic.Player[i].Boost = 100;
+                logic.Player[i].Life = logic.Player[i].StartLife;
+                logic.Player[i].Ammo = logic.Player[i].StartAmmo;
+                logic.Player[i].Boost = logic.Player[i].StartBoost;
 
             }
             logicLebensleiste();
