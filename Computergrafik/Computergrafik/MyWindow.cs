@@ -169,7 +169,7 @@ namespace Computergrafik
 
 
                 GL.Enable(EnableCap.Blend);
-                logic.Scorehandler.drawScore();
+
 
                 GL.Color3(Color.White);
 
@@ -178,7 +178,8 @@ namespace Computergrafik
                 GL.Color3(Color.White);
 
                 visuals.DrawPlayerTwo(model.Player[1], logic.Player[1].CurrentTexture);
-
+                GL.Color3(Color.White);
+                logic.Scorehandler.drawScore();
                 GL.Disable(EnableCap.Blend);
 
 

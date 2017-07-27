@@ -22,7 +22,7 @@ namespace Computergrafik
             this.Player[1] = new Player(model,this,1);
             this.opponent[0] = new Opponent(model, this);
 
-            scorehandler = new ScoreHandler(player);
+            scorehandler = new ScoreHandler(player, model);
             //hurt = new Hurt(player);
 
         }
