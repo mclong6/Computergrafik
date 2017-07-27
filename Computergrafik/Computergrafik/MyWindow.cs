@@ -131,6 +131,7 @@ namespace Computergrafik
             GL.Clear(ClearBufferMask.ColorBufferBit);
            
             GL.Color3(Color.White);
+            visuals.DrawSquaredBackground(model.Window);
 
             if (GameState == StateMenu)
             {
