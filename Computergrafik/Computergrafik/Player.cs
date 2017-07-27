@@ -26,6 +26,8 @@ namespace Computergrafik
         private Box2D gun;
         private int angle;
         private Texture[] texture = new Texture[24];
+        private Texture[] texture1 = new Texture[24];
+
         private Texture currentTexture = new Texture();
        
         private int joyStickShoot = 0;
@@ -58,30 +60,55 @@ namespace Computergrafik
             this.pplayer        = model.Player[playerNr];
 
            
-            Texture[0] = TextureLoader.FromBitmap(Resource2._1);
-            Texture[1] = TextureLoader.FromBitmap(Resource2._2);
-            Texture[2] = TextureLoader.FromBitmap(Resource2._3);
-            Texture[3] = TextureLoader.FromBitmap(Resource2._4);
-            Texture[4] = TextureLoader.FromBitmap(Resource2._5);
-            Texture[5] = TextureLoader.FromBitmap(Resource2._6);
-            Texture[6] = TextureLoader.FromBitmap(Resource2._7);
-            Texture[7] = TextureLoader.FromBitmap(Resource2._8);
-            Texture[8] = TextureLoader.FromBitmap(Resource2._9);
-            Texture[9] = TextureLoader.FromBitmap(Resource2._10);
-            Texture[10] = TextureLoader.FromBitmap(Resource2._11);
-            Texture[11] = TextureLoader.FromBitmap(Resource2._12);
-            Texture[12] = TextureLoader.FromBitmap(Resource2._13);
-            Texture[13] = TextureLoader.FromBitmap(Resource2._14);
-            Texture[14] = TextureLoader.FromBitmap(Resource2._15);
-            Texture[15] = TextureLoader.FromBitmap(Resource2._16);
-            Texture[16] = TextureLoader.FromBitmap(Resource2._17);
-            Texture[17] = TextureLoader.FromBitmap(Resource2._18);
-            Texture[18] = TextureLoader.FromBitmap(Resource2._19);
-            Texture[19] = TextureLoader.FromBitmap(Resource2._20);
-            Texture[20] = TextureLoader.FromBitmap(Resource2._21);
-            Texture[21] = TextureLoader.FromBitmap(Resource2._22);
-            Texture[22] = TextureLoader.FromBitmap(Resource2._23);
-            Texture[23] = TextureLoader.FromBitmap(Resource2._24);
+            Texture[0] = TextureLoader.FromBitmap(Resource2._1b);
+            Texture[1] = TextureLoader.FromBitmap(Resource2._2b);
+            Texture[2] = TextureLoader.FromBitmap(Resource2._3b);
+            Texture[3] = TextureLoader.FromBitmap(Resource2._4b);
+            Texture[4] = TextureLoader.FromBitmap(Resource2._5b);
+            Texture[5] = TextureLoader.FromBitmap(Resource2._6b);
+            Texture[6] = TextureLoader.FromBitmap(Resource2._7b);
+            Texture[7] = TextureLoader.FromBitmap(Resource2._8b);
+            Texture[8] = TextureLoader.FromBitmap(Resource2._9b);
+            Texture[9] = TextureLoader.FromBitmap(Resource2._10b);
+            Texture[10] = TextureLoader.FromBitmap(Resource2._11b);
+            Texture[11] = TextureLoader.FromBitmap(Resource2._12b);
+            Texture[12] = TextureLoader.FromBitmap(Resource2._13b);
+            Texture[13] = TextureLoader.FromBitmap(Resource2._14b);
+            Texture[14] = TextureLoader.FromBitmap(Resource2._15b);
+            Texture[15] = TextureLoader.FromBitmap(Resource2._16b);
+            Texture[16] = TextureLoader.FromBitmap(Resource2._17b);
+            Texture[17] = TextureLoader.FromBitmap(Resource2._18b);
+            Texture[18] = TextureLoader.FromBitmap(Resource2._19b);
+            Texture[19] = TextureLoader.FromBitmap(Resource2._20b);
+            Texture[20] = TextureLoader.FromBitmap(Resource2._21b);
+            Texture[21] = TextureLoader.FromBitmap(Resource2._22b);
+            Texture[22] = TextureLoader.FromBitmap(Resource2._23b);
+            Texture[23] = TextureLoader.FromBitmap(Resource2._24b);
+
+            Texture1[0] = TextureLoader.FromBitmap(Resource2._1);
+            Texture1[1] = TextureLoader.FromBitmap(Resource2._2);
+            Texture1[2] = TextureLoader.FromBitmap(Resource2._3);
+            Texture1[3] = TextureLoader.FromBitmap(Resource2._4);
+            Texture1[4] = TextureLoader.FromBitmap(Resource2._5);
+            Texture1[5] = TextureLoader.FromBitmap(Resource2._6);
+            Texture1[6] = TextureLoader.FromBitmap(Resource2._7);
+            Texture1[7] = TextureLoader.FromBitmap(Resource2._8);
+            Texture1[8] = TextureLoader.FromBitmap(Resource2._9);
+            Texture1[9] = TextureLoader.FromBitmap(Resource2._10);
+            Texture1[10] = TextureLoader.FromBitmap(Resource2._11);
+            Texture1[11] = TextureLoader.FromBitmap(Resource2._12);
+            Texture1[12] = TextureLoader.FromBitmap(Resource2._13);
+            Texture1[13] = TextureLoader.FromBitmap(Resource2._14);
+            Texture1[14] = TextureLoader.FromBitmap(Resource2._15);
+            Texture1[15] = TextureLoader.FromBitmap(Resource2._16);
+            Texture1[16] = TextureLoader.FromBitmap(Resource2._17);
+            Texture1[17] = TextureLoader.FromBitmap(Resource2._18);
+            Texture1[18] = TextureLoader.FromBitmap(Resource2._19);
+            Texture1[19] = TextureLoader.FromBitmap(Resource2._20);
+            Texture1[20] = TextureLoader.FromBitmap(Resource2._21);
+            Texture1[21] = TextureLoader.FromBitmap(Resource2._22);
+            Texture1[22] = TextureLoader.FromBitmap(Resource2._23);
+            Texture1[23] = TextureLoader.FromBitmap(Resource2._24);
 
 
 
@@ -306,104 +333,215 @@ namespace Computergrafik
         {
             AngleBetween(gunDirection);
 
-            if (Angle<15 && Angle >=0) {
-                CurrentTexture = Texture[0];
-            }
-            else if (Angle < 30 && Angle >= 15)
+            if (PlayerNr == 0)
             {
-                CurrentTexture = Texture[1];
+
+                if (Angle < 15 && Angle >= 0)
+                {
+                    CurrentTexture = Texture[0];
+                }
+                else if (Angle < 30 && Angle >= 15)
+                {
+                    CurrentTexture = Texture[1];
+                }
+                else if (Angle < 45 && Angle >= 30)
+                {
+                    CurrentTexture = Texture[2];
+                }
+                else if (Angle < 60 && Angle >= 45)
+                {
+                    CurrentTexture = Texture[3];
+                }
+                else if (Angle < 75 && Angle >= 60)
+                {
+                    CurrentTexture = Texture[4];
+                }
+                else if (Angle < 90 && Angle >= 75)
+                {
+                    CurrentTexture = Texture[5];
+                }
+                if (Angle < 105 && Angle >= 90)
+                {
+                    CurrentTexture = Texture[6];
+                }
+                else if (Angle < 120 && Angle >= 105)
+                {
+                    CurrentTexture = Texture[7];
+                }
+                else if (Angle < 135 && Angle >= 120)
+                {
+                    CurrentTexture = Texture[8];
+                }
+                else if (Angle < 150 && Angle >= 135)
+                {
+                    CurrentTexture = Texture[9];
+                }
+                else if (Angle < 165 && Angle >= 150)
+                {
+                    CurrentTexture = Texture[10];
+                }
+                else if (Angle < 180 && Angle >= 165)
+                {
+                    CurrentTexture = Texture[11];
+                }
+                else if (Angle < 195 && Angle >= 180)
+                {
+                    CurrentTexture = Texture[12];
+                }
+                else if (Angle < 210 && Angle >= 195)
+                {
+                    CurrentTexture = Texture[13];
+                }
+                else if (Angle < 225 && Angle >= 210)
+                {
+                    CurrentTexture = Texture[14];
+                }
+                else if (Angle < 240 && Angle >= 225)
+                {
+                    CurrentTexture = Texture[15];
+                }
+                else if (Angle < 255 && Angle >= 240)
+                {
+                    CurrentTexture = Texture[16];
+                }
+                else if (Angle < 270 && Angle >= 255)
+                {
+                    CurrentTexture = Texture[17];
+                }
+                else if (Angle < 285 && Angle >= 270)
+                {
+                    CurrentTexture = Texture[18];
+                }
+                else if (Angle < 300 && Angle >= 285)
+                {
+                    CurrentTexture = Texture[19];
+                }
+                else if (Angle < 315 && Angle >= 300)
+                {
+                    CurrentTexture = Texture[20];
+                }
+                else if (Angle < 330 && Angle >= 315)
+                {
+                    CurrentTexture = Texture[21];
+                }
+                else if (Angle < 345 && Angle >= 330)
+                {
+                    CurrentTexture = Texture[22];
+                }
+                else if (Angle < 360 && Angle >= 345)
+                {
+                    CurrentTexture = Texture[23];
+                }
+                else if (Angle == 360)
+                {
+                    CurrentTexture = Texture[0];
+                }
+
             }
-            else if (Angle < 45 && Angle >= 30)
+
+            if(PlayerNr==1)
             {
-                CurrentTexture = Texture[2];
-            }
-            else if (Angle < 60 && Angle >= 45)
-            {
-                CurrentTexture = Texture[3];
-            }
-            else if (Angle < 75 && Angle >= 60)
-            {
-                CurrentTexture = Texture[4];
-            }
-            else if (Angle < 90 && Angle >=75)
-            {
-                CurrentTexture = Texture[5];
-            }
-            if (Angle < 105 && Angle >= 90)
-            {
-                CurrentTexture = Texture[6];
-            }
-            else if (Angle < 120 && Angle >=105)
-            {
-                CurrentTexture = Texture[7];
-            }
-            else if (Angle < 135 && Angle >= 120)
-            {
-                CurrentTexture = Texture[8];
-            }
-            else if (Angle < 150 && Angle >= 135)
-            {
-                CurrentTexture = Texture[9];
-            }
-            else if (Angle < 165 && Angle >= 150)
-            {
-                CurrentTexture = Texture[10];
-            }
-            else if (Angle < 180 && Angle >= 165)
-            {
-                CurrentTexture = Texture[11];
-            }
-            else if (Angle < 195 && Angle >= 180)
-            {
-                CurrentTexture = Texture[12];
-            }
-            else if (Angle < 210 && Angle >= 195)
-            {
-                CurrentTexture = Texture[13];
-            }
-            else if (Angle < 225 && Angle >= 210)
-            {
-                CurrentTexture = Texture[14];
-            }
-            else if (Angle < 240 && Angle >= 225)
-            {
-                CurrentTexture = Texture[15];
-            }
-            else if (Angle < 255 && Angle >= 240)
-            {
-                CurrentTexture = Texture[16];
-            }
-            else if (Angle < 270 && Angle >= 255)
-            {
-                CurrentTexture = Texture[17];
-            }
-            else if (Angle < 285 && Angle >= 270)
-            {
-                CurrentTexture = Texture[18];
-            }
-            else if (Angle < 300 && Angle >= 285)
-            {
-                CurrentTexture = Texture[19];
-            }
-            else if (Angle < 315 && Angle >= 300)
-            {
-                CurrentTexture = Texture[20];
-            }
-            else if (Angle < 330 && Angle >= 315)
-            {
-                CurrentTexture = Texture[21];
-            }
-            else if (Angle < 345 && Angle >= 330)
-            {
-                CurrentTexture = Texture[22];
-            }
-            else if (Angle < 360 && Angle >= 345)
-            {
-                CurrentTexture = Texture[23];
-            }
-            else if (Angle == 360)
-            {
-                CurrentTexture = Texture[0];
+
+                if (Angle < 15 && Angle >= 0)
+                {
+                    CurrentTexture = Texture1[0];
+                }
+                else if (Angle < 30 && Angle >= 15)
+                {
+                    CurrentTexture = Texture1[1];
+                }
+                else if (Angle < 45 && Angle >= 30)
+                {
+                    CurrentTexture = Texture1[2];
+                }
+                else if (Angle < 60 && Angle >= 45)
+                {
+                    CurrentTexture = Texture1[3];
+                }
+                else if (Angle < 75 && Angle >= 60)
+                {
+                    CurrentTexture = Texture1[4];
+                }
+                else if (Angle < 90 && Angle >= 75)
+                {
+                    CurrentTexture = Texture1[5];
+                }
+                if (Angle < 105 && Angle >= 90)
+                {
+                    CurrentTexture = Texture1[6];
+                }
+                else if (Angle < 120 && Angle >= 105)
+                {
+                    CurrentTexture = Texture1[7];
+                }
+                else if (Angle < 135 && Angle >= 120)
+                {
+                    CurrentTexture = Texture1[8];
+                }
+                else if (Angle < 150 && Angle >= 135)
+                {
+                    CurrentTexture = Texture1[9];
+                }
+                else if (Angle < 165 && Angle >= 150)
+                {
+                    CurrentTexture = Texture1[10];
+                }
+                else if (Angle < 180 && Angle >= 165)
+                {
+                    CurrentTexture = Texture1[11];
+                }
+                else if (Angle < 195 && Angle >= 180)
+                {
+                    CurrentTexture = Texture1[12];
+                }
+                else if (Angle < 210 && Angle >= 195)
+                {
+                    CurrentTexture = Texture1[13];
+                }
+                else if (Angle < 225 && Angle >= 210)
+                {
+                    CurrentTexture = Texture1[14];
+                }
+                else if (Angle < 240 && Angle >= 225)
+                {
+                    CurrentTexture = Texture1[15];
+                }
+                else if (Angle < 255 && Angle >= 240)
+                {
+                    CurrentTexture = Texture1[16];
+                }
+                else if (Angle < 270 && Angle >= 255)
+                {
+                    CurrentTexture = Texture1[17];
+                }
+                else if (Angle < 285 && Angle >= 270)
+                {
+                    CurrentTexture = Texture1[18];
+                }
+                else if (Angle < 300 && Angle >= 285)
+                {
+                    CurrentTexture = Texture1[19];
+                }
+                else if (Angle < 315 && Angle >= 300)
+                {
+                    CurrentTexture = Texture1[20];
+                }
+                else if (Angle < 330 && Angle >= 315)
+                {
+                    CurrentTexture = Texture1[21];
+                }
+                else if (Angle < 345 && Angle >= 330)
+                {
+                    CurrentTexture = Texture1[22];
+                }
+                else if (Angle < 360 && Angle >= 345)
+                {
+                    CurrentTexture = Texture1[23];
+                }
+                else if (Angle == 360)
+                {
+                    CurrentTexture = Texture1[0];
+                }
             }
         }
 
@@ -824,6 +962,19 @@ namespace Computergrafik
             set
             {
                 currentTexture = value;
+            }
+        }
+
+        public Texture[] Texture1
+        {
+            get
+            {
+                return texture1;
+            }
+
+            set
+            {
+                texture1 = value;
             }
         }
     }

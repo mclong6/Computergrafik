@@ -110,40 +110,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\15.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\17.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\18.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\19.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\20.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\21.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\22.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\23.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\24.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\25.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\2.png" />
@@ -183,6 +150,114 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\18b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\19b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\22b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\23b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\25b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\11b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\12b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\13b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\14b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\15b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\17b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1b.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Big Cheese.png" />
