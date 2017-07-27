@@ -725,7 +725,6 @@ namespace Computergrafik
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
             getGunAngle();
-            Console.WriteLine("anzahl " + Bullets.Count);
 
 
             if (shootcontrol == false && ammo >=0 )
