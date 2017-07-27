@@ -42,10 +42,10 @@ namespace Computergrafik
             //when using textures we have to set a texture coordinate for each vertex
             //by using the TexCoord command BEFORE the Vertex command
 
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(Rect.X, Rect.Y);
-            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(Rect.MaxX, Rect.Y);
-            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(Rect.MaxX, Rect.MaxY);
-            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(Rect.X, Rect.MaxY);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(Rect.X+0.1, Rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(Rect.MaxX + 0.1, Rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(Rect.MaxX + 0.1, Rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(Rect.X + 0.1, Rect.MaxY);
             GL.End();
 
             //the texture is disabled, so no other draw calls use this texture
