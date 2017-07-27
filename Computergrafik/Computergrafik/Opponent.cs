@@ -39,7 +39,6 @@ namespace Computergrafik
          */
         public void updatePosition(Box2D opponent)
         {
-            Console.WriteLine(intersectsTime);
 
             openIntersects(opponent);
             Console.WriteLine("IntersectIsTrue:" + intersectsIsTrue);
