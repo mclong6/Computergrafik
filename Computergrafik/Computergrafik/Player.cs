@@ -124,6 +124,8 @@ namespace Computergrafik
 
         public void updatePosition()        //Updates the position of the player
         {
+            
+
             getControllerState();
             boostPressed();
             shootPressed(true);
@@ -613,6 +615,7 @@ namespace Computergrafik
 
                 pplayer.Y = model.SaveZone[playerNr].Y + 0.05f;
                 pplayer.X = model.SaveZone[playerNr].X + 0.025f;
+              
 
                 this.life = life - 10;
                 colisionControl = false;
@@ -757,7 +760,10 @@ namespace Computergrafik
 
         private void bulledColission()
         {
-           for(int i= 0; i < 2; i++)
+
+            
+
+            for (int i= 0; i < 2; i++)
             {
                 for(int j= 0; j< logic.Player[i].bullets.Count; j++)
                 {

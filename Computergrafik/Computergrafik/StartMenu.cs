@@ -11,8 +11,6 @@ namespace Computergrafik
         const int StateMenu = 0;
         const int StateStart = 1;
 
-        float vibrationAmount = 0.0f;
-
         int joyStickUp = 0;
         int joyStickDown = 0;
 
@@ -42,7 +40,7 @@ namespace Computergrafik
             {
                 /*Bei drücken der Taste A*/
                 /*currentState.Buttons.LeftStick == ButtonState.Pressed*/
-                if (Keyboard.GetState()[Key.Left])
+                if (Keyboard.GetState()[Key.Enter] || currentControllerState.Buttons.A == ButtonState.Pressed)
                 {
                     menuSelection(mywindow);
                 }
@@ -51,7 +49,6 @@ namespace Computergrafik
 
 
                 /*Bei Hoch oder Runter*/
-                Console.WriteLine(thumber.Right.Y);
 
                 if (thumber.Right.Y >0.4)
                 {
@@ -82,10 +79,13 @@ namespace Computergrafik
                 if (thumber.Right.Y < -0.4)
                 {
                     joyStickDown = 1;
+
                 }
 
-                if (joyStickDown == 1 && !(Keyboard.GetState()[Key.Down] && thumber.Right.Y > -0.4 ))
+                if (joyStickDown == 1 && !(Keyboard.GetState()[Key.Down]) && thumber.Right.Y > -0.4 )
                 {
+                    Console.WriteLine(thumber.Right.Y);
+
                     joyStickDown = 0;
                     /*SelectBox nach unten setzen*/
                     if (selectButton.Y > (menuButton[3].Y))
