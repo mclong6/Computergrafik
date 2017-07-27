@@ -82,10 +82,9 @@ namespace Computergrafik
         public void drawScore() {
 
             string scoreString = score[1].ToString() + '-' + score[0].ToString();
-            if (score[0] > 1)
-            {
+          
                 font.Print(-0.5f * font.Width(scoreString, 0.1f), 0.9f, 0.0f, 0.1f, scoreString);
-            }
+            
         }
 
       
