@@ -40,7 +40,7 @@ namespace Computergrafik
 
    
             /*Hauptmenü*/
-            this.menu = new StartMenu(model,logic.Player[0].CurrentControllerState);
+            this.menu = new StartMenu(model);
 
             /*Lebensmenü*/
             this.lebensleiste = new Lebensleiste(model);

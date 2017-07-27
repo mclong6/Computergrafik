@@ -20,20 +20,22 @@ namespace Computergrafik
         Box2D selectButton;
 
         Box2D[] menuButton = new Box2D[4];
-        GamePadState previousGamePadState;
-        GamePadState gamepadState;
+        private GamePadState currentControllerState;
+        private GamePadThumbSticks thumber;
 
-        public StartMenu(Model model, GamePadState pgamepadState)
+        public StartMenu(Model model)
         {
-            gamepadState = pgamepadState;
+            
             menuButton = model.MenuButton;
-            previousGamePadState = pgamepadState;
             selectButton = model.SelectButton;
             startScreen = model.StartScreen;
         }
 
         public void changeMenu(int GameState, MyWindow mywindow)
         {
+
+            currentControllerState = GamePad.GetState(0);
+            thumber = currentControllerState.ThumbSticks;
 
             /*GameLogic*/
             if (GameState == StateMenu)
@@ -44,17 +46,24 @@ namespace Computergrafik
                 {
                     menuSelection(mywindow);
                 }
-         
-               
-                
-           
+
+
+
+
                 /*Bei Hoch oder Runter*/
+                Console.WriteLine(thumber.Right.Y);
+
+                if (thumber.Right.Y >0.4)
+                {
+                    joyStickUp = 1;
+                }
+
                 if (Keyboard.GetState()[Key.Up])
                 {
                     joyStickUp = 1;
                 }
 
-                if (joyStickUp == 1 & !(Keyboard.GetState()[Key.Up]))
+                if (joyStickUp == 1 && !(Keyboard.GetState()[Key.Up]) && thumber.Right.Y < 0.4)
                 {
                     joyStickUp = 0;
                     /*SelectBox nach oben setzen*/
@@ -70,8 +79,12 @@ namespace Computergrafik
                 {
                     joyStickDown = 1;
                 }
+                if (thumber.Right.Y < -0.4)
+                {
+                    joyStickDown = 1;
+                }
 
-                if (joyStickDown == 1 & !(Keyboard.GetState()[Key.Down]))
+                if (joyStickDown == 1 && !(Keyboard.GetState()[Key.Down] && thumber.Right.Y > -0.4 ))
                 {
                     joyStickDown = 0;
                     /*SelectBox nach unten setzen*/
@@ -81,7 +94,6 @@ namespace Computergrafik
                     }
                 }
             }
-
         }
 
         public void menuSelection(MyWindow mywindow)

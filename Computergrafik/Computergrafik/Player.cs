@@ -110,9 +110,6 @@ namespace Computergrafik
             Texture1[22] = TextureLoader.FromBitmap(Resource2._23);
             Texture1[23] = TextureLoader.FromBitmap(Resource2._24);
 
-
-
-
             this.direcction     = new Vector2(0f, 0f);
             this.gunDirection   = new Vector2(0f,0f);
             this.vector1        = new Vector2(0, 1);
