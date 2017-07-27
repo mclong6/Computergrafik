@@ -1,8 +1,6 @@
 ﻿using DMS.Geometry;
 using OpenTK;
-using OpenTK.Graphics.OpenGL;
 using System;
-using System.Drawing;
 using System.Timers;
 
 namespace Computergrafik
@@ -13,7 +11,6 @@ namespace Computergrafik
         private Model myModel;
         private float minus = -1.0f;
         private bool intersectsIsTrue = false;
-        private bool timeIsTrue = false;
         private Logic myLogic;
         private float interval = 1000;  //one second
         private float speedOpponent = 0.003f;
@@ -39,10 +36,9 @@ namespace Computergrafik
          */
         public void updatePosition(Box2D opponent)
         {
-            Console.WriteLine(intersectsTime);
 
             openIntersects(opponent);
-            Console.WriteLine("IntersectIsTrue:" + intersectsIsTrue);
+
             /*****************************Mit ARRAY***************************************/
             bool[] array = new bool[2];
 
@@ -74,13 +70,10 @@ namespace Computergrafik
 
                 if (differenceOne < differenceTwo)
                 {
-                    Console.WriteLine("Abstand zu PlayerTwo kleiner");
                     followPlayer(0, opponent);
-
                 }
                 else
                 {
-                    Console.WriteLine("Abstand zu PlayerTwo kleiner");
                     followPlayer(1, opponent);
                 }
 
@@ -88,18 +81,11 @@ namespace Computergrafik
             else
             {
                 //move Opponent
-
                 opponent.X += (speedOpponent * opponentVector.X);
                 opponent.Y += (speedOpponent * opponentVector.Y);
-
-
             }
 
         }
-
-
-
-        
 
         private void followPlayer(int i, Box2D opponent) {
             float pitch;
@@ -111,12 +97,9 @@ namespace Computergrafik
             pitch = (y2 - y1) / (x2 - x1);
             Vector2 steigungm = new Vector2((x2 - x1), (y2 - y1));
             steigungm.Normalize();
-            Console.WriteLine(steigungm);
 
             opponent.X += speedOpponent * steigungm.X;
             opponent.Y += speedOpponent  * steigungm.Y;
-                       
-          
         }
 
         private void openIntersects(Box2D opponent)
@@ -289,13 +272,11 @@ namespace Computergrafik
                 //Collision Opponent above
                 if (above&& !(opponentVector.Y >0))
                 {
-                    Console.WriteLine("Kollision oben:" + opponentVector.Y);
                     opponentVector.Y = opponentVector.Y * minus;
                 }
                 //Collision Opponent underneath
                 else if (under && !(opponentVector.Y < 0))
                 {
-                    Console.WriteLine("Kollision unten:" + opponentVector.Y);
                     opponentVector.Y = opponentVector.Y * minus;
                 }
 
@@ -308,20 +289,17 @@ namespace Computergrafik
                 //Collision Opponent right
                 if (right && !(opponentVector.X > 0))
                 {
-                    Console.WriteLine("Kollision rechts:" + opponentVector.X);
                     opponentVector.X = opponentVector.X * minus;
                 }
                 //Collision Opponent left
                 else if (left && !(opponentVector.X < 0))
                 {
-                    Console.WriteLine("Kollision links:" + opponentVector.Y);
                     opponentVector.X = opponentVector.X * minus;
                 }
             }
         }
        private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-            Console.WriteLine("Timecounter:"+timerCounter);
             if (timerCounter<=1)
             {
                 intersectsIsTrue = true;
@@ -332,13 +310,6 @@ namespace Computergrafik
                 intersectsIsTrue = false;
             }
             timerCounter += 1;
-
-
-            /* if (shootcontrol == false && ammo >= 0)
-             {
-                 this.ammo = ammo - 1;
-                 shoot(gunDirection.X, gunDirection.Y);
-             }*/
         }
     }
 }
