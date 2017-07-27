@@ -13,13 +13,15 @@ namespace Computergrafik
         private Model myModel;
         private float minus = -1.0f;
         private bool intersectsIsTrue = false;
-        private bool intersectsTime = false;
+        private bool timeIsTrue = false;
         private Logic myLogic;
-        private float interval = 100;  //mill second
+        private float interval = 1000;  //one second
         private float speedOpponent = 0.003f;
         private Timer timer;
         private int intersectsCounter = 0;
-        private int i = 0;
+        private float timerCounter = 0;
+        private bool intersectTest = false;
+       
 
         public Opponent(Model model, Logic logic)
         {
@@ -37,57 +39,98 @@ namespace Computergrafik
          */
         public void updatePosition(Box2D opponent)
         {
-            //Console.WriteLine(intersectsTime);
+            Console.WriteLine(intersectsTime);
 
-            if (intersectsTime == false)
+            openIntersects(opponent);
+            Console.WriteLine("IntersectIsTrue:" + intersectsIsTrue);
+            /*****************************Mit ARRAY***************************************/
+            bool[] array = new bool[2];
+
+            for(int i=0; i < myModel.Player.Length; i++)
             {
-                openIntersects(opponent);
-            }
-                /*
-                *!!!!!!!!!!!!!!!!!!!!!! Query to follow Player!!!! Vector is needed!!!!!!!!!!!!!!!!!!!!!!!!
-                * 
-                */
-                if (((Math.Abs(myModel.Player[0].CenterX - opponent.CenterX)) < 0.4f) && (Math.Abs(myModel.Player[0].CenterY - opponent.CenterY) < 0.4f) && intersectsIsTrue == false && intersectsTime == false)
+                if (((Math.Abs(myModel.Player[i].CenterX - opponent.CenterX)) < 0.4f) &&
+                                    (Math.Abs(myModel.Player[i].CenterY - opponent.CenterY) < 0.4f) &&
+                                    !queryIntersects())
                 {
-                    float pitch;
-                    float y2 = myModel.Player[0].CenterY;
-                    float y1 = opponent.CenterY;
-                    float x2 = myModel.Player[0].CenterX;
-                    float x1 = opponent.CenterX;
-
-                    pitch = (y2 - y1) / (x2 - x1);
-                    Vector2 steigungm = new Vector2((x2 - x1), (y2 - y1));
-                    steigungm.Normalize();
-
-                    opponent.X += speedOpponent * steigungm.X;
-                    opponent.Y += speedOpponent * steigungm.Y;
-
-                    /*Console.WriteLine("X:" + Math.Abs(myModel.Player[0].CenterX - opponent.CenterX));
-                    Console.WriteLine("Y:" + Math.Abs(myModel.Player[0].CenterY - opponent.CenterY));*/
+                    array[i] = true;
                 }
-            
+            }
+            if (array[0] == true && array[1] == false)
+            {
+                followPlayer(0, opponent);
+            }
+
+            else if (array[0] == false && array[1] == true)
+            {
+                followPlayer(1, opponent);
+            }
+
+            else if (array[0] == true && array[1] == true)
+            {
+                float differenceOne = (Math.Abs(myModel.Player[0].CenterX - opponent.CenterX)) +
+                    (Math.Abs(myModel.Player[0].CenterY - opponent.CenterY));
+                float differenceTwo = (Math.Abs(myModel.Player[1].CenterX - opponent.CenterX)) +
+                    (Math.Abs(myModel.Player[1].CenterY - opponent.CenterY));
+
+                if (differenceOne < differenceTwo)
+                {
+                    Console.WriteLine("Abstand zu PlayerTwo kleiner");
+                    followPlayer(0, opponent);
+
+                }
+                else
+                {
+                    Console.WriteLine("Abstand zu PlayerTwo kleiner");
+                    followPlayer(1, opponent);
+                }
+
+            }
             else
             {
                 //move Opponent
 
-                opponent.X += speedOpponent * opponentVector.X;
-                opponent.Y += speedOpponent * opponentVector.Y;
+                opponent.X += (speedOpponent * opponentVector.X);
+                opponent.Y += (speedOpponent * opponentVector.Y);
+
+
             }
 
-            intersectsIsTrue = false;
+        }
+
+
+
         
+
+        private void followPlayer(int i, Box2D opponent) {
+            float pitch;
+            float y2 = myModel.Player[i].CenterY;
+            float y1 = opponent.CenterY;
+            float x2 = myModel.Player[i].CenterX;
+            float x1 = opponent.CenterX;
+
+            pitch = (y2 - y1) / (x2 - x1);
+            Vector2 steigungm = new Vector2((x2 - x1), (y2 - y1));
+            steigungm.Normalize();
+            Console.WriteLine(steigungm);
+
+            opponent.X += speedOpponent * steigungm.X;
+            opponent.Y += speedOpponent  * steigungm.Y;
+                       
+          
         }
 
         private void openIntersects(Box2D opponent)
         {
-           
+            intersectTest = false;
             //reflect Opponent
             if (opponent.MaxY > 1.0f || opponent.Y < -1.0)
             {
+               intersectTest = true;
                 opponentVector.Y = -opponentVector.Y;
             }
             if (opponent.MaxX > 1.0f || opponent.X < -1.0)
             {
+                intersectTest = true;
                 opponentVector.X = -opponentVector.X;
             }
 
@@ -99,13 +142,24 @@ namespace Computergrafik
                     controlIntersects(myModel.Player[i], opponent);
                 }
             }
+            //Collision with SaveZone
+            for (int i = 0; i < myModel.SaveZone.Length; i++)
+            {
+                if (myModel.SaveZone[i].Intersects(opponent))
+                {
+                    intersectTest = true;
+                    controlIntersects(myModel.SaveZone[i], opponent);
+                }
+                
+            }
 
             //Collision with Obstacles
             for (int i = 0; i < myModel.Obstacles.Length; i++)
             {
                 if (myModel.Obstacles[i].Intersects(opponent))
                 {
-                    Console.WriteLine("In openIntersects");
+                    intersectTest = true;
+                    
                     controlIntersects(myModel.Obstacles[i], opponent);
                 }
             }
@@ -113,20 +167,36 @@ namespace Computergrafik
             //Collision with PlayerInfoOne-Box
             if (myModel.PlayerInfoOne.Intersects(opponent))
             {
+                intersectTest = true;
                 controlIntersects(myModel.PlayerInfoOne, opponent);
             }
 
             //Collision with PlayerInfoOne-Box
             if (myModel.PlayerInfoTwo.Intersects(opponent))
             {
+                intersectTest = true;
                 controlIntersects(myModel.PlayerInfoTwo, opponent);
             }
+           
 
+        }
+        private bool queryIntersects()
+        {
+            if (intersectTest)
+            {
+                intersectsIsTrue = true;
+                timerCounter = 0;
+            }
+           /* else
+            {
+                timerCounter = 3;
+            }*/
+            return intersectsIsTrue;
         }
 
         private void controlIntersects(Box2D obstacle, Box2D opponent)
         {
-            intersectsIsTrue = true;
+            
             intersectsCounter += 1;
             bool under = opponent.CenterY < obstacle.CenterY;
             bool above = opponent.CenterY > obstacle.CenterY;
@@ -249,28 +319,20 @@ namespace Computergrafik
                 }
             }
         }
-        private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+       private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-            
-            
-            if (intersectsCounter >=15)
+            Console.WriteLine("Timecounter:"+timerCounter);
+            if (timerCounter<=1)
             {
-                Console.WriteLine("Sekunde rum:"+intersectsCounter);
-                intersectsTime = true;
                 intersectsIsTrue = true;
+            }
 
-                i += 1;
-            }
-            
-            if (i >= 10)
+            else
             {
-                intersectsTime = false;
                 intersectsIsTrue = false;
-                intersectsCounter = 0;
-                i = 0;
             }
-            
-            
+            timerCounter += 1;
+
 
             /* if (shootcontrol == false && ammo >= 0)
              {
