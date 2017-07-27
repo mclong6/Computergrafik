@@ -64,6 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource2.resx</DependentUpon>
     </Compile>
+    <Compile Include="ScoreHandler.cs" />
     <Compile Include="Sound.cs" />
     <Compile Include="StartMenu.cs" />
     <Compile Include="Visuals.cs" />
@@ -182,6 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Big Cheese.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

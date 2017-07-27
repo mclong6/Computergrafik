@@ -11,6 +11,7 @@ namespace Computergrafik
         Model model;
         Player[] player     = new Player[2];
         Opponent[] opponent = new Opponent[2];
+        ScoreHandler scorehandler; 
         // Hurt hurt;
     
 
@@ -20,6 +21,8 @@ namespace Computergrafik
             this.Player[0] = new Player(model,this,0);
             this.Player[1] = new Player(model,this,1);
             this.opponent[0] = new Opponent(model, this);
+
+            scorehandler = new ScoreHandler(player);
             //hurt = new Hurt(player);
 
         }
@@ -28,6 +31,7 @@ namespace Computergrafik
         {
             this.Player[0].updatePosition();
             this.Player[1].updatePosition();
+          
          
         }
 
@@ -36,7 +40,7 @@ namespace Computergrafik
             this.opponent[0].updatePosition(model.Opponent[0]);
         }
 
-        internal Player[] Player
+        public Player[] Player
         {
             get
             {
@@ -46,6 +50,19 @@ namespace Computergrafik
             set
             {
                 player = value;
+            }
+        }
+
+        public ScoreHandler Scorehandler
+        {
+            get
+            {
+                return scorehandler;
+            }
+
+            set
+            {
+                scorehandler = value;
             }
         }
     }
