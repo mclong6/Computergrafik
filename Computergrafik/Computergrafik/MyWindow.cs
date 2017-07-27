@@ -4,11 +4,14 @@ using System;
 using System.Drawing;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
+using DMS.OpenGL;
 
 namespace Computergrafik
 {
     class MyWindow
     {
+
+        private int winner = 2;
         /*Spielstatus*/
         int GameState;
         const int StateMenu = 0;
@@ -57,16 +60,25 @@ namespace Computergrafik
 
         public void GameWindow_UpdateFrame(object sender, FrameEventArgs e)
         {
+
+            if (logic.Scorehandler.NewGame1 == true)
+            {
+                GameState = StateNewGame;
+            }
+
             if (logic.Scorehandler.Score[0] == logic.Scorehandler.MaxScore)
             {
-                /*Spieler 1. Gewinnt*/
+                /*Spieler 2. Gewinnt*/
                 GameState = StateNewGame;
+                winner = 2;
                 logic.Scorehandler.Score[0] = 0;
                 logic.Scorehandler.Score[1] = 0;
             }
             if (logic.Scorehandler.Score[1] == logic.Scorehandler.MaxScore)
             {
-                /*Spieler 2. Gewinnt*/
+                /*Spieler 1. Gewinnt*/
+            
+                winner = 1;
                 GameState = StateNewGame;
                 logic.Scorehandler.Score[0] = 0;
                 logic.Scorehandler.Score[1] = 0;
@@ -97,9 +109,7 @@ namespace Computergrafik
                 logic.updateOpponent();
             }
 
-            if (logic.Scorehandler.NewGame1 == true) {
-                GameState = StateNewGame;
-            }
+           
 
             if(GameState == StateNewGame)
             {
@@ -173,8 +183,18 @@ namespace Computergrafik
             }
             if (GameState == StateNewGame)
             {
+                GL.Enable(EnableCap.Blend);
                 GL.Color3(Color.White);
+               
+                string scoreString = "Press " + '-' + " Enter";
 
+                string winnerString = "Player " + winner.ToString() + " wins";
+                TextureFont font = new TextureFont(TextureLoader.FromBitmap(Resource2.Big_Cheese), 10, 32);
+
+                font.Print(-0.5f * font.Width(scoreString, 0.1f), 0.9f, 0.0f, 0.1f, scoreString);
+
+                font.Print(-0.5f * font.Width(winnerString, 0.1f), 0.75f, 0.0f, 0.1f, winnerString);
+                GL.Disable(EnableCap.Blend);
             }
 
         }      

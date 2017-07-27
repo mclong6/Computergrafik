@@ -17,6 +17,7 @@ namespace Computergrafik
         int noLife = 0;
         int scorePlus = 1;
 
+      
         private TextureFont font;
 
 
@@ -37,6 +38,7 @@ namespace Computergrafik
                 {
                     if (players[i].Life <= noLife)
                     {
+                  
                         score[i] = score[i] + scorePlus;
                         players[i].Life = 100;
                         players[i].Ammo = 100;
@@ -46,9 +48,7 @@ namespace Computergrafik
                     }
                 }
                 else {
-                    players[i].Life = 100;
-                    players[i].Ammo = 100;
-                    players[i].Boost = 100;
+                    newGamePosition();
                     NewGame = true;
 
                 }
@@ -59,25 +59,26 @@ namespace Computergrafik
         }
 
         private void newGamePosition() {
-            
-            players[0].pplayer.X = -0.975f + 0 * 1.85f;
-            players[0].pplayer.Y = -0.05f;
-            players[1].pplayer.X = -0.975f + 1 * 1.85f;
-            players[1].pplayer.Y = -0.05f;
 
-
-            for(int i = 0; i < players.Length; i++)
+            for (int i = 0; i < players.Length; i++)
             {
-                for(int k = 0; k < players[i].Bullets.Count; k++)
+                for (int k = 0; k < players[i].Bullets.Count; k++)
                 {
-                 //   if (players[i].Bullets[k].Bbullet != null)
-                   // {
-                       
-                        players[i].Bullets.RemoveAt(k);
-                  //  }
+                    players[i].Bullets.RemoveAt(k);
                 }
-              
+
             }
+
+            for (int p = 0; p < players.Length; p++)
+            {
+                players[p].pplayer.X = -0.975f + p * 1.85f;
+                players[p].pplayer.Y = -0.05f;
+             
+                players[p].Life = 100;
+                players[p].Ammo = 100;
+                players[p].Boost = 100;
+            }
+         
         }
 
         public void drawScore() {
@@ -128,5 +129,7 @@ namespace Computergrafik
                 maxScore = value;
             }
         }
+
+
     }
 }
