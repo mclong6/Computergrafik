@@ -1,12 +1,15 @@
 ﻿using DMS.Application;
 using OpenTK;
-using OpenTK.Graphics.ES20;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+    using DMS.Geometry;
+using OpenTK.Graphics.OpenGL;
+using OpenTK.Input;
 
 namespace Computergrafik
 {
@@ -50,6 +53,7 @@ namespace Computergrafik
             gameWindow.RenderFrame  += GameWindow_RenderFrame;
             gameWindow.RenderFrame  += (sender, e) => { gameWindow.SwapBuffers(); };
             GL.ClearColor(Color.White);
+            GL.BlendFunc(BlendingFactorSrc.SrcAlpha,BlendingFactorDest.OneMinusSrcAlpha);
 
         }
 
@@ -83,20 +87,25 @@ namespace Computergrafik
 
         public void GameWindow_RenderFrame(object sender, FrameEventArgs e)
         {
+            GL.Color3(Color.White);
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            GL.Enable(EnableCap.Blend);
+           
+            GL.Color3(Color.White);
+
             if (GameState == StateMenu)
             {
+                GL.Color3(Color.White);
                 menu.DrawMenu();
+                GL.Color3(Color.White);
             }
             if (GameState == StateStart)
             {
+                lebensleiste.DrawPlayerInfo();
 
                 visuals.DrawSaveZone(model.SaveZone[0]);
                 visuals.DrawSaveZone(model.SaveZone[1]);
+                GL.Color3(Color.White);
 
-                visuals.DrawPlayerOne(model.Player[0], logic.Player[0].Texture[0]);
-               visuals.DrawPlayerTwo(model.Player[1], logic.Player[1].Texture[0]);
 
                 for (int i = 0; i < logic.Player[0].Bullets.Count; i++)
                 {
@@ -115,8 +124,22 @@ namespace Computergrafik
                     
                     visuals.DrawObstacle(model.Obstacles[i]);
                 }
+
+
+
+                GL.Enable(EnableCap.Blend);
+                
+
+                GL.Color3(Color.White);
+
+                visuals.DrawPlayerOne(model.Player[0], logic.Player[0].CurrentTexture);
+
+                GL.Color3(Color.White);
+
+                visuals.DrawPlayerTwo(model.Player[1], logic.Player[1].CurrentTexture);
+              
                 GL.Disable(EnableCap.Blend);
-                lebensleiste.DrawPlayerInfo();
+               
             }
 
         }

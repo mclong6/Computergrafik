@@ -37,7 +37,7 @@ namespace Computergrafik
          */
         public void updatePosition(Box2D opponent)
         {
-            Console.WriteLine(intersectsTime);
+            //Console.WriteLine(intersectsTime);
 
             if (intersectsTime == false)
             {

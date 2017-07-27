@@ -35,7 +35,7 @@ namespace Computergrafik
 
         public void DrawPlayerOne(Box2D Rect, Texture tex)
         {
-            Console.WriteLine("qqqqqqqq");
+            
             //the texture has to be enabled before use
             tex.Activate();
             GL.Begin(PrimitiveType.Quads);
@@ -60,11 +60,18 @@ namespace Computergrafik
             //the texture has to be enabled before use
             tex.Activate();
             GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.White);
             //when using textures we have to set a texture coordinate for each vertex
             //by using the TexCoord command BEFORE the Vertex command
             GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(Rect.X, Rect.Y);
+            GL.Color3(Color.White);
+
             GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(Rect.MaxX, Rect.Y);
+            GL.Color3(Color.White);
+
             GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(Rect.MaxX, Rect.MaxY);
+                        GL.Color3(Color.White);
+
             GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(Rect.X, Rect.MaxY);
             GL.End();
             //the texture is disabled, so no other draw calls use this texture

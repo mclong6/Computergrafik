@@ -26,6 +26,7 @@ namespace Computergrafik
         private Box2D gun;
         private int angle;
         private Texture[] texture = new Texture[24];
+        private Texture currentTexture = new Texture();
        
         private int joyStickShoot = 0;
         private int joyStickBoost = 0;
@@ -105,8 +106,7 @@ namespace Computergrafik
             Colisuion();
             calculatePlayerPosition();
             calculateBullets();
-            bulledColission();
-            recycleBullets();
+            bulledColission();  
             obstacleIntersection();
             beHard(model.PlayerInfoOne, this.pplayer);
             beHard(model.PlayerInfoTwo, this.pplayer);
@@ -118,7 +118,7 @@ namespace Computergrafik
             {
                 beHard(logic.Player[1].pplayer, logic.Player[0].pplayer);
             }
-
+            recycleBullets();
         }
 
 
@@ -163,8 +163,6 @@ namespace Computergrafik
 
         private void obstacleIntersection() {
 
-            float bounce = 0.0f;
-            float intervall = 0.01f;
             for (int i = 0; i < model.Obstacles.Length; i++)
             {
 
@@ -183,10 +181,13 @@ namespace Computergrafik
    
                     for (int k = 0; k < bullets.Count; k++)
                     {
-                        if (bullets[k].Bbullet.Intersects(model.Obstacles[i]))
-                        {
-                          
-                            this.Bullets.RemoveAt(k);
+
+                        if (bullets[k] != null) {
+                            if (bullets[k].Bbullet.Intersects(model.Obstacles[i]))
+                            {
+
+                                this.Bullets.RemoveAt(k);
+                            }
                         }
                     }
                 }
@@ -305,8 +306,105 @@ namespace Computergrafik
         {
             AngleBetween(gunDirection);
 
-           // if (Angle<15 && Angle>0) {
-          //  }
+            if (Angle<15 && Angle >=0) {
+                CurrentTexture = Texture[0];
+            }
+            else if (Angle < 30 && Angle >= 15)
+            {
+                CurrentTexture = Texture[1];
+            }
+            else if (Angle < 45 && Angle >= 30)
+            {
+                CurrentTexture = Texture[2];
+            }
+            else if (Angle < 60 && Angle >= 45)
+            {
+                CurrentTexture = Texture[3];
+            }
+            else if (Angle < 75 && Angle >= 60)
+            {
+                CurrentTexture = Texture[4];
+            }
+            else if (Angle < 90 && Angle >=75)
+            {
+                CurrentTexture = Texture[5];
+            }
+            if (Angle < 105 && Angle >= 90)
+            {
+                CurrentTexture = Texture[6];
+            }
+            else if (Angle < 120 && Angle >=105)
+            {
+                CurrentTexture = Texture[7];
+            }
+            else if (Angle < 135 && Angle >= 120)
+            {
+                CurrentTexture = Texture[8];
+            }
+            else if (Angle < 150 && Angle >= 135)
+            {
+                CurrentTexture = Texture[9];
+            }
+            else if (Angle < 165 && Angle >= 150)
+            {
+                CurrentTexture = Texture[10];
+            }
+            else if (Angle < 180 && Angle >= 165)
+            {
+                CurrentTexture = Texture[11];
+            }
+            else if (Angle < 195 && Angle >= 180)
+            {
+                CurrentTexture = Texture[12];
+            }
+            else if (Angle < 210 && Angle >= 195)
+            {
+                CurrentTexture = Texture[13];
+            }
+            else if (Angle < 225 && Angle >= 210)
+            {
+                CurrentTexture = Texture[14];
+            }
+            else if (Angle < 240 && Angle >= 225)
+            {
+                CurrentTexture = Texture[15];
+            }
+            else if (Angle < 255 && Angle >= 240)
+            {
+                CurrentTexture = Texture[16];
+            }
+            else if (Angle < 270 && Angle >= 255)
+            {
+                CurrentTexture = Texture[17];
+            }
+            else if (Angle < 285 && Angle >= 270)
+            {
+                CurrentTexture = Texture[18];
+            }
+            else if (Angle < 300 && Angle >= 285)
+            {
+                CurrentTexture = Texture[19];
+            }
+            else if (Angle < 315 && Angle >= 300)
+            {
+                CurrentTexture = Texture[20];
+            }
+            else if (Angle < 330 && Angle >= 315)
+            {
+                CurrentTexture = Texture[21];
+            }
+            else if (Angle < 345 && Angle >= 330)
+            {
+                CurrentTexture = Texture[22];
+            }
+            else if (Angle < 360 && Angle >= 345)
+            {
+                CurrentTexture = Texture[23];
+            }
+            else if (Angle == 360)
+            {
+                CurrentTexture = Texture[0];
+            }
         }
 
        
@@ -489,7 +587,7 @@ namespace Computergrafik
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
             getGunAngle();
-            Console.WriteLine("winkel " + Angle);
+            Console.WriteLine("anzahl " + Bullets.Count);
 
 
             if (shootcontrol == false && ammo >=0 )
@@ -529,22 +627,27 @@ namespace Computergrafik
             {
                 for(int j= 0; j< logic.Player[i].bullets.Count; j++)
                 {
-                  
-                    if (logic.Player[i].Bullets[j].Bbullet.Intersects(model.Opponent[0]))
+                    if (logic.Player[i].Bullets[j].Bbullet != null) {
+
+                        if (logic.Player[i].Bullets[j].Bbullet.Intersects(model.Opponent[0]))
                         {
                             logic.Player[i].Bullets.RemoveAt(j);
                         }
-                    
+                    }
                 }
 
                 if(logic.Player[i] != this)
                 {
                     for(int k = 0; k< logic.Player[i].Bullets.Count; k++)
                     {
-                        if (logic.Player[i].Bullets[k].Bbullet.Intersects(this.pplayer))
+                        if (logic.Player[i].Bullets[k].Bbullet != null)
                         {
-                            logic.Player[i].Bullets.RemoveAt(k);
-                            life = life - 10;
+
+                            if (logic.Player[i].Bullets[k].Bbullet.Intersects(this.pplayer))
+                            {
+                                logic.Player[i].Bullets.RemoveAt(k);
+                                life = life - 10;
+                            }
                         }
 
                     }
@@ -708,6 +811,19 @@ namespace Computergrafik
             set
             {
                 texture = value;
+            }
+        }
+
+        public Texture CurrentTexture
+        {
+            get
+            {
+                return currentTexture;
+            }
+
+            set
+            {
+                currentTexture = value;
             }
         }
     }
