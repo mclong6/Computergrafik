@@ -1,4 +1,6 @@
-﻿using DMS.Geometry;
+﻿using Computergrafik;
+using DMS.Geometry;
+using DMS.OpenGL;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
@@ -22,8 +24,9 @@ namespace Computergrafik
         private float speed = 0.006f;
         private Box2D player;
         private Box2D gun;
-        private double angle;
-
+        private int angle;
+        private Texture[] texture = new Texture[24];
+       
         private int joyStickShoot = 0;
         private int joyStickBoost = 0;
 
@@ -52,7 +55,36 @@ namespace Computergrafik
             this.model          = model;
             this.PlayerNr       = playerNr;
             this.pplayer        = model.Player[playerNr];
-          
+
+           
+            Texture[0] = TextureLoader.FromBitmap(Resource1._1);
+            Texture[1] = TextureLoader.FromBitmap(Resource1._2);
+            Texture[2] = TextureLoader.FromBitmap(Resource1._3);
+            Texture[3] = TextureLoader.FromBitmap(Resource1._4);
+            Texture[4] = TextureLoader.FromBitmap(Resource1._5);
+            Texture[5] = TextureLoader.FromBitmap(Resource1._6);
+            Texture[6] = TextureLoader.FromBitmap(Resource1._7);
+            Texture[7] = TextureLoader.FromBitmap(Resource1._8);
+            Texture[8] = TextureLoader.FromBitmap(Resource1._9);
+            Texture[9] = TextureLoader.FromBitmap(Resource1._10);
+            Texture[10] = TextureLoader.FromBitmap(Resource1._11);
+            Texture[11] = TextureLoader.FromBitmap(Resource1._12);
+            Texture[12] = TextureLoader.FromBitmap(Resource1._13);
+            Texture[13] = TextureLoader.FromBitmap(Resource1._14);
+            Texture[14] = TextureLoader.FromBitmap(Resource1._15);
+            Texture[15] = TextureLoader.FromBitmap(Resource1._16);
+            Texture[16] = TextureLoader.FromBitmap(Resource1._17);
+            Texture[17] = TextureLoader.FromBitmap(Resource1._18);
+            Texture[18] = TextureLoader.FromBitmap(Resource1._19);
+            Texture[19] = TextureLoader.FromBitmap(Resource1._20);
+            Texture[20] = TextureLoader.FromBitmap(Resource1._21);
+            Texture[21] = TextureLoader.FromBitmap(Resource1._22);
+            Texture[22] = TextureLoader.FromBitmap(Resource1._23);
+            Texture[23] = TextureLoader.FromBitmap(Resource1._24);
+
+
+
+
             this.direcction     = new Vector2(0f, 0f);
             this.gunDirection   = new Vector2(0f,0f);
             this.vector1        = new Vector2(0, 1);
@@ -75,11 +107,9 @@ namespace Computergrafik
             calculateBullets();
             bulledColission();
             recycleBullets();
-            moveGun();
             obstacleIntersection();
             beHard(model.PlayerInfoOne, this.pplayer);
             beHard(model.PlayerInfoTwo, this.pplayer);
-            getGunAngle();
             if (playerNr == 0)
             {
                 beHard(logic.Player[0].pplayer, logic.Player[1].pplayer);
@@ -242,16 +272,12 @@ namespace Computergrafik
                         speed = 0.006f;
                     }
                     joyStickBoost = 1;
+
                 }
                 if (joyStickBoost == 1 & !(Keyboard.GetState()[Key.V] && this.boost >= 0))
                 {
-                  
-                        speed = 0.006f;
-                    
-                }
-
-                
-
+                    speed = 0.006f;
+                }        
             }
 
            
@@ -279,17 +305,19 @@ namespace Computergrafik
         {
             AngleBetween(gunDirection);
 
+           // if (Angle<15 && Angle>0) {
+          //  }
         }
 
        
 
-        public double AngleBetween(Vector2 vector2)
+        public void AngleBetween(Vector2 vector2)
         {
             //int k = Convert.ToInt32(Math.Abs(vector2.X) *Math.Abs(vector2.Y)*10);
 
             int k = -100;
-            double x = vector2.X*10;
-            double y = vector2.Y*10;
+            double x = vector2.X*100;
+            double y = vector2.Y*100;
             
 
             if (vector2.Y > 0)
@@ -299,7 +327,7 @@ namespace Computergrafik
                     x = Math.Abs(x);
                     y = Math.Abs(y);
 
-                    angle = Math.Atan(x / y)*180/Math.PI;
+                    Angle = Convert.ToInt32(Math.Atan(x / y)*180/Math.PI);
 
 
 
@@ -309,7 +337,7 @@ namespace Computergrafik
                     x = Math.Abs(x);
                     y = Math.Abs(y);
 
-                    angle = (Math.Atan(y / x) * 180 / Math.PI)+270;
+                    Angle = Convert.ToInt32((Math.Atan(y / x) * 180 / Math.PI)+270);
 
 
                 }
@@ -320,20 +348,24 @@ namespace Computergrafik
                 if (vector2.X > 0) //3
                 {
 
-                     k = Convert.ToInt32(Math.Atan(Math.Abs(vector2.Y) * Math.Abs(vector2.X)) * 10);
+                      x = Math.Abs(x);
+                    y = Math.Abs(y);
+
+                    Angle = Convert.ToInt32(Math.Atan(y / x)*180/Math.PI+90);
 
 
                 }
                 else if (vector2.X < 0) //4
                 {
 
-                     k = Convert.ToInt32(Math.Atan(Math.Abs(vector2.X) * Math.Abs(vector2.Y)) * 10);
+                    x = Math.Abs(x);
+                    y = Math.Abs(y);
+
+                    Angle = Convert.ToInt32(Math.Atan(x/ y) * 180 / Math.PI + 180);
 
                 }
 
             }
-
-            return k;
 
         }
 
@@ -374,10 +406,6 @@ namespace Computergrafik
             if (pplayer.X < -1) pplayer.X = -1;
             if (pplayer.Y+pplayer.SizeY >1) pplayer.Y = 1-pplayer.SizeY;
             if (pplayer.Y < -1) pplayer.Y = -1;
-
-
-
-
 
         }
 
@@ -460,7 +488,8 @@ namespace Computergrafik
 
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-            Console.WriteLine("winkel " + angle);
+            getGunAngle();
+            Console.WriteLine("winkel " + Angle);
 
 
             if (shootcontrol == false && ammo >=0 )
@@ -470,13 +499,7 @@ namespace Computergrafik
             }
         }
 
-
-        private void moveGun() {
-
-
-            
-        }
-
+        
         private void shoot(float x, float y)
         {
 
@@ -646,6 +669,45 @@ namespace Computergrafik
             set
             {
                 speed = value;
+            }
+        }
+
+        public int Angle
+        {
+            get
+            {
+                return Angle1;
+            }
+
+            set
+            {
+                Angle1 = value;
+            }
+        }
+
+        public int Angle1
+        {
+            get
+            {
+                return angle;
+            }
+
+            set
+            {
+                angle = value;
+            }
+        }
+
+        public Texture[] Texture
+        {
+            get
+            {
+                return texture;
+            }
+
+            set
+            {
+                texture = value;
             }
         }
     }
