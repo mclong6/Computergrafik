@@ -16,8 +16,13 @@ namespace Computergrafik
 {
     class Visuals
     {
+        private Texture backgroundTexture = new Texture();
+        public Visuals()
+        {
+            backgroundTexture = TextureLoader.FromBitmap(Resource2.karierter_background);
+        }
+       
 
-      
         public void DrawSaveZone(Box2D rect)
         {
 
@@ -51,6 +56,24 @@ namespace Computergrafik
             //the texture is disabled, so no other draw calls use this texture
             tex.Deactivate();
 
+        }
+        public void DrawSquaredBackground(Box2D window)
+        {
+            
+            //the texture has to be enabled before use
+            backgroundTexture.Activate();
+            GL.Begin(PrimitiveType.Quads);
+            //when using textures we have to set a texture coordinate for each vertex
+            //by using the TexCoord command BEFORE the Vertex command
+
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(window.X, window.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(window.MaxX, window.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(window.MaxX, window.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(window.X, window.MaxY);
+            GL.End();
+
+            //the texture is disabled, so no other draw calls use this texture
+            backgroundTexture.Deactivate();
         }
 
 
@@ -121,6 +144,18 @@ namespace Computergrafik
             GL.End();
         }
 
+        public Texture BackgroundTexture
+        {
+            get
+            {
+                return backgroundTexture;
+            }
+
+            set
+            {
+                backgroundTexture = value;
+            }
+        }
 
     }
 }

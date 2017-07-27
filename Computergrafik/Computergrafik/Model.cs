@@ -27,7 +27,7 @@ namespace Computergrafik
         Box2D playerInfoTwo;
         public Model()
         {
-            Window      = new Box2D(-1.0f, -1.0f, 2.0f, 2.0f);
+            Window       = new Box2D(-1.0f, -1.0f, 2.0f, 2.0f);
 
             /*Default Settings*/
             obstacles[0] = new Box2D(-0.4f, -1.0f, 0.2f, 0.4f);
