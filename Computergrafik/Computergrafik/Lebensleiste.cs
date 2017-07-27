@@ -8,11 +8,12 @@ namespace Computergrafik
 {
     class Lebensleiste
     {
+        float strecker = 0.5f;
 
         Box2D playerInfoOne;
         Box2D playerInfoTwo;
         float sizeBalken = 0.28f;
-        float sizeBalkenLeer = 0.3f;
+        float sizeBalkenLeer = 0.279f;
 
         /*Speed beim Ausfladen*/
         float boostLoad = 0.09f;
@@ -29,25 +30,24 @@ namespace Computergrafik
         Box2D[] LifeIcon = new Box2D[2];
         Box2D[] AmmoIcon = new Box2D[2];
         Box2D[] BoostIcon = new Box2D[2];
+        /*Weiße boxen*/
+        Box2D[] LifeW = new Box2D[2];
+        Box2D[] AmmoW = new Box2D[2];
+        Box2D[] BoostW = new Box2D[2];
 
         /**W steht für den weißen hintergrund*/
-        Box2D oneLifeW;
-        Box2D oneAmmoW;
-        Box2D oneBoostW;
-
-        Box2D twoLifeW;
-        Box2D twoAmmoW;
-        Box2D twoBoostW;
-
+    
 
         Texture texLife;
         Texture texAmmo;
         Texture texBoost;
 
+        Texture texLifeIcon;
+        Texture texAmmoIcon;
+        Texture texBoostIcon;
 
-        Texture texLifeW;
-        Texture texAmmoW;
-        Texture texBoostW;
+
+      
 
 
 
@@ -61,32 +61,59 @@ namespace Computergrafik
             texAmmo = TextureLoader.FromBitmap(Resource2.reload_bar); 
             texBoost = TextureLoader.FromBitmap(Resource2.jet_bar);
 
-            texLifeW = TextureLoader.FromBitmap(Resource2.health);
-            texAmmoW = TextureLoader.FromBitmap(Resource2.ammo);
-            texBoostW = TextureLoader.FromBitmap(Resource2.jet);
+
+            texLifeIcon = TextureLoader.FromBitmap(Resource2.lifeIcon);
+            texAmmoIcon= TextureLoader.FromBitmap(Resource2.ammoIcon);
+            texBoostIcon = TextureLoader.FromBitmap(Resource2.boostIcon);
+
 
             nachladen[0] = false;
             nachladen[1] = false;
 
-            float randVoll = -0.93f;
-            Life[0] = new Box2D(randVoll, 0.925f, sizeBalken, 0.05f);
-            Ammo[0] = new Box2D(randVoll, 0.825f, sizeBalken, 0.05f);
-            Boost[0] = new Box2D(randVoll, 0.725f, sizeBalken, 0.05f);
+            float randVoll = -0.9f;
+            float randNeben = 0.7f;
+            float wert = (-randVoll) + randNeben;
 
-            Life[1] = new Box2D(0.65f, 0.925f, sizeBalken, 0.05f);
-            Ammo[1] = new Box2D(0.65f, 0.825f, sizeBalken, 0.05f);
-            Boost[1] = new Box2D(0.65f, 0.725f, sizeBalken, 0.05f);
+            float runter = 0.01f;
+            float oben = 0.92f -runter;
+            float mitte = 0.82f - runter;
+            float unten = 0.72f -runter;
 
-            float rand = -0.99f;
-            float Ysize = 0.1f;
-            oneLifeW = new Box2D(rand, 0.925f, sizeBalkenLeer, Ysize);
-            oneAmmoW = new Box2D(rand, 0.825f, sizeBalkenLeer, Ysize);
-            oneBoostW = new Box2D(rand, 0.725f, sizeBalkenLeer, Ysize);
+            float high = 0.085f;
 
-            twoLifeW = new Box2D(0.65f, 0.925f, sizeBalkenLeer, Ysize);
-            twoAmmoW = new Box2D(0.65f, 0.825f, sizeBalkenLeer, Ysize);
-            twoBoostW = new Box2D(0.65f, 0.725f, sizeBalkenLeer, Ysize);
 
+            float randIcon = -0.99f;
+            float randIconNeben = 0.61f;
+            float wert1 = (-randIcon) + randIconNeben;
+
+
+            float pluso = 0.01f;
+
+            float randLeer = -0.89f - pluso;
+            float randLeerNeben = 0.69f +pluso;
+            float wert3 = (-randLeer) + randLeerNeben;
+
+            float YsizeLeer = 0.066f;
+
+            float Ysize = 0.085f;
+
+            for (int i = 0; i < 2; i++)
+            {
+
+                Life[i] = new Box2D(randVoll + i *wert, oben, sizeBalken, high);
+                Ammo[i] = new Box2D(randVoll + i * wert, mitte, sizeBalken, high);
+                Boost[i] = new Box2D(randVoll + i * wert, unten, sizeBalken, high);
+
+                LifeW[i] = new Box2D(randLeer + i * wert3, oben + runter, sizeBalkenLeer, YsizeLeer);
+                AmmoW[i] = new Box2D(randLeer + i * wert3, mitte + runter, sizeBalkenLeer, YsizeLeer);
+                BoostW[i] = new Box2D(randLeer + i * wert3, unten + runter, sizeBalkenLeer, YsizeLeer);
+
+                LifeIcon[i] = new Box2D(randIcon + i * wert1, oben, Ysize, Ysize);
+                AmmoIcon[i] = new Box2D(randIcon + i * wert1, mitte, Ysize, Ysize);
+                BoostIcon[i] = new Box2D(randIcon + i * wert1, unten, Ysize, Ysize);
+
+            }
+   
          
 
         }
@@ -162,48 +189,130 @@ namespace Computergrafik
         {
             DrawPlayerInfoOne(playerInfoOne);
             DrawPlayerInfoTwo(playerInfoTwo);
-
-            /*
-                        DrawWhite(oneLifeW);
-                        DrawWhite(oneAmmoW);
-                        DrawWhite(oneBoostW);
-
-                        DrawWhite(twoLifeW);
-                        DrawWhite(twoAmmoW);
-                        DrawWhite(twoBoostW);*/
-            GL.Enable(EnableCap.Blend);
+            for (int i = 0; i < 2; i++)
+            {
+                DrawW(LifeW[i]);
+                DrawW(AmmoW[i]);
+                DrawW(BoostW[i]);
+            }
 
 
-            GL.Color3(Color.White);
 
-            DrawWAmmo(oneLifeW, texLifeW);
-            DrawWAmmo(oneAmmoW, texAmmoW);
-            DrawWAmmo(oneBoostW, texBoostW);
-
-            DrawWAmmo(twoLifeW, texLifeW);
-            DrawWAmmo(twoAmmoW, texAmmoW);
-            DrawWAmmo(twoBoostW,texBoostW);
             GL.Disable(EnableCap.Blend);
-            for (int i = 0; i <= 1; i++) {
+            for (int i = 0; i < 2; i++) {
 
 
                 GL.Enable(EnableCap.Blend);
-
-
                 GL.Color3(Color.White);
+          
+
+    
                 DrawLife(Life[i]);
-                
                 DrawAmmo(Ammo[i]);
-            DrawBoost(Boost[i]);
+                DrawBoost(Boost[i]);
+
+            
+
+                DrawIcon(LifeIcon[i], texLifeIcon);
+                DrawIcon(AmmoIcon[i], texAmmoIcon);
+                DrawIcon(BoostIcon[i], texBoostIcon);
                 GL.Disable(EnableCap.Blend);
             }
 
         }
 
 
+        private void DrawIcon(Box2D rect, Texture tex)
+        {
+
+            tex.Activate();
+            GL.Begin(PrimitiveType.Quads);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+            tex.Deactivate();
+
+        }
+
+
+        private void DrawW(Box2D rect)
+        {
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.White);
+            GL.Vertex2(rect.X, rect.Y);
+            GL.Color3(Color.White);
+            GL.Vertex2(rect.MaxX, rect.Y);
+            GL.Color3(Color.White);
+            GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.Color3(Color.White);
+            GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+
+            GL.Begin(PrimitiveType.LineLoop);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.X, rect.Y);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.MaxX, rect.Y);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+
+        }
+   
+     
+        private void DrawLife(Box2D rect)
+        {
+            float maler = 1 / (sizeBalken / (rect.SizeX));
+           
+            texLife.Activate();
+            GL.Begin(PrimitiveType.Quads);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(strecker * maler, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(strecker * maler, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+            texLife.Deactivate();
+    
+        }
+        private void DrawAmmo(Box2D rect)
+        {
+
+            float maler = 1 / (sizeBalken /(rect.SizeX));
+
+            if (rect.SizeX < 0.014f) {
+                maler = 0;
+            }
+                texAmmo.Activate();
+            GL.Begin(PrimitiveType.Quads);
+            GL.Begin(PrimitiveType.Quads);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(strecker * maler, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(strecker * maler, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+            texAmmo.Deactivate();
+         
+        }
+        private void DrawBoost(Box2D rect)
+        {
+            float maler = 1 / (sizeBalken / (rect.SizeX));
+            texBoost.Activate();
+            GL.Begin(PrimitiveType.Quads);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(strecker * maler, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(strecker * maler, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+            texBoost.Deactivate();
+        }
+
         private void DrawPlayerInfoOne(Box2D rect)
         {
-          
+
 
             GL.Begin(PrimitiveType.Quads);
             GL.Color3(Color.Blue);
@@ -226,79 +335,18 @@ namespace Computergrafik
             GL.Color3(Color.Black);
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
-        }
-
-        private void DrawWhite(Box2D rect)
-        {
-            GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.White);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.White);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.White);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.White);
-            GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
-
-            GL.Begin(PrimitiveType.LineLoop);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
-        }
-        private void DrawWAmmo(Box2D rect, Texture tex)
-        {
-            tex.Activate();
-            GL.Begin(PrimitiveType.Quads);
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
-            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
-            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
-            tex.Deactivate();
-
-        }
-        private void DrawWLife(Box2D rect, Texture tex)
-        {
-            tex.Activate();
-            GL.Begin(PrimitiveType.Quads);
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
-            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
-            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
-            tex.Deactivate();
-
-        }
-        private void DrawWBoost(Box2D rect, Texture tex)
-        {
-            tex.Activate();
-            GL.Begin(PrimitiveType.Quads);
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
-            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
-            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
-            tex.Deactivate();
-
         }
         private void DrawPlayerInfoTwo(Box2D rect)
         {
 
             GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.Red);
+            GL.Color3(Color.Green);
             GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Red);
+            GL.Color3(Color.Green);
             GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Red);
+            GL.Color3(Color.Green);
             GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Red);
+            GL.Color3(Color.Green);
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
 
@@ -313,110 +361,5 @@ namespace Computergrafik
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
         }
-        private void DrawLife(Box2D rect)
-        {
-
-            texLife.Activate();
-            GL.Begin(PrimitiveType.Quads);
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
-            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
-            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
-            texLife.Deactivate();
-            /*
-            GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.Red);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Red);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Red);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Red);
-            GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
-
-
-            GL.Begin(PrimitiveType.LineLoop);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();*/
-        }
-        private void DrawAmmo(Box2D rect)
-        {
-            texAmmo.Activate();
-            GL.Begin(PrimitiveType.Quads);
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
-            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
-            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
-            texAmmo.Deactivate();
-            /*
-            GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.Yellow);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Yellow);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Yellow);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Yellow);
-            GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
-
-            GL.Begin(PrimitiveType.LineLoop);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();*/
-        }
-        private void DrawBoost(Box2D rect)
-        {
-            texBoost.Activate();
-            GL.Begin(PrimitiveType.Quads);
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
-            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
-            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
-            texBoost.Deactivate();
-            /*
-            GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.Turquoise);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Turquoise);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Turquoise);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Turquoise);
-            GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
-
-
-            GL.Begin(PrimitiveType.LineLoop);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();*/
-        }
-
-
-
     }
 }
