@@ -33,17 +33,17 @@ namespace Computergrafik
 
         public void scoreLogic() {
 
+         
+
+
             for (int i = 0; i < players.Length; i++)
             {
                 if (score[i] < maxScore)
                 {
                     if (players[i].Life <= noLife)
                     {
-                  
+
                         score[i] = score[i] + scorePlus;
-                        players[i].Life = 100;
-                        players[i].Ammo = 100;
-                        players[i].Boost = 100;
                         newGamePosition();
 
                     }
@@ -61,22 +61,11 @@ namespace Computergrafik
 
         private void newGamePosition() {
 
-            for (int i = 0; i < players.Length; i++)
-            {
-                for (int k = 0; k < players[i].Bullets.Count; k++)
-                {
-
-                    if (model.Window.Intersects(players[i].Bullets[k].Bbullet))
-                    {
-                        players[i].Bullets.RemoveAt(k);
-                    }
-                    
-                }
-
-            }
 
             for (int p = 0; p < players.Length; p++)
             {
+                players[p].Bullets = new List<Bullet>();
+
                 players[p].pplayer.X = -0.975f + p * 1.85f;
                 players[p].pplayer.Y = -0.05f;
              
