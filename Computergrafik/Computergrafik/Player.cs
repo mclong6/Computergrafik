@@ -1,4 +1,6 @@
-﻿using DMS.Geometry;
+﻿using Computergrafik;
+using DMS.Geometry;
+using DMS.OpenGL;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
@@ -22,13 +24,16 @@ namespace Computergrafik
         private float speed = 0.006f;
         private Box2D player;
         private Box2D gun;
-
+        private int angle;
+        private Texture[] texture = new Texture[24];
+       
         private int joyStickShoot = 0;
         private int joyStickBoost = 0;
 
         private GamePadState currentControllerState;
         private GamePadThumbSticks thumber;
         private Vector2 direcction;
+        private Vector2 vector1;
 
         private Vector2 gunDirection;
         private bool shootcontrol = true;
@@ -50,9 +55,39 @@ namespace Computergrafik
             this.model          = model;
             this.PlayerNr       = playerNr;
             this.pplayer        = model.Player[playerNr];
-          
+
+           
+            Texture[0] = TextureLoader.FromBitmap(Resource2._1);
+            Texture[1] = TextureLoader.FromBitmap(Resource2._2);
+            Texture[2] = TextureLoader.FromBitmap(Resource2._3);
+            Texture[3] = TextureLoader.FromBitmap(Resource2._4);
+            Texture[4] = TextureLoader.FromBitmap(Resource2._5);
+            Texture[5] = TextureLoader.FromBitmap(Resource2._6);
+            Texture[6] = TextureLoader.FromBitmap(Resource2._7);
+            Texture[7] = TextureLoader.FromBitmap(Resource2._8);
+            Texture[8] = TextureLoader.FromBitmap(Resource2._9);
+            Texture[9] = TextureLoader.FromBitmap(Resource2._10);
+            Texture[10] = TextureLoader.FromBitmap(Resource2._11);
+            Texture[11] = TextureLoader.FromBitmap(Resource2._12);
+            Texture[12] = TextureLoader.FromBitmap(Resource2._13);
+            Texture[13] = TextureLoader.FromBitmap(Resource2._14);
+            Texture[14] = TextureLoader.FromBitmap(Resource2._15);
+            Texture[15] = TextureLoader.FromBitmap(Resource2._16);
+            Texture[16] = TextureLoader.FromBitmap(Resource2._17);
+            Texture[17] = TextureLoader.FromBitmap(Resource2._18);
+            Texture[18] = TextureLoader.FromBitmap(Resource2._19);
+            Texture[19] = TextureLoader.FromBitmap(Resource2._20);
+            Texture[20] = TextureLoader.FromBitmap(Resource2._21);
+            Texture[21] = TextureLoader.FromBitmap(Resource2._22);
+            Texture[22] = TextureLoader.FromBitmap(Resource2._23);
+            Texture[23] = TextureLoader.FromBitmap(Resource2._24);
+
+
+
+
             this.direcction     = new Vector2(0f, 0f);
             this.gunDirection   = new Vector2(0f,0f);
+            this.vector1        = new Vector2(0, 1);
             this.timer          = new Timer();
             this.timer.Interval = bulledInterval;
             this.timer.Elapsed += OnTimedEvent;
@@ -72,7 +107,6 @@ namespace Computergrafik
             calculateBullets();
             bulledColission();
             recycleBullets();
-            moveGun();
             obstacleIntersection();
             beHard(model.PlayerInfoOne, this.pplayer);
             beHard(model.PlayerInfoTwo, this.pplayer);
@@ -238,16 +272,12 @@ namespace Computergrafik
                         speed = 0.006f;
                     }
                     joyStickBoost = 1;
+
                 }
                 if (joyStickBoost == 1 & !(Keyboard.GetState()[Key.V] && this.boost >= 0))
                 {
-                  
-                        speed = 0.006f;
-                    
-                }
-
-                
-
+                    speed = 0.006f;
+                }        
             }
 
            
@@ -269,6 +299,76 @@ namespace Computergrafik
             if (gunDirection.Y < 0.2f && gunDirection.Y > -0.2f) gunDirection.Y = 0; // da Joysticks nie genau 0
 
         }
+
+
+        private void getGunAngle()
+        {
+            AngleBetween(gunDirection);
+
+           // if (Angle<15 && Angle>0) {
+          //  }
+        }
+
+       
+
+        public void AngleBetween(Vector2 vector2)
+        {
+            //int k = Convert.ToInt32(Math.Abs(vector2.X) *Math.Abs(vector2.Y)*10);
+
+            int k = -100;
+            double x = vector2.X*100;
+            double y = vector2.Y*100;
+            
+
+            if (vector2.Y > 0)
+            {
+                if (vector2.X >0 ) //1
+                {
+                    x = Math.Abs(x);
+                    y = Math.Abs(y);
+
+                    Angle = Convert.ToInt32(Math.Atan(x / y)*180/Math.PI);
+
+
+
+                }
+                else if (vector2.X < 0) //2
+                {
+                    x = Math.Abs(x);
+                    y = Math.Abs(y);
+
+                    Angle = Convert.ToInt32((Math.Atan(y / x) * 180 / Math.PI)+270);
+
+
+                }
+
+            }
+            else
+            {
+                if (vector2.X > 0) //3
+                {
+
+                      x = Math.Abs(x);
+                    y = Math.Abs(y);
+
+                    Angle = Convert.ToInt32(Math.Atan(y / x)*180/Math.PI+90);
+
+
+                }
+                else if (vector2.X < 0) //4
+                {
+
+                    x = Math.Abs(x);
+                    y = Math.Abs(y);
+
+                    Angle = Convert.ToInt32(Math.Atan(x/ y) * 180 / Math.PI + 180);
+
+                }
+
+            }
+
+        }
+
 
         private void Colisuion()
         {
@@ -304,12 +404,8 @@ namespace Computergrafik
 
             if (pplayer.X +pplayer.SizeX > 1) pplayer.X = 1-pplayer.SizeX;
             if (pplayer.X < -1) pplayer.X = -1;
-          if (pplayer.Y+pplayer.SizeY >1) pplayer.Y = 1-pplayer.SizeY;
+            if (pplayer.Y+pplayer.SizeY >1) pplayer.Y = 1-pplayer.SizeY;
             if (pplayer.Y < -1) pplayer.Y = -1;
-
-
-
-
 
         }
 
@@ -392,6 +488,10 @@ namespace Computergrafik
 
         private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
+            getGunAngle();
+            Console.WriteLine("winkel " + Angle);
+
+
             if (shootcontrol == false && ammo >=0 )
             {
                 this.ammo = ammo - 1;
@@ -399,13 +499,7 @@ namespace Computergrafik
             }
         }
 
-
-        private void moveGun() {
-
-
-            
-        }
-
+        
         private void shoot(float x, float y)
         {
 
@@ -575,6 +669,45 @@ namespace Computergrafik
             set
             {
                 speed = value;
+            }
+        }
+
+        public int Angle
+        {
+            get
+            {
+                return Angle1;
+            }
+
+            set
+            {
+                Angle1 = value;
+            }
+        }
+
+        public int Angle1
+        {
+            get
+            {
+                return angle;
+            }
+
+            set
+            {
+                angle = value;
+            }
+        }
+
+        public Texture[] Texture
+        {
+            get
+            {
+                return texture;
+            }
+
+            set
+            {
+                texture = value;
             }
         }
     }
