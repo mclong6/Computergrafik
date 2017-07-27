@@ -9,12 +9,12 @@ namespace Computergrafik
 {
     class ScoreHandler
     {
+        bool NewGame = false;
         Player[] players;
         int[] score = new int[2];
 
         int maxScore = 2;
         int noLife = 0;
-
         int scorePlus = 1;
 
         private TextureFont font;
@@ -41,7 +41,7 @@ namespace Computergrafik
                         players[i].Life = 100;
                         players[i].Ammo = 100;
                         players[i].Boost = 100;
-                        newGame();
+                        newGamePosition();
 
                     }
                 }
@@ -49,7 +49,7 @@ namespace Computergrafik
                     players[i].Life = 100;
                     players[i].Ammo = 100;
                     players[i].Boost = 100;
-                    newGame();
+                    NewGame = true;
 
                 }
 
@@ -58,7 +58,7 @@ namespace Computergrafik
         
         }
 
-        private void newGame() {
+        private void newGamePosition() {
             
             players[0].pplayer.X = -0.975f + 0 * 1.85f;
             players[0].pplayer.Y = -0.05f;
@@ -70,10 +70,11 @@ namespace Computergrafik
             {
                 for(int k = 0; k < players[i].Bullets.Count; k++)
                 {
-                    if (players[i].Bullets[k].Bbullet != null)
-                    {
+                 //   if (players[i].Bullets[k].Bbullet != null)
+                   // {
+                       
                         players[i].Bullets.RemoveAt(k);
-                    }
+                  //  }
                 }
               
             }
@@ -99,6 +100,32 @@ namespace Computergrafik
             set
             {
                 score = value;
+            }
+        }
+
+        public bool NewGame1
+        {
+            get
+            {
+                return NewGame;
+            }
+
+            set
+            {
+                NewGame = value;
+            }
+        }
+
+        public int MaxScore
+        {
+            get
+            {
+                return maxScore;
+            }
+
+            set
+            {
+                maxScore = value;
             }
         }
     }
