@@ -11,7 +11,8 @@ namespace Computergrafik
 
         Box2D playerInfoOne;
         Box2D playerInfoTwo;
-        float sizeBalken = 0.3f;
+        float sizeBalken = 0.28f;
+        float sizeBalkenLeer = 0.3f;
 
         /*Speed beim Ausfladen*/
         float boostLoad = 0.09f;
@@ -44,6 +45,11 @@ namespace Computergrafik
         Texture texBoost;
 
 
+        Texture texLifeW;
+        Texture texAmmoW;
+        Texture texBoostW;
+
+
 
         public Lebensleiste(Model model)
         {
@@ -51,27 +57,35 @@ namespace Computergrafik
             playerInfoOne = model.PlayerInfoOne;
             playerInfoTwo = model.PlayerInfoTwo;
 
-            texLife = Tex;
-            texAmmo;
-            texBoost;
+            texLife = TextureLoader.FromBitmap(Resource2.health_bar); 
+            texAmmo = TextureLoader.FromBitmap(Resource2.reload_bar); 
+            texBoost = TextureLoader.FromBitmap(Resource2.jet_bar);
+
+            texLifeW = TextureLoader.FromBitmap(Resource2.health);
+            texAmmoW = TextureLoader.FromBitmap(Resource2.ammo);
+            texBoostW = TextureLoader.FromBitmap(Resource2.jet);
 
             nachladen[0] = false;
             nachladen[1] = false;
-            Life[0] = new Box2D(-0.95f, 0.925f, sizeBalken, 0.05f);
-            Ammo[0] = new Box2D(-0.95f, 0.825f, sizeBalken, 0.05f);
-            Boost[0] = new Box2D(-0.95f, 0.725f, sizeBalken, 0.05f);
+
+            float randVoll = -0.93f;
+            Life[0] = new Box2D(randVoll, 0.925f, sizeBalken, 0.05f);
+            Ammo[0] = new Box2D(randVoll, 0.825f, sizeBalken, 0.05f);
+            Boost[0] = new Box2D(randVoll, 0.725f, sizeBalken, 0.05f);
 
             Life[1] = new Box2D(0.65f, 0.925f, sizeBalken, 0.05f);
             Ammo[1] = new Box2D(0.65f, 0.825f, sizeBalken, 0.05f);
             Boost[1] = new Box2D(0.65f, 0.725f, sizeBalken, 0.05f);
 
-            oneLifeW = new Box2D(-0.95f, 0.925f, sizeBalken, 0.05f);
-            oneAmmoW = new Box2D(-0.95f, 0.825f, sizeBalken, 0.05f);
-            oneBoostW = new Box2D(-0.95f, 0.725f, sizeBalken, 0.05f);
+            float rand = -0.99f;
+            float Ysize = 0.1f;
+            oneLifeW = new Box2D(rand, 0.925f, sizeBalkenLeer, Ysize);
+            oneAmmoW = new Box2D(rand, 0.825f, sizeBalkenLeer, Ysize);
+            oneBoostW = new Box2D(rand, 0.725f, sizeBalkenLeer, Ysize);
 
-            twoLifeW = new Box2D(0.65f, 0.925f, sizeBalken, 0.05f);
-            twoAmmoW = new Box2D(0.65f, 0.825f, sizeBalken, 0.05f);
-            twoBoostW = new Box2D(0.65f, 0.725f, sizeBalken, 0.05f);
+            twoLifeW = new Box2D(0.65f, 0.925f, sizeBalkenLeer, Ysize);
+            twoAmmoW = new Box2D(0.65f, 0.825f, sizeBalkenLeer, Ysize);
+            twoBoostW = new Box2D(0.65f, 0.725f, sizeBalkenLeer, Ysize);
 
          
 
@@ -149,20 +163,39 @@ namespace Computergrafik
             DrawPlayerInfoOne(playerInfoOne);
             DrawPlayerInfoTwo(playerInfoTwo);
 
+            /*
+                        DrawWhite(oneLifeW);
+                        DrawWhite(oneAmmoW);
+                        DrawWhite(oneBoostW);
 
-            DrawWhite(oneLifeW);
-            DrawWhite(oneAmmoW);
-            DrawWhite(oneBoostW);
+                        DrawWhite(twoLifeW);
+                        DrawWhite(twoAmmoW);
+                        DrawWhite(twoBoostW);*/
+            GL.Enable(EnableCap.Blend);
 
-            DrawWhite(twoLifeW);
-            DrawWhite(twoAmmoW);
-            DrawWhite(twoBoostW);
 
-          
-            for(int i = 0; i <= 1; i++) {
-            DrawLife(Life[i]);
-            DrawAmmo(Ammo[i]);
+            GL.Color3(Color.White);
+
+            DrawWAmmo(oneLifeW, texLifeW);
+            DrawWAmmo(oneAmmoW, texAmmoW);
+            DrawWAmmo(oneBoostW, texBoostW);
+
+            DrawWAmmo(twoLifeW, texLifeW);
+            DrawWAmmo(twoAmmoW, texAmmoW);
+            DrawWAmmo(twoBoostW,texBoostW);
+            GL.Disable(EnableCap.Blend);
+            for (int i = 0; i <= 1; i++) {
+
+
+                GL.Enable(EnableCap.Blend);
+
+
+                GL.Color3(Color.White);
+                DrawLife(Life[i]);
+                
+                DrawAmmo(Ammo[i]);
             DrawBoost(Boost[i]);
+                GL.Disable(EnableCap.Blend);
             }
 
         }
@@ -170,6 +203,8 @@ namespace Computergrafik
 
         private void DrawPlayerInfoOne(Box2D rect)
         {
+          
+
             GL.Begin(PrimitiveType.Quads);
             GL.Color3(Color.Blue);
             GL.Vertex2(rect.X, rect.Y);
@@ -217,6 +252,42 @@ namespace Computergrafik
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
         }
+        private void DrawWAmmo(Box2D rect, Texture tex)
+        {
+            tex.Activate();
+            GL.Begin(PrimitiveType.Quads);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+            tex.Deactivate();
+
+        }
+        private void DrawWLife(Box2D rect, Texture tex)
+        {
+            tex.Activate();
+            GL.Begin(PrimitiveType.Quads);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+            tex.Deactivate();
+
+        }
+        private void DrawWBoost(Box2D rect, Texture tex)
+        {
+            tex.Activate();
+            GL.Begin(PrimitiveType.Quads);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+            tex.Deactivate();
+
+        }
         private void DrawPlayerInfoTwo(Box2D rect)
         {
 
@@ -244,6 +315,16 @@ namespace Computergrafik
         }
         private void DrawLife(Box2D rect)
         {
+
+            texLife.Activate();
+            GL.Begin(PrimitiveType.Quads);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+            texLife.Deactivate();
+            /*
             GL.Begin(PrimitiveType.Quads);
             GL.Color3(Color.Red);
             GL.Vertex2(rect.X, rect.Y);
@@ -265,10 +346,19 @@ namespace Computergrafik
             GL.Vertex2(rect.MaxX, rect.MaxY);
             GL.Color3(Color.Black);
             GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
+            GL.End();*/
         }
         private void DrawAmmo(Box2D rect)
         {
+            texAmmo.Activate();
+            GL.Begin(PrimitiveType.Quads);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+            texAmmo.Deactivate();
+            /*
             GL.Begin(PrimitiveType.Quads);
             GL.Color3(Color.Yellow);
             GL.Vertex2(rect.X, rect.Y);
@@ -289,10 +379,19 @@ namespace Computergrafik
             GL.Vertex2(rect.MaxX, rect.MaxY);
             GL.Color3(Color.Black);
             GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
+            GL.End();*/
         }
         private void DrawBoost(Box2D rect)
         {
+            texBoost.Activate();
+            GL.Begin(PrimitiveType.Quads);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+            texBoost.Deactivate();
+            /*
             GL.Begin(PrimitiveType.Quads);
             GL.Color3(Color.Turquoise);
             GL.Vertex2(rect.X, rect.Y);
@@ -314,7 +413,7 @@ namespace Computergrafik
             GL.Vertex2(rect.MaxX, rect.MaxY);
             GL.Color3(Color.Black);
             GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
+            GL.End();*/
         }
 
 
