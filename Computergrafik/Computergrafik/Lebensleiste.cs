@@ -11,8 +11,10 @@ namespace Computergrafik
         Box2D playerInfoOne;
         Box2D playerInfoTwo;
         float sizeBalken = 0.3f;
-        float boostLoad = 0.09f;
-        float ammoLoad = 0.01f;
+
+        /*Speed beim Ausfladen*/
+        float boostLoad = 0.075f;
+        float ammoLoad = 0.0025f;
 
         
         bool[] nachladen = new bool[2];
@@ -65,7 +67,7 @@ namespace Computergrafik
         public void OneLiveDown(Player player) {
             int num = player.PlayerNr;
             //getMaxLife();
-            float maxLife = 100;
+            float maxLife = player.StartLife;
             float currentLife = player.Life;
             float lifeDazu = sizeBalken / maxLife;
             if (currentLife >= 0)
@@ -77,7 +79,7 @@ namespace Computergrafik
         public void OneGetShoot(Player player) {
             //getMaxShoot()
             int num = player.PlayerNr;
-            float maxShoot = 100;
+            float maxShoot = player.StartAmmo;
             float currentAmmo = player.Ammo;
             float ammoDazu = sizeBalken / maxShoot;
       
@@ -110,14 +112,14 @@ namespace Computergrafik
         public void OneGetBoost(Player player) {
             //GetMaxBoost
             int num = player.PlayerNr;
-            float maxBoost = 100;
+            float maxBoost = player.StartBoost;
             float currentBoost =  player.Boost;
             float boostDazu = sizeBalken / maxBoost;
 
             
                 Boost[num].SizeX =  (boostDazu * currentBoost);
             
-            if (currentBoost <= 100 && Boost[num].SizeX <= sizeBalken) {
+            if (currentBoost <= maxBoost && Boost[num].SizeX <= sizeBalken) {
 
                 player.Boost = currentBoost  +boostLoad;
                 Boost[num].SizeX = Boost[num].SizeX + boostDazu;

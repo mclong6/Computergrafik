@@ -47,9 +47,23 @@ namespace Computergrafik
         private float bulledInterval = 100;     // mill sec
         private int playerChosen = -1;
 
-        private float life = 100;
-        private float ammo = 100;
-        private float boost = 100;
+
+        private float startLife = 100;
+        private float startAmmo = 100;
+        private float startBoost = 50;
+
+        private float life;
+        private float ammo;
+        private float boost;
+
+        private float minusLife = 5;
+        private float minusLifeOpponent = 30;
+        private float minusAmmo = 5;
+        private float minusBoost = 1;
+
+        private float speedStandard = 0.006f;
+        private float speedBoost = 0.012f;
+     
 
 
         public Player(Model model,Logic logic, int playerNr) {
@@ -58,7 +72,9 @@ namespace Computergrafik
             this.model          = model;
             this.PlayerNr       = playerNr;
             this.pplayer        = model.Player[playerNr];
-
+            this.life = startLife;
+            this.ammo = startAmmo;
+            this.boost = startBoost;
            
             Texture[0] = TextureLoader.FromBitmap(Resource2._1b);
             Texture[1] = TextureLoader.FromBitmap(Resource2._2b);
@@ -153,7 +169,7 @@ namespace Computergrafik
         private void beHard(Box2D beHard, Box2D driver)
         {
             float bounce = 0.00f;
-            float intervall = 0.006f * 4;
+            float intervall = speedBoost + 0.000001f;
             if (beHard.Intersects(driver))
                        {
                            /*Linke Seite*/
@@ -289,14 +305,15 @@ namespace Computergrafik
                 /*Boost*/
                 if (Keyboard.GetState()[Key.V] && this.boost >= 0)
                 {
-                    this.boost = boost - 1;
+                    this.boost = boost - minusBoost;
                     if (this.boost > 0)
                     {
-                        speed = 0.02f;
+                        speed = speedBoost;
                     }
                     else
                     {
-                        speed = 0.006f;
+                        
+                        speed = speedStandard;
                     }
                     joyStickBoost = 1;
 
@@ -617,12 +634,14 @@ namespace Computergrafik
                 pplayer.X = model.SaveZone[playerNr].X + 0.025f;
               
 
-                this.life = life - 10;
+                this.life = life - minusLifeOpponent;
                 colisionControl = false;
             }
             else if (!pplayer.Intersects(model.Opponent[0]) && colisionControl == false)
             {
-                speed = 0.006f;
+                
+                speed = speedStandard;
+
                 colisionControl = true;
             }
 
@@ -648,21 +667,24 @@ namespace Computergrafik
         private void boostPressed()             // if post is presst speed will rise 
         {
 
-            if (currentControllerState.Triggers.Right == 1.0f && this.boost >=0)
+            if (currentControllerState.Triggers.Right >= 0.9f && this.boost >=0)
             {
-                this.boost = boost - 1;
+                
+                this.boost = boost - minusBoost;
                 if (this.boost > 0)
                 {
-                    speed = 0.02f;
+                   
+                    speed = speedBoost;
                 }
                 else {
-                    speed = 0.006f;
+                  
+                    speed = speedStandard;
                 }
             }
 
-            if (currentControllerState.Triggers.Right < 0.99f)
+            if (currentControllerState.Triggers.Right < 0.90f)
             {
-                speed = 0.006f;
+                speed = speedStandard;
             }
 
 
@@ -729,7 +751,7 @@ namespace Computergrafik
 
             if (shootcontrol == false && ammo >=0 )
             {
-                this.ammo = ammo - 1;
+                this.ammo = ammo - minusAmmo;
                 shoot(gunDirection.X, gunDirection.Y);
             }
         }
@@ -786,7 +808,7 @@ namespace Computergrafik
                             if (logic.Player[i].Bullets[k].Bbullet.Intersects(this.pplayer))
                             {
                                 logic.Player[i].Bullets.RemoveAt(k);
-                                life = life - 10;
+                                life = life - minusLife;
                             }
                         }
 
@@ -977,6 +999,71 @@ namespace Computergrafik
             set
             {
                 texture1 = value;
+            }
+        }
+
+        public float StartLife
+        {
+            get
+            {
+                return startLife;
+            }
+
+            set
+            {
+                startLife = value;
+            }
+        }
+
+        public float StartAmmo
+        {
+            get
+            {
+                return startAmmo;
+            }
+
+            set
+            {
+                startAmmo = value;
+            }
+        }
+
+        public float StartBoost
+        {
+            get
+            {
+                return startBoost;
+            }
+
+            set
+            {
+                startBoost = value;
+            }
+        }
+
+        public float StartBoost1
+        {
+            get
+            {
+                return startBoost;
+            }
+
+            set
+            {
+                startBoost = value;
+            }
+        }
+
+        public float StartAmmo1
+        {
+            get
+            {
+                return startAmmo;
+            }
+
+            set
+            {
+                startAmmo = value;
             }
         }
     }
