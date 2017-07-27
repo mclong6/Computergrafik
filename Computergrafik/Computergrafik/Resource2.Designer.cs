@@ -569,5 +569,15 @@ namespace Computergrafik {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap old_hazard_stripes_texture {
+            get {
+                object obj = ResourceManager.GetObject("old_hazard_stripes_texture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

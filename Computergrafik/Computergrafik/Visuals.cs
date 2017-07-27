@@ -17,8 +17,11 @@ namespace Computergrafik
     class Visuals
     {
         private Texture backgroundTexture;
+        private Texture tex;
         public Visuals()
         {
+            tex = TextureLoader.FromBitmap(Resource2.old_hazard_stripes_texture);
+
             backgroundTexture = TextureLoader.FromBitmap(Resource2.karierter_background);
         }
        
@@ -121,15 +124,28 @@ namespace Computergrafik
             float value = 0.025f;
 
             GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.Green);
-            GL.Vertex2(rect.X - value, rect.Y - value);
-            GL.Color3(Color.Green);
-            GL.Vertex2(rect.MaxX + value, rect.Y - value);
-            GL.Color3(Color.Green);
-            GL.Vertex2(rect.MaxX + value, rect.MaxY + value);
-            GL.Color3(Color.Green);
-            GL.Vertex2(rect.X - value, rect.MaxY + value);
+            
             GL.End();
+
+
+            tex.Activate();
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.White);
+            //when using textures we have to set a texture coordinate for each vertex
+            //by using the TexCoord command BEFORE the Vertex command
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X-value, rect.Y-value);
+            GL.Color3(Color.White);
+
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX+value, rect.Y-value);
+            GL.Color3(Color.White);
+
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX+value, rect.MaxY+value);
+            GL.Color3(Color.White);
+
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X-value, rect.MaxY+value);
+            GL.End();
+            //the texture is disabled, so no other draw calls use this texture
+            tex.Deactivate();
         }
         public void DrawOpponent(float centerX, float centerY, float radius)
         {
