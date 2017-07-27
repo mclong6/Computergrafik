@@ -50,7 +50,7 @@ namespace Computergrafik
 
         private float startLife = 100;
         private float startAmmo = 100;
-        private float startBoost = 50;
+        private float startBoost = 100;
 
         private float life;
         private float ammo;
@@ -62,7 +62,7 @@ namespace Computergrafik
         private float minusBoost = 1;
 
         private float speedStandard = 0.006f;
-        private float speedBoost = 0.012f;
+        private float speedBoost = 0.013f;
      
 
 

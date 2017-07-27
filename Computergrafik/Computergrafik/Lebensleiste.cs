@@ -13,7 +13,7 @@ namespace Computergrafik
         float sizeBalken = 0.3f;
 
         /*Speed beim Ausfladen*/
-        float boostLoad = 0.075f;
+        float boostLoad = 0.09f;
         float ammoLoad = 0.0025f;
 
         
