@@ -1,4 +1,5 @@
 ﻿using DMS.Geometry;
+using DMS.OpenGL;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System;
@@ -20,6 +21,8 @@ namespace Computergrafik
         Box2D[] menuButton = new Box2D[4];
         private GamePadState currentControllerState;
         private GamePadThumbSticks thumber;
+        private Texture backgroundTexture;
+        private Texture blackAndYellowTexture;
 
         public StartMenu(Model model)
         {
@@ -27,6 +30,10 @@ namespace Computergrafik
             menuButton = model.MenuButton;
             selectButton = model.SelectButton;
             startScreen = model.StartScreen;
+
+            backgroundTexture = TextureLoader.FromBitmap(Resource2.karierter_background);
+            blackAndYellowTexture = TextureLoader.FromBitmap(Resource2.old_hazard_stripes_texture);
+
         }
 
         public void changeMenu(int GameState, MyWindow mywindow)
@@ -129,59 +136,58 @@ namespace Computergrafik
 
         private void DrawStartScreen(Box2D rect)
         {
+            //the texture has to be enabled before use
+            backgroundTexture.Activate();
             GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.YellowGreen);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.YellowGreen);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.YellowGreen);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.YellowGreen);      
-            GL.Vertex2(rect.X, rect.MaxY);
+            //when using textures we have to set a texture coordinate for each vertex
+            //by using the TexCoord command BEFORE the Vertex command
+
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
+
+            //the texture is disabled, so no other draw calls use this texture
+            backgroundTexture.Deactivate();
         }
 
 
-        private void DrawStartButton(Box2D rect)
-        {
-            GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.Blue);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Blue);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Blue);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Blue);
-            GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
-        }
 
         private void DrawEndButton(Box2D rect)
         {
+            //the texture has to be enabled before use
+            blackAndYellowTexture.Activate();
             GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.Blue);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Blue);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Blue);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Blue);
-            GL.Vertex2(rect.X, rect.MaxY);
+            //when using textures we have to set a texture coordinate for each vertex
+            //by using the TexCoord command BEFORE the Vertex command
+
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
+
+            //the texture is disabled, so no other draw calls use this texture
+            blackAndYellowTexture.Deactivate();
         }
 
         private void DrawSelectButton(Box2D rect)
         {
+            //the texture has to be enabled before use
+            blackAndYellowTexture.Activate();
             GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.White);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.White);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.White);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.White);
-            GL.Vertex2(rect.X, rect.MaxY);       
+            //when using textures we have to set a texture coordinate for each vertex
+            //by using the TexCoord command BEFORE the Vertex command
+
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
+
+            //the texture is disabled, so no other draw calls use this texture
+            blackAndYellowTexture.Deactivate();
         }
     }
 }
