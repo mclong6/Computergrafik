@@ -24,3 +24,7 @@ C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.G
 C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Geometry\obj\Debug\DMS.Geometry.csprojResolveAssemblyReference.cache
 C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Geometry\obj\Debug\DMS.Geometry.dll
 C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Geometry\obj\Debug\DMS.Geometry.pdb
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Geometry\bin\Debug\NAudio.dll
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Geometry\bin\Debug\NAudio.xml
+C:\Users\Maximilian\Source\Repos\Computer_Grafik_Klon\Computergrafik\Computergrafik\DMS.Geometry\bin\Debug\NAudio.dll
+C:\Users\Maximilian\Source\Repos\Computer_Grafik_Klon\Computergrafik\Computergrafik\DMS.Geometry\bin\Debug\NAudio.xml

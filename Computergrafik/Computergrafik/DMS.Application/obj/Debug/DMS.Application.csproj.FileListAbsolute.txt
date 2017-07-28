@@ -58,3 +58,7 @@ D:\1_FH-Weingarten\4.Semester\GitHub\Computergrafik2\Computergrafik\Computergraf
 D:\1_FH-Weingarten\4.Semester\GitHub\Computergrafik2\Computergrafik\Computergrafik\DMS.Application\obj\Debug\DMS.Application.csprojResolveAssemblyReference.cache
 D:\1_FH-Weingarten\4.Semester\GitHub\Computergrafik2\Computergrafik\Computergrafik\DMS.Application\obj\Debug\DMS.Application.dll
 D:\1_FH-Weingarten\4.Semester\GitHub\Computergrafik2\Computergrafik\Computergrafik\DMS.Application\obj\Debug\DMS.Application.pdb
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Application\bin\Debug\NAudio.dll
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.Application\bin\Debug\NAudio.xml
+C:\Users\Maximilian\Source\Repos\Computer_Grafik_Klon\Computergrafik\Computergrafik\DMS.Application\bin\Debug\NAudio.dll
+C:\Users\Maximilian\Source\Repos\Computer_Grafik_Klon\Computergrafik\Computergrafik\DMS.Application\bin\Debug\NAudio.xml

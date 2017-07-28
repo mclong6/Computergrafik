@@ -14,6 +14,7 @@ namespace Computergrafik
         private int winner = 2;
         /*Spielstatus*/
         int GameState;
+        int enter = 0;
         const int StateMenu = 0;
         const int StateStart = 1;
         const int StateNewGame = 2;
@@ -119,11 +120,19 @@ namespace Computergrafik
                 currentControllerState = GamePad.GetState(0);
 
                 if (Keyboard.GetState()[Key.Enter] || currentControllerState.Buttons.A == ButtonState.Pressed)
+                {                       
+                    enter = 1;   
+                }
+             
+                /*SelectBox nach oben setzen*/
+                if (enter == 1 && !Keyboard.GetState()[Key.Enter] && currentControllerState.Buttons.A == ButtonState.Released)
                 {
+
+                    enter = 0;
                     doOnce = true;
                     GameState = StateMenu;
                 }
-                
+
             }
         }
 
