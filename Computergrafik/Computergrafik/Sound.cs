@@ -55,7 +55,7 @@ namespace Computergrafik
         public void doBoost()
         {
             // soundEngine.PlaySound(Resource2.UFO_Takeoff);
-            soundEngine.PlaySound(Resource2.BoostNew3);
+           // soundEngine.PlaySound(Resource2.BoostNew3);
 
         }
 
