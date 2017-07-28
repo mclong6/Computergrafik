@@ -53,19 +53,20 @@ namespace Computergrafik
             /*Boxen fürs Spiel*/
             opponent[0]     = new Box2D(0.0f, 0.7f, 0.2f, 0.2f);
 
-            for(int index = 0; index<2; index++)
-            {
-                float xTerm = 0.7f * minus;
-                float xTerm2 = -0.975f + index * 1.85f;
-                player[index] = new Box2D(xTerm2, 0f-0.03f, 0.06f, 0.06f);
-              
-                minus = minus * minus;
-            }
-
             for (int i = 0; i < saveZone.Length; i++)
             {
                 saveZone[i] = new Box2D(-1.0f + i * 1.8f,-0.1f, 0.2f, 0.2f);
             }
+
+            for(int index = 0; index<2; index++)
+            {
+                
+                float xTerm2 = saveZone[index].CenterX;
+                player[index] = new Box2D(xTerm2-0.03f, -0.03f, 0.06f, 0.06f);
+              
+                minus = minus * minus;
+            }
+
 
         }
         public void createLevel(int level)

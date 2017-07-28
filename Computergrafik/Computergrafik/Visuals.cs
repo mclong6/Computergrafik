@@ -81,17 +81,26 @@ namespace Computergrafik
 
         public void DrawPlayerOne(Box2D Rect, Texture tex)
         {
-            
+
+            pos.X = Rect.CenterX;
+            pos.Y = Rect.CenterY;
+
+            newBOX.SizeX = Rect.SizeX + 0.08f;
+            newBOX.SizeY = Rect.SizeY + 0.08f;
+
+            newBOX.CenterX = pos.X;
+            newBOX.CenterY = pos.Y;
+
             //the texture has to be enabled before use
             tex.Activate();
             GL.Begin(PrimitiveType.Quads);
             //when using textures we have to set a texture coordinate for each vertex
             //by using the TexCoord command BEFORE the Vertex command
 
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(Rect.X, Rect.Y);
-            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(Rect.MaxX, Rect.Y);
-            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(Rect.MaxX, Rect.MaxY);
-            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(Rect.X, Rect.MaxY);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(newBOX.X, newBOX.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(newBOX.MaxX, newBOX.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(newBOX.MaxX, newBOX.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(newBOX.X, newBOX.MaxY);
             GL.End();
 
             //the texture is disabled, so no other draw calls use this texture
