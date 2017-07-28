@@ -141,7 +141,7 @@ namespace Computergrafik
             }
         }
 
-        public void OneGetShoot(Player player)
+        public void OneGetShoot(Player player, int GameState)
         {
             //getMaxShoot()
             int num = player.PlayerNr;
@@ -170,11 +170,12 @@ namespace Computergrafik
 
                 if (Ammo[num].SizeX > sizeBalken)
                 {
+                   
                     sound.ReloadTheGun();
+                    
+                   
                     player.Ammo = maxShoot;
                     nachladen[num] = false;
-
-
                 }
 
 

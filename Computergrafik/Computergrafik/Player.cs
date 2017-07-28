@@ -720,6 +720,8 @@ namespace Computergrafik
                     if (currentControllerState.Triggers.Left > 0.8f && shootcontrol == true)
                     {
                         shootcontrol = false;
+                       
+                      
                     }
 
                     if (currentControllerState.Triggers.Left == 0.0f)
@@ -756,9 +758,10 @@ namespace Computergrafik
 
             if (shootcontrol == false && ammo >=0 )
             {
+               
                 this.ammo = ammo - minusAmmo;
                 shoot(gunDirection.X, gunDirection.Y);
-               
+                
             }
         }
 
@@ -1073,6 +1076,19 @@ namespace Computergrafik
             set
             {
                 startAmmo = value;
+            }
+        }
+
+        public bool Shootcontrol
+        {
+            get
+            {
+                return shootcontrol;
+            }
+
+            set
+            {
+                shootcontrol = value;
             }
         }
     }

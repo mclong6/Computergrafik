@@ -551,12 +551,30 @@ namespace Computergrafik {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream airhorn {
+            get {
+                return ResourceManager.GetStream("airhorn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ammoIcon {
             get {
                 object obj = ResourceManager.GetObject("ammoIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Balloon_Popping {
+            get {
+                return ResourceManager.GetStream("Balloon_Popping", resourceCulture);
             }
         }
         
@@ -707,6 +725,15 @@ namespace Computergrafik {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Metal_Clang {
+            get {
+                return ResourceManager.GetStream("Metal_Clang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap old_hazard_stripes_texture {
@@ -752,6 +779,33 @@ namespace Computergrafik {
         internal static System.IO.UnmanagedMemoryStream reloadGun {
             get {
                 return ResourceManager.GetStream("reloadGun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream reloadNew {
+            get {
+                return ResourceManager.GetStream("reloadNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Sports_Crowd {
+            get {
+                return ResourceManager.GetStream("Sports_Crowd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream UFO_Takeoff {
+            get {
+                return ResourceManager.GetStream("UFO_Takeoff", resourceCulture);
             }
         }
     }

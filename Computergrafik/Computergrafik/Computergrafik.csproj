@@ -263,6 +263,10 @@
     <None Include="Resources\9b.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Sports_Crowd.wav" />
+    <None Include="Resources\UFO_Takeoff.wav" />
+    <None Include="Resources\Metal Clang.wav" />
+    <None Include="Resources\reloadNew.WAV" />
     <None Include="Resources\ReloadGun.wav" />
     <None Include="Resources\red-Box.png" />
     <None Include="Resources\old-hazard-stripes-texture_light.png" />
@@ -290,6 +294,8 @@
     <None Include="Resources\Hurt.wav" />
     <None Include="Resources\beenden.png" />
     <None Include="Resources\blue-Box.png" />
+    <None Include="Resources\Balloon Popping.wav" />
+    <None Include="Resources\airhorn.WAV" />
     <Content Include="Resources\karierter-background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

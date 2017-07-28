@@ -49,7 +49,7 @@ namespace Computergrafik
       
         public void ReloadTheGun()
         {
-           // soundEngine.PlaySound(Resource2.reloadGun);
+            soundEngine.PlaySound(Resource2.reloadNew);
        
         }
 

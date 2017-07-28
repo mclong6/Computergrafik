@@ -120,6 +120,8 @@ namespace Computergrafik
             if(GameState == StateNewGame)
             {
                 NewGameSetting();
+                logic.Player[0].Shootcontrol = true;
+                logic.Player[1].Shootcontrol = true;
                 currentControllerState = GamePad.GetState(0);
 
                 if (Keyboard.GetState()[Key.Enter] || currentControllerState.Buttons.A == ButtonState.Pressed)
@@ -218,11 +220,11 @@ namespace Computergrafik
 
         public void logicLebensleiste() {
             lebensleiste.OneGetBoost(logic.Player[0]);
-            lebensleiste.OneGetShoot(logic.Player[0]);
+            lebensleiste.OneGetShoot(logic.Player[0], GameState);
             lebensleiste.OneLiveDown(logic.Player[0]);
 
             lebensleiste.OneGetBoost(logic.Player[1]);
-            lebensleiste.OneGetShoot(logic.Player[1]);
+            lebensleiste.OneGetShoot(logic.Player[1], GameState);
             lebensleiste.OneLiveDown(logic.Player[1]);
 
             lebensleiste.bulletIntersectionOne(logic.Player[0]);
@@ -241,7 +243,7 @@ namespace Computergrafik
                 logic.Player[i].Boost = logic.Player[i].StartBoost;
 
             }
-            logicLebensleiste();
+       
         }
         [STAThread]
         public static void Main()
