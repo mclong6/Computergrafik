@@ -17,6 +17,8 @@ namespace Computergrafik
         const int StateMenu = 0;
         const int StateStart = 1;
         const int StateNewGame = 2;
+        private GamePadState currentControllerState;
+
 
         int gameLevel;
 
@@ -114,8 +116,9 @@ namespace Computergrafik
             if(GameState == StateNewGame)
             {
                 NewGameSetting();
-                
-                if (Keyboard.GetState()[Key.Enter])
+                currentControllerState = GamePad.GetState(0);
+
+                if (Keyboard.GetState()[Key.Enter] || currentControllerState.Buttons.A == ButtonState.Pressed)
                 {
                     doOnce = true;
                     GameState = StateMenu;
@@ -143,8 +146,8 @@ namespace Computergrafik
             {
                 lebensleiste.DrawPlayerInfo();
 
-                visuals.DrawSaveZone(model.SaveZone[0]);
-                visuals.DrawSaveZone(model.SaveZone[1]);
+                visuals.DrawSaveZone1(model.SaveZone[0]);
+                visuals.DrawSaveZone2(model.SaveZone[1]);
                 GL.Color3(Color.White);
 
 
