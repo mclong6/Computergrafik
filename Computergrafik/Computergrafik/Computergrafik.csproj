@@ -263,10 +263,11 @@
     <None Include="Resources\9b.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\level1.png" />
-    <None Include="Resources\level3.png" />
-    <None Include="Resources\Level2.png" />
-    <None Include="Resources\old-hazard-stripes-texture_light.png" />
+    <None Include="Resources\ReloadGun.wav" />
+    <None Include="Resources\Laser Zwei.wav" />
+    <None Include="Resources\Laser Eins .wav" />
+    <None Include="Resources\Laser Eins.mp3" />
+    <None Include="Resources\Laser Zwei.mp3" />
     <None Include="Resources\lifeIcon.png" />
     <None Include="Resources\vest-bar.png" />
     <None Include="Resources\reload-bar.png" />
@@ -279,7 +280,6 @@
     <None Include="Resources\jet-bar.png" />
     <None Include="Resources\ammoIcon.png" />
     <None Include="Resources\boostIcon.png" />
-    <None Include="Resources\beenden.png" />
     <Content Include="Resources\karierter-background.jpg" />
     <None Include="Resources\old-hazard-stripes-texture.jpg" />
   </ItemGroup>

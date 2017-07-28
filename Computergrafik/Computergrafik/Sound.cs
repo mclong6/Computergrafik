@@ -10,6 +10,7 @@ using DMS.Sound;
 using DMS.Base;
 using DMS.OpenGL;
 using System.Drawing;
+using Computergrafik;
 
 namespace ConsoleApplication1.Main
 {
@@ -45,10 +46,24 @@ namespace ConsoleApplication1.Main
         {
             //   soundEngine.PlaySound(Resourcen.laser);
         }
+        public void ShootLaserOne()
+        {
+              soundEngine.PlaySound(Resource2.Laser_Eins);
+        }
+
+        public void ShootLaserTwo()
+        {
+            soundEngine.PlaySound(Resource2.Laser_Zwei);
+        }
+        public void ReloadGun()
+        {
+            soundEngine.PlaySound(Resource2.Laser_Zwei);
+        }
+
 
         protected override void DisposeResources()
         {
-            // soundEngine.Dispose();
+             soundEngine.Dispose();
         }
 
         private AudioPlaybackEngine soundEngine;
