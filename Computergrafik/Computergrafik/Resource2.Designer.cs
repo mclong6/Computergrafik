@@ -563,6 +563,16 @@ namespace Computergrafik {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap beenden {
+            get {
+                object obj = ResourceManager.GetObject("beenden", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Big_Cheese {
             get {
                 object obj = ResourceManager.GetObject("Big_Cheese", resourceCulture);
@@ -649,6 +659,36 @@ namespace Computergrafik {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap level1 {
+            get {
+                object obj = ResourceManager.GetObject("level1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Level2 {
+            get {
+                object obj = ResourceManager.GetObject("Level2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap level3 {
+            get {
+                object obj = ResourceManager.GetObject("level3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lifeIcon {
             get {
                 object obj = ResourceManager.GetObject("lifeIcon", resourceCulture);
@@ -662,6 +702,16 @@ namespace Computergrafik {
         internal static System.Drawing.Bitmap old_hazard_stripes_texture {
             get {
                 object obj = ResourceManager.GetObject("old_hazard_stripes_texture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap old_hazard_stripes_texture_light {
+            get {
+                object obj = ResourceManager.GetObject("old_hazard_stripes_texture_light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
