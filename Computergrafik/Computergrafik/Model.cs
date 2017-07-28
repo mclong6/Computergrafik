@@ -47,9 +47,10 @@ namespace Computergrafik
             selectButton    = new Box2D(-0.4f, high -0.1f, 0.8f, 0.4f);
 
             /*PlayerInfoBox*/
+            float value = 0.01f;
 
-            playerInfoOne = new Box2D(-1.0f, 0.7f, 0.4f, 0.3f);
-            playerInfoTwo = new Box2D(0.6f, 0.7f, 0.4f, 0.3f);
+            playerInfoOne = new Box2D(-1.0f , 0.7f - value, 0.4f + value, 0.3f + value);
+            playerInfoTwo = new Box2D(0.6f - value, 0.7f - value, 0.4f + value, 0.3f + value);
             /*Boxen fürs Spiel*/
             opponent[0]     = new Box2D(0.0f, 0.7f, 0.15f, 0.15f);
 
