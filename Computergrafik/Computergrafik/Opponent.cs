@@ -18,7 +18,10 @@ namespace Computergrafik
         private int intersectsCounter = 0;
         private float timerCounter = 0;
         private bool intersectTest = false;
-       
+        private int intersectTimeCounter = 0;
+        private double second = 0;
+        private bool timing = true;
+
 
         public Opponent(Model model, Logic logic)
         {
@@ -176,11 +179,13 @@ namespace Computergrafik
             }*/
             return intersectsIsTrue;
         }
-
+        public void startTiming()
+        {
+            timing = false;
+            second = 0;
+        }
         private void controlIntersects(Box2D obstacle, Box2D opponent)
         {
-            
-            intersectsCounter += 1;
             bool under = opponent.CenterY < obstacle.CenterY;
             bool above = opponent.CenterY > obstacle.CenterY;
             bool right = opponent.CenterX > obstacle.MaxX;
@@ -190,15 +195,42 @@ namespace Computergrafik
             if ((opponent.CenterX > obstacle.MaxX || opponent.CenterX < (obstacle.MaxX - obstacle.SizeX)) &&
                            (opponent.CenterY > obstacle.MaxY || opponent.CenterY < (obstacle.MaxY - obstacle.SizeY)))
             {
+                if (timing) {
+                    startTiming();
+                    Console.WriteLine("Timing wurde gestartet");
+                }
+                intersectsCounter += 1;
+                if(second >=1 && second<3)
+                {
+                    Console.WriteLine("Seconds:"+ second);
+                    Console.WriteLine("Intersectscounter:" + intersectsCounter);
+                    if (intersectsCounter > 2)
+                    {
+                        Console.WriteLine("Richtung ändern!!!!!!");
+                        //opponentVector.X = opponentVector.X * minus;
+                        opponentVector.Y = opponentVector.Y * minus;
+                    }
+                    intersectsCounter = 0;
+                    timing = true;
+                }
+                else if (second >=3)
+                {
+                    Console.WriteLine("Seconds:" + second);
+                    Console.WriteLine("Intersectscounter:" + intersectsCounter);
+                    intersectsCounter = 0;
+                    timing = true;
+                }
+                
+                
                 //Corner-Collision above the centrum
-                if (above)
+                else if (above)
                 {
                     //Vector minus and plus
                     if ((opponentVector.Y < 0 && opponentVector.X > 0))
                     {
                         if (left)
                         {opponentVector.Y = opponentVector.Y * minus;
-                            opponentVector.X = opponentVector.X * minus;}
+                            }
                         else if (right)
                         {opponentVector.Y = opponentVector.Y * minus;}
                     }
@@ -304,13 +336,15 @@ namespace Computergrafik
             {
                 intersectsIsTrue = true;
             }
-
             else
             {
                 intersectsIsTrue = false;
             }
             timerCounter += 1;
+            second += 1;
+            
         }
+        
     }
 }
 
