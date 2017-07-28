@@ -55,16 +55,15 @@ namespace Computergrafik
 
             for (int i = 0; i < saveZone.Length; i++)
             {
-                saveZone[i] = new Box2D(-1.0f + i * 1.8f,-0.1f, 0.2f, 0.2f);
+                saveZone[i] = new Box2D(-1.0f + i * 1.8f,-0.1f, 0.3f, 0.3f);
             }
 
             for(int index = 0; index<2; index++)
             {
                 
                 float xTerm2 = saveZone[index].CenterX;
-                player[index] = new Box2D(xTerm2-0.03f, -0.03f, 0.06f, 0.06f);
+                player[index] = new Box2D(xTerm2-0.045f, -0.045f, 0.09f, 0.09f);
               
-                minus = minus * minus;
             }
 
 
