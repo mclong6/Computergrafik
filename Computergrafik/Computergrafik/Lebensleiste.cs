@@ -48,7 +48,7 @@ namespace Computergrafik
 
 
       
-
+        //änderung
 
 
         public Lebensleiste(Model model)
