@@ -68,7 +68,14 @@ namespace Computergrafik
 
                 players[p].pplayer.X = -0.975f + p * 1.85f;
                 players[p].pplayer.Y = -0.05f;
-             
+
+                float xTerm2 = model.SaveZone[p].CenterX;
+               
+
+                players[p].pplayer.X = xTerm2 - 0.045f;
+                players[p].pplayer.Y = -0.045f;
+
+
                 players[p].Life = players[p].StartLife;
                 players[p].Ammo = players[p].StartAmmo;
                 players[p].Boost = players[p].StartBoost;

@@ -20,7 +20,7 @@ namespace Computergrafik
         Box2D[] opponent    = new Box2D[2];
 
         Box2D[] saveZone = new Box2D[2];
-        private float minus = -1.0f;
+       
         
 
         Box2D playerInfoOne;
@@ -198,6 +198,19 @@ namespace Computergrafik
         }
 
         public Box2D[] SaveZone
+        {
+            get
+            {
+                return saveZone;
+            }
+
+            set
+            {
+                saveZone = value;
+            }
+        }
+
+        public Box2D[] SaveZone1
         {
             get
             {

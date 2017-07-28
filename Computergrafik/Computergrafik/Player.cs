@@ -24,7 +24,7 @@ namespace Computergrafik
         private Logic logic;
         private float speed = 0.006f;
         private Box2D player;
-        private Box2D gun;
+      
 
         private Sound sound;
         private int angle;
@@ -570,7 +570,7 @@ namespace Computergrafik
         {
             //int k = Convert.ToInt32(Math.Abs(vector2.X) *Math.Abs(vector2.Y)*10);
 
-            int k = -100;
+           
             double x = vector2.X*100;
             double y = vector2.Y*100;
             
