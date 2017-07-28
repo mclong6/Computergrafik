@@ -55,7 +55,7 @@ namespace Computergrafik
 
             for (int i = 0; i < saveZone.Length; i++)
             {
-                saveZone[i] = new Box2D(-1.0f + i * 1.8f,-0.1f, 0.3f, 0.3f);
+                saveZone[i] = new Box2D(-1.0f + i * 1.7f,-0.15f, 0.3f, 0.3f);
             }
 
             for(int index = 0; index<2; index++)
