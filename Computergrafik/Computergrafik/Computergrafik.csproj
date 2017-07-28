@@ -263,6 +263,7 @@
     <None Include="Resources\9b.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ReloadGun.wav" />
     <None Include="Resources\red-Box.png" />
     <None Include="Resources\old-hazard-stripes-texture_light.png" />
     <None Include="Resources\old-hazard-stripes-texture.jpg" />
@@ -271,7 +272,6 @@
     <None Include="Resources\level1.png" />
     <None Include="Resources\Laser Eins .wav" />
     <None Include="Resources\Laser Zwei.wav" />
-    <None Include="Resources\ReloadGun.wav" />
     <None Include="Resources\Laser Eins.mp3" />
     <None Include="Resources\Laser Zwei.mp3" />
     <None Include="Resources\lifeIcon.png" />
