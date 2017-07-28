@@ -105,12 +105,12 @@ namespace Computergrafik
         {
             intersectTest = false;
             //reflect Opponent
-            if (opponent.MaxY > 1.0f || opponent.Y < -1.0)
+            if (opponent.MaxY > 0.97f || opponent.Y < -0.97f)
             {
                 intersectTest = true;
                 opponentVector.Y = -opponentVector.Y;
             }
-            if (opponent.MaxX > 1.0f || opponent.X < -1.0)
+            if (opponent.MaxX > 0.97f || opponent.X < -0.97f)
             {
                 intersectTest = true;
                 opponentVector.X = -opponentVector.X;
