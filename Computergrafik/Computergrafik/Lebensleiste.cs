@@ -46,10 +46,6 @@ namespace Computergrafik
         Texture texAmmoIcon;
         Texture texBoostIcon;
 
-        //hallo änderung
-      
-
-
 
         public Lebensleiste(Model model)
         {
