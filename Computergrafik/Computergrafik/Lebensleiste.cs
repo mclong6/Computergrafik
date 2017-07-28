@@ -57,9 +57,9 @@ namespace Computergrafik
             playerInfoOne = model.PlayerInfoOne;
             playerInfoTwo = model.PlayerInfoTwo;
 
-            texLife = TextureLoader.FromBitmap(Resource2.health_bar); 
-            texAmmo = TextureLoader.FromBitmap(Resource2.reload_bar); 
-            texBoost = TextureLoader.FromBitmap(Resource2.jet_bar);
+            texLife = Tex;
+            texAmmo;
+            texBoost;
 
 
             texLifeIcon = TextureLoader.FromBitmap(Resource2.lifeIcon);

@@ -26,17 +26,32 @@ namespace Computergrafik
         }
        
 
-        public void DrawSaveZone(Box2D rect)
+        public void DrawSaveZone1(Box2D rect)
         {
 
             GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.DarkOrange);
+            GL.Color3(Color.Blue);
             GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.DarkOrange);
+            GL.Color3(Color.Blue);
             GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.DarkOrange);
+            GL.Color3(Color.Blue);
             GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.DarkOrange);
+            GL.Color3(Color.Blue);
+            GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+        }
+
+        public void DrawSaveZone2(Box2D rect)
+        {
+
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.Red);
+            GL.Vertex2(rect.X, rect.Y);
+            GL.Color3(Color.Red);
+            GL.Vertex2(rect.MaxX, rect.Y);
+            GL.Color3(Color.Red);
+            GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.Color3(Color.Red);
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
 
