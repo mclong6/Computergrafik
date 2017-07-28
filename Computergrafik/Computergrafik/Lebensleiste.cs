@@ -311,13 +311,13 @@ namespace Computergrafik
         private void DrawW(Box2D rect)
         {
             GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.White);
+            GL.Color3(Color.DarkGray);
             GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.White);
+            GL.Color3(Color.DarkGray);
             GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.White);
+            GL.Color3(Color.DarkGray);
             GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.White);
+            GL.Color3(Color.DarkGray);
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
 
