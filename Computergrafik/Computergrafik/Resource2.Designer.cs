@@ -571,12 +571,11 @@ namespace Computergrafik {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
-        internal static System.Drawing.Bitmap blue_Box {
+        internal static System.IO.UnmanagedMemoryStream Boost {
             get {
-                object obj = ResourceManager.GetObject("blue_Box", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetStream("Boost", resourceCulture);
             }
         }
         
@@ -601,6 +600,15 @@ namespace Computergrafik {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Hurt {
+            get {
+                return ResourceManager.GetStream("Hurt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap jet_bar {
@@ -617,6 +625,24 @@ namespace Computergrafik {
             get {
                 object obj = ResourceManager.GetObject("karierter_background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Laser_Eins {
+            get {
+                return ResourceManager.GetStream("Laser_Eins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Laser_Zwei {
+            get {
+                return ResourceManager.GetStream("Laser_Zwei", resourceCulture);
             }
         }
         
@@ -643,20 +669,19 @@ namespace Computergrafik {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap red_Box {
+        internal static System.Drawing.Bitmap reload_bar {
             get {
-                object obj = ResourceManager.GetObject("red_Box", resourceCulture);
+                object obj = ResourceManager.GetObject("reload_bar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
-        internal static System.Drawing.Bitmap reload_bar {
+        internal static System.IO.UnmanagedMemoryStream ReloadGun {
             get {
-                object obj = ResourceManager.GetObject("reload_bar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetStream("ReloadGun", resourceCulture);
             }
         }
     }
