@@ -224,6 +224,11 @@ namespace Computergrafik
             lebensleiste.OneGetBoost(logic.Player[1]);
             lebensleiste.OneGetShoot(logic.Player[1]);
             lebensleiste.OneLiveDown(logic.Player[1]);
+
+            lebensleiste.bulletIntersectionOne(logic.Player[0]);
+            lebensleiste.bulletIntersectionOne(logic.Player[1]);
+            lebensleiste.bulletIntersectionTwo(logic.Player[0]);
+            lebensleiste.bulletIntersectionTwo(logic.Player[1]);
         }
 
         public void NewGameSetting() {

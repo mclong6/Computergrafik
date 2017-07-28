@@ -25,7 +25,7 @@ namespace Computergrafik
         float boostLoad = 0.09f;
         float ammoLoad = 0.0025f;
 
-        
+
         bool[] nachladen = new bool[2];
 
         //Xposition//YPosition//X-Länge//Y-Länge
@@ -42,7 +42,7 @@ namespace Computergrafik
         Box2D[] BoostW = new Box2D[2];
 
         /**W steht für den weißen hintergrund*/
-    
+
 
         Texture texLife;
         Texture texAmmo;
@@ -65,12 +65,12 @@ namespace Computergrafik
             texLife = TextureLoader.FromBitmap(Resource2.health_bar);
             texAmmo = TextureLoader.FromBitmap(Resource2.reload_bar);
             texBoost = TextureLoader.FromBitmap(Resource2.jet_bar);
-       
-        
+
+
 
 
             texLifeIcon = TextureLoader.FromBitmap(Resource2.lifeIcon);
-            texAmmoIcon= TextureLoader.FromBitmap(Resource2.ammoIcon);
+            texAmmoIcon = TextureLoader.FromBitmap(Resource2.ammoIcon);
             texBoostIcon = TextureLoader.FromBitmap(Resource2.boostIcon);
 
             playerInfoOneDrin = new Box2D(-1.0f, 0.7f, 0.4f, 0.3f);
@@ -84,9 +84,9 @@ namespace Computergrafik
             float wert = (-randVoll) + randNeben;
 
             float runter = 0.01f;
-            float oben = 0.92f -runter;
+            float oben = 0.92f - runter;
             float mitte = 0.82f - runter;
-            float unten = 0.72f -runter;
+            float unten = 0.72f - runter;
 
             float high = 0.085f;
 
@@ -99,7 +99,7 @@ namespace Computergrafik
             float pluso = 0.01f;
 
             float randLeer = -0.89f - pluso;
-            float randLeerNeben = 0.69f +pluso;
+            float randLeerNeben = 0.69f + pluso;
             float wert3 = (-randLeer) + randLeerNeben;
 
             float YsizeLeer = 0.066f;
@@ -109,7 +109,7 @@ namespace Computergrafik
             for (int i = 0; i < 2; i++)
             {
 
-                Life[i] = new Box2D(randVoll + i *wert, oben, sizeBalken, high);
+                Life[i] = new Box2D(randVoll + i * wert, oben, sizeBalken, high);
                 Ammo[i] = new Box2D(randVoll + i * wert, mitte, sizeBalken, high);
                 Boost[i] = new Box2D(randVoll + i * wert, unten, sizeBalken, high);
 
@@ -122,13 +122,14 @@ namespace Computergrafik
                 BoostIcon[i] = new Box2D(randIcon + i * wert1, unten, Ysize, Ysize);
 
             }
-   
-         
+
+
 
         }
 
 
-        public void OneLiveDown(Player player) {
+        public void OneLiveDown(Player player)
+        {
             int num = player.PlayerNr;
             //getMaxLife();
             float maxLife = player.StartLife;
@@ -140,66 +141,115 @@ namespace Computergrafik
             }
         }
 
-        public void OneGetShoot(Player player) {
+        public void OneGetShoot(Player player)
+        {
             //getMaxShoot()
             int num = player.PlayerNr;
             float maxShoot = player.StartAmmo;
             float currentAmmo = player.Ammo;
             float ammoDazu = sizeBalken / maxShoot;
-      
 
-            if(currentAmmo == 0)
+
+            if (currentAmmo == 0)
             {
                 nachladen[num] = true;
             }
             /*Leert die Anzeige*/
             if (nachladen[num] == false)
             {
-              
-                Ammo[num].SizeX = (ammoDazu * currentAmmo);
-                
-            }
-          
-            if (nachladen[num] == true) {
-                 Ammo[num].SizeX = Ammo[num].SizeX + ammoLoad;
 
-              
+                Ammo[num].SizeX = (ammoDazu * currentAmmo);
+
+            }
+
+            if (nachladen[num] == true)
+            {
+                Ammo[num].SizeX = Ammo[num].SizeX + ammoLoad;
+
+
 
                 if (Ammo[num].SizeX > sizeBalken)
                 {
                     sound.ReloadTheGun();
                     player.Ammo = maxShoot;
                     nachladen[num] = false;
-                  
-                 
+
+
                 }
-               
+
 
             }
-          
+
 
         }
 
-        public void OneGetBoost(Player player) {
+        public void OneGetBoost(Player player)
+        {
             //GetMaxBoost
             int num = player.PlayerNr;
             float maxBoost = player.StartBoost;
-            float currentBoost =  player.Boost;
+            float currentBoost = player.Boost;
             float boostDazu = sizeBalken / maxBoost;
 
-            
-                Boost[num].SizeX =  (boostDazu * currentBoost);
-            
-            if (currentBoost <= maxBoost && Boost[num].SizeX <= sizeBalken) {
 
-                player.Boost = currentBoost  +boostLoad;
+            Boost[num].SizeX = (boostDazu * currentBoost);
+
+            if (currentBoost <= maxBoost && Boost[num].SizeX <= sizeBalken)
+            {
+
+                player.Boost = currentBoost + boostLoad;
                 Boost[num].SizeX = Boost[num].SizeX + boostDazu;
             }
         }
 
 
+        public void bulletIntersectionOne(Player player)
+        {
 
 
+            for (int j = 0; j < player.Bullets.Count; j++)
+            {
+
+               
+                    if (player.Bullets[j].Bbullet != null)
+                    {
+
+                        if (player.Bullets[j].Bbullet.Intersects(playerInfoOneDrin))
+                        {
+                            player.Bullets.RemoveAt(j);
+                        }
+
+                    }
+
+
+                
+            }
+
+
+          
+        }
+
+
+        public void bulletIntersectionTwo(Player player)
+        {
+
+            for (int j = 0; j < player.Bullets.Count; j++)
+            {
+
+                    if (player.Bullets[j].Bbullet != null)
+                    {
+
+                        if (player.Bullets[j].Bbullet.Intersects(playerInfoTwoDrin))
+                        {
+                            player.Bullets.RemoveAt(j);
+                        }
+
+                    }
+
+
+                
+            }
+        }
 
         public void DrawPlayerInfo()
         {
@@ -219,19 +269,20 @@ namespace Computergrafik
 
 
             GL.Disable(EnableCap.Blend);
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 2; i++)
+            {
 
 
                 GL.Enable(EnableCap.Blend);
                 GL.Color3(Color.White);
-          
 
-    
+
+
                 DrawLife(Life[i]);
                 DrawAmmo(Ammo[i]);
                 DrawBoost(Boost[i]);
 
-            
+
 
                 DrawIcon(LifeIcon[i], texLifeIcon);
                 DrawIcon(AmmoIcon[i], texAmmoIcon);
@@ -282,12 +333,12 @@ namespace Computergrafik
             GL.End();
 
         }
-   
-     
+
+
         private void DrawLife(Box2D rect)
         {
             float maler = 1 / (sizeBalken / (rect.SizeX));
-           
+
             texLife.Activate();
             GL.Begin(PrimitiveType.Quads);
             GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
@@ -296,17 +347,18 @@ namespace Computergrafik
             GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
             texLife.Deactivate();
-    
+
         }
         private void DrawAmmo(Box2D rect)
         {
 
-            float maler = 1 / (sizeBalken /(rect.SizeX));
+            float maler = 1 / (sizeBalken / (rect.SizeX));
 
-            if (rect.SizeX < 0.014f) {
+            if (rect.SizeX < 0.014f)
+            {
                 maler = 0;
             }
-                texAmmo.Activate();
+            texAmmo.Activate();
             GL.Begin(PrimitiveType.Quads);
             GL.Begin(PrimitiveType.Quads);
             GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
@@ -315,7 +367,7 @@ namespace Computergrafik
             GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
             texAmmo.Deactivate();
-         
+
         }
         private void DrawBoost(Box2D rect)
         {
@@ -335,32 +387,25 @@ namespace Computergrafik
 
             saveZoneBlueTexture.Activate();
             GL.Begin(PrimitiveType.Quads);
+
             GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
             GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
             GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
             GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
+            GL.Begin(PrimitiveType.Quads);
+            GL.Vertex2(rect.X, rect.Y);
+            GL.Vertex2(rect.MaxX, rect.Y);
+            GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
             saveZoneBlueTexture.Deactivate();
-
-           /* float value = -0.01f;
-            GL.Begin(PrimitiveType.LineLoop);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.X + value, rect.Y + value);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.MaxX - value, rect.Y +value);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.MaxX -value, rect.MaxY -value);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.X +value, rect.MaxY -value);
-            GL.End();*/
         }
         private void DrawPlayerInfoTwo(Box2D rect)
         {
 
             saveZoneRedTexture.Activate();
             GL.Begin(PrimitiveType.Quads);
-            //when using textures we have to set a texture coordinate for each vertex
-            //by using the TexCoord command BEFORE the Vertex command
 
             GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
             GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);

@@ -816,7 +816,7 @@ namespace Computergrafik
                             if (logic.Player[i].Bullets[k].Bbullet.Intersects(this.pplayer))
                             {
                                 logic.Player[i].Bullets.RemoveAt(k);
-                                     sound.doHurt();
+                                sound.doHurt();
                                 life = life - minusLife;
                             }
                         }
