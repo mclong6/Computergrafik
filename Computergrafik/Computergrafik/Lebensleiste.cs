@@ -12,7 +12,7 @@ namespace Computergrafik
         private Texture saveZoneBlueTexture;
         private Texture saveZoneRedTexture;
         float strecker = 0.5f;
-        Sound sound;
+        private Sound sound;
         Box2D playerInfoOne;
         Box2D playerInfoTwo;
         float sizeBalken = 0.28f;
@@ -55,7 +55,7 @@ namespace Computergrafik
 
             saveZoneBlueTexture = TextureLoader.FromBitmap(Resource2.blue_Box);
             saveZoneRedTexture = TextureLoader.FromBitmap(Resource2.red_Box);
-            this.sound = new Sound(); 
+            sound = new ConsoleApplication1.Main.Sound();
             playerInfoOne = model.PlayerInfoOne;
             playerInfoTwo = model.PlayerInfoTwo;
 
