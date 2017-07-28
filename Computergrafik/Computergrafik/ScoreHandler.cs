@@ -13,7 +13,7 @@ namespace Computergrafik
         Player[] players;
         int[] score = new int[2];
 
-        int maxScore = 1;
+        int maxScore = 3;
         int noLife = 0;
         int scorePlus = 1;
         Model model;
