@@ -33,26 +33,46 @@ namespace Computergrafik
         }
        
 
-        public void DrawSaveZone1(Box2D rect)
+        public void DrawSaveZone1(Box2D Rect)
         {
             saveZoneBlueTexture.Activate();
             GL.Begin(PrimitiveType.Quads);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Vertex2(rect.X, rect.MaxY);
+            //when using textures we have to set a texture coordinate for each vertex
+            //by using the TexCoord command BEFORE the Vertex command
+
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(Rect.X, Rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(Rect.MaxX, Rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(Rect.MaxX, Rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(Rect.X, Rect.MaxY);
+            GL.End();
+            GL.Begin(PrimitiveType.Quads);
+            GL.Vertex2(Rect.X, Rect.Y);
+            GL.Vertex2(Rect.MaxX, Rect.Y);
+            GL.Vertex2(Rect.MaxX, Rect.MaxY);
+            GL.Vertex2(Rect.X, Rect.MaxY);
             GL.End();
             saveZoneBlueTexture.Deactivate();
+
+            
         }
 
-        public void DrawSaveZone2(Box2D rect)
+        public void DrawSaveZone2(Box2D Rect)
         {
             saveZoneRedTexture.Activate();
             GL.Begin(PrimitiveType.Quads);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Vertex2(rect.X, rect.MaxY);
+            //when using textures we have to set a texture coordinate for each vertex
+            //by using the TexCoord command BEFORE the Vertex command
+
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(Rect.X, Rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(Rect.MaxX, Rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(Rect.MaxX, Rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(Rect.X, Rect.MaxY);
+            GL.End();
+            GL.Begin(PrimitiveType.Quads);
+            GL.Vertex2(Rect.X, Rect.Y);
+            GL.Vertex2(Rect.MaxX, Rect.Y);
+            GL.Vertex2(Rect.MaxX, Rect.MaxY);
+            GL.Vertex2(Rect.X, Rect.MaxY);
             GL.End();
             saveZoneRedTexture.Deactivate();
 
