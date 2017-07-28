@@ -154,12 +154,13 @@ namespace Computergrafik
             if (GameState == StateStart)
             {
                 lebensleiste.DrawPlayerInfo();
-
+                GL.Enable(EnableCap.Blend);
+                GL.Color3(Color.White);
                 visuals.DrawSaveZone1(model.SaveZone[0]);
                 visuals.DrawSaveZone2(model.SaveZone[1]);
-                GL.Color3(Color.White);
+                
 
-
+                GL.Disable(EnableCap.Blend);
                 for (int i = 0; i < logic.Player[0].Bullets.Count; i++)
                 {
                     logic.Player[0].Bullets[i].DrawBulledOne();
