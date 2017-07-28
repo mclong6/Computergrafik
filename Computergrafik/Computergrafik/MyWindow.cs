@@ -5,6 +5,7 @@ using System.Drawing;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using DMS.OpenGL;
+using ConsoleApplication1.Main;
 
 namespace Computergrafik
 {
@@ -32,6 +33,7 @@ namespace Computergrafik
         private Logic logic;
         private Lebensleiste lebensleiste;
 
+        private Sound sound;
 
 
         /*Hauptmenu*/
@@ -41,16 +43,17 @@ namespace Computergrafik
 
         public MyWindow() {
 
+            this.sound = new Sound();
             this.model              = new Model();
             this.visuals            = new Visuals();
-            this.logic              = new Logic(model);
-
+            this.logic              = new Logic(model, sound);
+           
    
             /*Hauptmenü*/
             this.menu = new StartMenu(model);
 
             /*Lebensmenü*/
-            this.lebensleiste = new Lebensleiste(model);
+            this.lebensleiste = new Lebensleiste(model, sound);
            // gameWindow.WindowState = WindowState.Fullscreen;
             gameWindow.UpdateFrame  += GameWindow_UpdateFrame;
             gameWindow.RenderFrame  += GameWindow_RenderFrame;
