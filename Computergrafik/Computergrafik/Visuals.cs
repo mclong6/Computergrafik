@@ -16,13 +16,16 @@ namespace Computergrafik
 {
     class Visuals
     {
+        private Vector2 pos = new Vector2(1, 1);
+
         private Texture backgroundTexture;
         private Texture tex;
         private Texture saveZoneBlueTexture;
         private Texture saveZoneRedTexture;
-
+        private Box2D newBOX;
         public Visuals()
         {
+            newBOX              = new Box2D(1,1,1,1);
             tex                 = TextureLoader.FromBitmap(Resource2.old_hazard_stripes_texture);
             saveZoneBlueTexture = TextureLoader.FromBitmap(Resource2.blue_Box);
             saveZoneRedTexture  = TextureLoader.FromBitmap(Resource2.red_Box);
@@ -95,24 +98,35 @@ namespace Computergrafik
 
 
 
-        public void DrawPlayerTwo(Box2D Rect, Texture tex) { 
-        
+        public void DrawPlayerTwo(Box2D Rect, Texture tex) {
+
+            pos.X = Rect.CenterX;
+            pos.Y = Rect.CenterY;
+
+            newBOX.SizeX = Rect.SizeX + 0.05f;
+            newBOX.SizeY = Rect.SizeY + 0.05f;
+
+            newBOX.CenterX = pos.X;
+            newBOX.CenterY = pos.Y;
+
+
+
             //the texture has to be enabled before use
             tex.Activate();
             GL.Begin(PrimitiveType.Quads);
             GL.Color3(Color.White);
             //when using textures we have to set a texture coordinate for each vertex
             //by using the TexCoord command BEFORE the Vertex command
-            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(Rect.X, Rect.Y);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(newBOX.X, newBOX.Y);
             GL.Color3(Color.White);
 
-            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(Rect.MaxX, Rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(newBOX.MaxX, newBOX.Y);
             GL.Color3(Color.White);
 
-            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(Rect.MaxX, Rect.MaxY);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(newBOX.MaxX, newBOX.MaxY);
                         GL.Color3(Color.White);
 
-            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(Rect.X, Rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(newBOX.X, newBOX.MaxY);
             GL.End();
             //the texture is disabled, so no other draw calls use this texture
             tex.Deactivate();
