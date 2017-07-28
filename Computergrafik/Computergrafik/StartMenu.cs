@@ -17,7 +17,7 @@ namespace Computergrafik
 
         Box2D startScreen;
         Box2D selectButton;
-
+        private Sound sound;
         Box2D[] menuButton = new Box2D[4];
         private GamePadState currentControllerState;
         private GamePadThumbSticks thumber;
@@ -31,7 +31,7 @@ namespace Computergrafik
 
         public StartMenu(Model model)
         {
-            
+            sound = new Sound();
             menuButton = model.MenuButton;
             selectButton = model.SelectButton;
             startScreen = model.StartScreen;
@@ -65,6 +65,7 @@ namespace Computergrafik
                 if (enter == 1 && !Keyboard.GetState()[Key.Enter] && currentControllerState.Buttons.A == ButtonState.Released)
                 {
                     menuSelection(mywindow);
+                    sound.startGame();
                     enter = 0;
                    
                   

@@ -296,6 +296,10 @@
     <None Include="Resources\blue-Box.png" />
     <None Include="Resources\Balloon Popping.wav" />
     <None Include="Resources\airhorn.WAV" />
+    <None Include="Resources\BoostNew.WAV" />
+    <None Include="Resources\BoostNew1.WAV" />
+    <None Include="Resources\BoostNew2.WAV" />
+    <None Include="Resources\BoostNew3.WAV" />
     <Content Include="Resources\karierter-background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

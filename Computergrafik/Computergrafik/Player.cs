@@ -629,14 +629,15 @@ namespace Computergrafik
         {
             if (pplayer.Intersects(model.Opponent[0]))
             {
+                sound.driveOpponent();
                 speed = 0;
                 pplayer.X = pplayer.X + direcction.X*-0.1f;
                 pplayer.Y = pplayer.Y + direcction.Y * -0.1f;
 
                 pplayer.CenterY = model.SaveZone[playerNr].CenterY;
                 pplayer.CenterX = model.SaveZone[playerNr].CenterX;
-              
 
+               
                 this.life = life - minusLifeOpponent;
                 colisionControl = false;
             }
@@ -644,7 +645,7 @@ namespace Computergrafik
             {
                 
                 speed = speedStandard;
-
+               
                 colisionControl = true;
             }
 

@@ -25,6 +25,7 @@ namespace Computergrafik
         int gameLevel;
 
         private bool doOnce = true;
+        private bool doOnce2 = true;
 
 
         private GameWindow gameWindow = new GameWindow(1024, 1024);
@@ -96,6 +97,7 @@ namespace Computergrafik
             if (GameState == StateMenu)
             {
                 menu.changeMenu(GameState, this);
+                doOnce2 = true;
             }
 
 
@@ -119,6 +121,12 @@ namespace Computergrafik
 
             if(GameState == StateNewGame)
             {
+               
+
+                if(doOnce2 == true) {
+                    sound.endGame();
+                    doOnce2 = false;
+                }
                 NewGameSetting();
                 logic.Player[0].Shootcontrol = true;
                 logic.Player[1].Shootcontrol = true;

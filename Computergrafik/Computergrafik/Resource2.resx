@@ -346,4 +346,16 @@
   <data name="UFO_Takeoff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\UFO_Takeoff.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="BoostNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BoostNew.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BoostNew1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BoostNew1.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BoostNew2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BoostNew2.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BoostNew3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BoostNew3.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

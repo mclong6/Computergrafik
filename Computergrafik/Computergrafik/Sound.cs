@@ -41,9 +41,6 @@ namespace Computergrafik
         public void ShootLaserOne()
         {
             soundEngine.PlaySound(Resource2.laser_Eins);
-        
-            //var memStream = new MemoryStream(Resource2.laser_Eins);
-             //soundEngine.PlaySound(memStream);
         }
 
       
@@ -57,14 +54,33 @@ namespace Computergrafik
 
         public void doBoost()
         {
-         //   soundEngine.PlaySound(Resource2.boost);
-          
+            // soundEngine.PlaySound(Resource2.UFO_Takeoff);
+            soundEngine.PlaySound(Resource2.BoostNew3);
+
+        }
+
+        public void endGame()
+        {
+         //   soundEngine.PlaySound(Resource2.Sports_Crowd);
+        }
+
+
+
+        public void startGame()
+        {
+            soundEngine.PlaySound(Resource2.airhorn);
+
+        }
+        public void driveOpponent()
+        {
+            soundEngine.PlaySound(Resource2.Balloon_Popping);
+
         }
 
         public void doHurt()
         {
-            soundEngine.PlaySound(Resource2.hurt);
-        
+            //soundEngine.PlaySound(Resource2.hurt);
+            soundEngine.PlaySound(Resource2.Metal_Clang);
         }
 
         protected override void DisposeResources()
