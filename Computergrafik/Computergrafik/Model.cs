@@ -72,30 +72,30 @@ namespace Computergrafik
         {
             if (level == 0)
             {             /*Level 1*/
-                obstacles[0] = new Box2D(-0.6f, -1.0f, 0.2f, 0.4f);
-                obstacles[1] = new Box2D(0.3f, -0.7f, 0.1f, 0.2f);
-                obstacles[2] = new Box2D(0.2f, 0.5f, 0.1f, 0.2f);
-                obstacles[3] = new Box2D(-0.5f, 0.2f, 0.05f, 0.2f);
+                obstacles[0] = new Box2D(-0.6f, -1.0f, 0.3f, 0.4f);
+                obstacles[1] = new Box2D(0.3f, -0.7f, 0.2f, 0.2f);
+                obstacles[2] = new Box2D(0.2f, 0.5f, 0.3f, 0.2f);
+                obstacles[3] = new Box2D(-0.5f, 0.2f, 0.2f, 0.2f);
                 obstacles[4] = new Box2D(-0.1f, -0.2f, 0.3f, 0.3f);
             }
 
             if (level == 1)
             {
                 /*Level 2*/
-                obstacles[0] = new Box2D(-0.4f, -1.0f, 0.1f, 0.1f);
-                obstacles[1] = new Box2D(0.6f, -0.7f, 0.1f, 0.1f);
-                obstacles[2] = new Box2D(0.4f, 0.4f, 0.1f, 0.1f);
-                obstacles[3] = new Box2D(-0.5f, 0.3f, 0.1f, 0.1f);
-                obstacles[4] = new Box2D(-0.1f, -0.2f, 0.1f, 0.1f);
+                obstacles[0] = new Box2D(-0.4f, -1.0f, 0.3f, 0.3f);
+                obstacles[1] = new Box2D(0.6f, -0.7f, 0.3f, 0.3f);
+                obstacles[2] = new Box2D(0.4f, 0.4f, 0.3f, 0.3f);
+                obstacles[3] = new Box2D(-0.5f, 0.3f, 0.3f, 0.3f);
+                obstacles[4] = new Box2D(-0.1f, -0.2f, 0.3f, 0.3f);
             }
             if (level == 2)
             {
                 /*Level 3*/
-                obstacles[0] = new Box2D(-0.4f, -1.0f, 0.1f, 0.1f);
-                obstacles[1] = new Box2D(0.6f, -0.7f, 0.1f, 0.1f);
-                obstacles[2] = new Box2D(0.4f, 0.4f, 0.01f, 0.5f);
-                obstacles[3] = new Box2D(-0.4f, 0.4f, 0.1f, 0.1f);
-                obstacles[4] = new Box2D(-0.1f, -0.2f, 0.01f, 0.7f);
+                obstacles[0] = new Box2D(-0.4f, -1.0f, 0.2f, 0.2f);
+                obstacles[1] = new Box2D(0.6f, -0.7f, 0.2f, 0.2f);
+                obstacles[2] = new Box2D(0.4f, 0.4f, 0.08f, 0.6f);
+                obstacles[3] = new Box2D(-0.4f, 0.4f, 0.2f, 0.2f);
+                obstacles[4] = new Box2D(-0.1f, -0.2f, 0.08f, 0.8f);
             }
         }
       
