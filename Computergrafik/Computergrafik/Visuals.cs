@@ -18,56 +18,41 @@ namespace Computergrafik
     {
         private Texture backgroundTexture;
         private Texture tex;
+        private Texture saveZoneBlueTexture;
+        private Texture saveZoneRedTexture;
+
         public Visuals()
         {
-            tex = TextureLoader.FromBitmap(Resource2.old_hazard_stripes_texture);
-
-            backgroundTexture = TextureLoader.FromBitmap(Resource2.karierter_background);
+            tex                 = TextureLoader.FromBitmap(Resource2.old_hazard_stripes_texture);
+            saveZoneBlueTexture = TextureLoader.FromBitmap(Resource2.blue_Box);
+            saveZoneRedTexture  = TextureLoader.FromBitmap(Resource2.red_Box);
+            backgroundTexture   = TextureLoader.FromBitmap(Resource2.karierter_background);
         }
        
 
         public void DrawSaveZone1(Box2D rect)
         {
-
+            saveZoneBlueTexture.Activate();
             GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.Blue);
             GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Blue);
             GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Blue);
             GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Blue);
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
+            saveZoneBlueTexture.Deactivate();
         }
 
         public void DrawSaveZone2(Box2D rect)
         {
-
+            saveZoneRedTexture.Activate();
             GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.Red);
             GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Red);
             GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Red);
             GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Red);
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
+            saveZoneRedTexture.Deactivate();
 
-
-            float kleiner = 0.005f;
-       
-            GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.Empty);
-            GL.Vertex2(rect.X + kleiner, rect.Y +kleiner);
-            GL.Color3(Color.Empty);
-            GL.Vertex2(rect.MaxX - kleiner, rect.Y + kleiner);
-            GL.Color3(Color.Empty);
-            GL.Vertex2(rect.MaxX - kleiner, rect.MaxY - kleiner);
-            GL.Color3(Color.Empty);
-            GL.Vertex2(rect.X + kleiner, rect.MaxY - kleiner);
-            GL.End();
         }
 
         public void DrawPlayerOne(Box2D Rect, Texture tex)

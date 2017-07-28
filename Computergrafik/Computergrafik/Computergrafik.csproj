@@ -263,6 +263,7 @@
     <None Include="Resources\9b.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\red-Box.png" />
     <None Include="Resources\lifeIcon.png" />
     <None Include="Resources\vest-bar.png" />
     <None Include="Resources\reload-bar.png" />
@@ -275,6 +276,7 @@
     <None Include="Resources\jet-bar.png" />
     <None Include="Resources\ammoIcon.png" />
     <None Include="Resources\boostIcon.png" />
+    <None Include="Resources\blue-Box.png" />
     <Content Include="Resources\karierter-background.jpg" />
     <None Include="Resources\old-hazard-stripes-texture.jpg" />
   </ItemGroup>
