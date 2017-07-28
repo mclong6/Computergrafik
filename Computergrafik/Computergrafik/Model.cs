@@ -57,14 +57,14 @@ namespace Computergrafik
             {
                 float xTerm = 0.7f * minus;
                 float xTerm2 = -0.975f + index * 1.85f;
-                player[index] = new Box2D(xTerm2, -0.05f, 0.1f, 0.1f);
+                player[index] = new Box2D(xTerm2, 0f-0.03f, 0.06f, 0.06f);
               
                 minus = minus * minus;
             }
 
             for (int i = 0; i < saveZone.Length; i++)
             {
-                saveZone[i] = new Box2D(-1.0f + i * 1.85f, -0.1f, 0.15f, 0.2f);
+                saveZone[i] = new Box2D(-1.0f + i * 1.8f,-0.1f, 0.2f, 0.2f);
             }
 
         }

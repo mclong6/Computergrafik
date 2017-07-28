@@ -633,8 +633,8 @@ namespace Computergrafik
                 pplayer.X = pplayer.X + direcction.X*-0.1f;
                 pplayer.Y = pplayer.Y + direcction.Y * -0.1f;
 
-                pplayer.Y = model.SaveZone[playerNr].Y + 0.05f;
-                pplayer.X = model.SaveZone[playerNr].X + 0.025f;
+                pplayer.CenterY = model.SaveZone[playerNr].CenterY;
+                pplayer.CenterX = model.SaveZone[playerNr].CenterX;
               
 
                 this.life = life - minusLifeOpponent;
