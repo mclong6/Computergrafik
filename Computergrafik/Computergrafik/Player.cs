@@ -1,4 +1,5 @@
 ﻿using Computergrafik;
+using ConsoleApplication1.Main;
 using DMS.Geometry;
 using DMS.OpenGL;
 using OpenTK;
@@ -24,6 +25,8 @@ namespace Computergrafik
         private float speed = 0.006f;
         private Box2D player;
         private Box2D gun;
+
+        private Sound sound;
         private int angle;
         private Texture[] texture = new Texture[24];
         private Texture[] texture1 = new Texture[24];
@@ -68,7 +71,7 @@ namespace Computergrafik
 
         public Player(Model model,Logic logic, int playerNr) {
 
-            
+            sound = new ConsoleApplication1.Main.Sound();
             this.model          = model;
             this.PlayerNr       = playerNr;
             this.pplayer        = model.Player[playerNr];
@@ -710,6 +713,7 @@ namespace Computergrafik
         {
             if (k == true)     // controler
             {
+        
                 if (currentControllerState.IsConnected)
                 {
 
@@ -720,6 +724,7 @@ namespace Computergrafik
 
                     if (currentControllerState.Triggers.Left == 0.0f)
                     {
+                     
                         shootcontrol = true;
                     }
                 }
@@ -753,6 +758,7 @@ namespace Computergrafik
             {
                 this.ammo = ammo - minusAmmo;
                 shoot(gunDirection.X, gunDirection.Y);
+                sound.ShootLaserOne();
             }
         }
 

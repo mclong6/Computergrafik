@@ -48,12 +48,22 @@ namespace DMS.Sound
 			}
 		}
 
-		/// <summary>
-		/// Plays sound from a stream; you get unbuffered access if you usse a file stream 
-		/// and buffered access if you use a memory stream
-		/// </summary>
-		/// <param name="stream"></param>
-		public void PlaySound(Stream stream, bool looped = false)
+        public void PlaySound(object laser_Zwei)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlaySound(byte[] laser_Zwei)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Plays sound from a stream; you get unbuffered access if you usse a file stream 
+        /// and buffered access if you use a memory stream
+        /// </summary>
+        /// <param name="stream"></param>
+        public void PlaySound(Stream stream, bool looped = false)
 		{
 			WaveStream reader = FindCorrectWaveStream(stream);
 			if (looped)

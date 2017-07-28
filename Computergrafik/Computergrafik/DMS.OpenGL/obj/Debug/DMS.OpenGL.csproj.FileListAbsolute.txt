@@ -31,3 +31,5 @@ C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.O
 C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\obj\Debug\DMS.OpenGL.csprojResolveAssemblyReference.cache
 C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\obj\Debug\DMS.OpenGL.dll
 C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\obj\Debug\DMS.OpenGL.pdb
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\bin\Debug\NAudio.dll
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.OpenGL\bin\Debug\NAudio.xml

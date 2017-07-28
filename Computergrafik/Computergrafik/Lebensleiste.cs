@@ -1,4 +1,5 @@
-﻿using DMS.Geometry;
+﻿using ConsoleApplication1.Main;
+using DMS.Geometry;
 using DMS.OpenGL;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
@@ -9,7 +10,7 @@ namespace Computergrafik
     class Lebensleiste
     {
         float strecker = 0.5f;
-
+        private Sound sound = new Sound();
         Box2D playerInfoOne;
         Box2D playerInfoTwo;
         float sizeBalken = 0.28f;
@@ -144,16 +145,21 @@ namespace Computergrafik
             /*Leert die Anzeige*/
             if (nachladen[num] == false)
             {
+              
                 Ammo[num].SizeX = (ammoDazu * currentAmmo);
                 
             }
           
             if (nachladen[num] == true) {
                  Ammo[num].SizeX = Ammo[num].SizeX + ammoLoad;
+
+              
+
                 if (Ammo[num].SizeX > sizeBalken)
                 {
                     player.Ammo = maxShoot;
                     nachladen[num] = false;
+                    sound.ReloadGun();
                 }
                
 

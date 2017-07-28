@@ -263,6 +263,11 @@
     <None Include="Resources\9b.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ReloadGun.wav" />
+    <None Include="Resources\Laser Zwei.wav" />
+    <None Include="Resources\Laser Eins .wav" />
+    <None Include="Resources\Laser Eins.mp3" />
+    <None Include="Resources\Laser Zwei.mp3" />
     <None Include="Resources\lifeIcon.png" />
     <None Include="Resources\vest-bar.png" />
     <None Include="Resources\reload-bar.png" />

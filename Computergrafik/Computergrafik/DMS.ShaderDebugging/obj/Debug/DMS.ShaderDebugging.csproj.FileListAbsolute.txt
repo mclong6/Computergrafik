@@ -39,3 +39,5 @@ C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.S
 C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.ShaderDebugging\obj\Debug\DMS.ShaderDebugging.csproj.GenerateResource.Cache
 C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.ShaderDebugging\obj\Debug\DMS.ShaderDebugging.dll
 C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.ShaderDebugging\obj\Debug\DMS.ShaderDebugging.pdb
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.ShaderDebugging\bin\Debug\NAudio.dll
+C:\Users\Leumas\Source\Repos\Computergrafik2\Computergrafik\Computergrafik\DMS.ShaderDebugging\bin\Debug\NAudio.xml
