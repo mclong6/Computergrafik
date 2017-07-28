@@ -54,12 +54,11 @@ namespace Computergrafik
             /*Boxen fürs Spiel*/
             opponent[0]     = new Box2D(0.0f, 0.7f, 0.15f, 0.15f);
 
-            for (int i = 0; i < saveZone.Length; i++)
-            {
-                saveZone[i] = new Box2D(-1.0f + i * 1.7f,-0.15f, 0.3f, 0.3f);
-            }
+            saveZone[0] = new Box2D(-1.02f,-0.15f, 0.3f, 0.3f);
+            saveZone[1] = new Box2D(-0.98f + 1.7f, -0.15f, 0.3f, 0.3f);
 
-            for(int index = 0; index<2; index++)
+
+            for (int index = 0; index<2; index++)
             {
                 
                 float xTerm2 = saveZone[index].CenterX;
