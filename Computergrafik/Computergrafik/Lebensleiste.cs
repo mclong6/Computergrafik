@@ -1,4 +1,4 @@
-﻿using ConsoleApplication1.Main;
+﻿
 using DMS.Geometry;
 using DMS.OpenGL;
 using OpenTK.Graphics.OpenGL;
@@ -162,7 +162,7 @@ namespace Computergrafik
 
                 if (Ammo[num].SizeX > sizeBalken)
                 {
-                    this.sound.ReloadTheGun();
+                    sound.ReloadTheGun();
                     player.Ammo = maxShoot;
                     nachladen[num] = false;
                   

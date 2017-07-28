@@ -1,5 +1,5 @@
 ﻿using Computergrafik;
-using ConsoleApplication1.Main;
+
 using DMS.Geometry;
 using DMS.OpenGL;
 using OpenTK;
