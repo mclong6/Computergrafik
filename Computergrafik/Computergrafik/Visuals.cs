@@ -87,8 +87,8 @@ namespace Computergrafik
             pos.X = Rect.CenterX;
             pos.Y = Rect.CenterY;
 
-            newBOX.SizeX = Rect.SizeX + 0.08f;
-            newBOX.SizeY = Rect.SizeY + 0.08f;
+            newBOX.SizeX = Rect.SizeX + 0.04f;
+            newBOX.SizeY = Rect.SizeY + 0.04f;
 
             newBOX.CenterX = pos.X;
             newBOX.CenterY = pos.Y;
@@ -135,8 +135,8 @@ namespace Computergrafik
             pos.X = Rect.CenterX;
             pos.Y = Rect.CenterY;
 
-            newBOX.SizeX = Rect.SizeX + 0.08f;
-            newBOX.SizeY = Rect.SizeY + 0.08f;
+            newBOX.SizeX = Rect.SizeX + 0.04f;
+            newBOX.SizeY = Rect.SizeY + 0.04f;
 
             newBOX.CenterX = pos.X;
             newBOX.CenterY = pos.Y;
