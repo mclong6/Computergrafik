@@ -11,7 +11,7 @@ namespace Computergrafik
     {
         const int StateMenu = 0;
         const int StateStart = 1;
-
+        int enter = 0;
         int joyStickUp = 0;
         int joyStickDown = 0;
 
@@ -49,7 +49,15 @@ namespace Computergrafik
                 /*currentState.Buttons.LeftStick == ButtonState.Pressed*/
                 if (Keyboard.GetState()[Key.Enter] || currentControllerState.Buttons.A == ButtonState.Pressed)
                 {
+                    enter = 1;
+                }
+                if (enter == 1 && !Keyboard.GetState()[Key.Enter] && currentControllerState.Buttons.A == ButtonState.Released)
+                {
                     menuSelection(mywindow);
+                    enter = 0;
+                   
+                  
+
                 }
 
 
