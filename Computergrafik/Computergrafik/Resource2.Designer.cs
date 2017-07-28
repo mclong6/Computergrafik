@@ -563,9 +563,9 @@ namespace Computergrafik {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap beenden {
+        internal static System.Drawing.Bitmap Big_Cheese {
             get {
-                object obj = ResourceManager.GetObject("beenden", resourceCulture);
+                object obj = ResourceManager.GetObject("Big_Cheese", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -573,9 +573,9 @@ namespace Computergrafik {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Big_Cheese {
+        internal static System.Drawing.Bitmap blue_Box {
             get {
-                object obj = ResourceManager.GetObject("Big_Cheese", resourceCulture);
+                object obj = ResourceManager.GetObject("blue_Box", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -621,54 +621,6 @@ namespace Computergrafik {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Laser_Eins {
-            get {
-                return ResourceManager.GetStream("Laser_Eins", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Laser_Zwei {
-            get {
-                return ResourceManager.GetStream("Laser_Zwei", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap level1 {
-            get {
-                object obj = ResourceManager.GetObject("level1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Level2 {
-            get {
-                object obj = ResourceManager.GetObject("Level2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap level3 {
-            get {
-                object obj = ResourceManager.GetObject("level3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap lifeIcon {
@@ -691,9 +643,9 @@ namespace Computergrafik {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap old_hazard_stripes_texture_light {
+        internal static System.Drawing.Bitmap red_Box {
             get {
-                object obj = ResourceManager.GetObject("old_hazard_stripes_texture_light", resourceCulture);
+                object obj = ResourceManager.GetObject("red_Box", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -705,15 +657,6 @@ namespace Computergrafik {
             get {
                 object obj = ResourceManager.GetObject("reload_bar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream ReloadGun {
-            get {
-                return ResourceManager.GetStream("ReloadGun", resourceCulture);
             }
         }
     }
