@@ -46,7 +46,7 @@ namespace Computergrafik
         Texture texAmmoIcon;
         Texture texBoostIcon;
 
-
+        //hallo änderung
       
 
 
@@ -57,9 +57,7 @@ namespace Computergrafik
             playerInfoOne = model.PlayerInfoOne;
             playerInfoTwo = model.PlayerInfoTwo;
 
-            texLife = Tex;
-            texAmmo;
-            texBoost;
+          
 
 
             texLifeIcon = TextureLoader.FromBitmap(Resource2.lifeIcon);
