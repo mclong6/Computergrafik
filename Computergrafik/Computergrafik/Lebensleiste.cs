@@ -15,6 +15,9 @@ namespace Computergrafik
         private Sound sound;
         Box2D playerInfoOne;
         Box2D playerInfoTwo;
+
+        Box2D playerInfoOneDrin;
+        Box2D playerInfoTwoDrin;
         float sizeBalken = 0.28f;
         float sizeBalkenLeer = 0.279f;
 
@@ -70,6 +73,8 @@ namespace Computergrafik
             texAmmoIcon= TextureLoader.FromBitmap(Resource2.ammoIcon);
             texBoostIcon = TextureLoader.FromBitmap(Resource2.boostIcon);
 
+            playerInfoOneDrin = new Box2D(-1.0f, 0.7f, 0.4f, 0.3f);
+            playerInfoTwoDrin = new Box2D(0.6f, 0.7f, 0.4f, 0.3f);
 
             nachladen[0] = false;
             nachladen[1] = false;
@@ -200,8 +205,8 @@ namespace Computergrafik
         {
             GL.Enable(EnableCap.Blend);
             GL.Color3(Color.White);
-            DrawPlayerInfoOne(playerInfoOne);
-            DrawPlayerInfoTwo(playerInfoTwo);
+            DrawPlayerInfoOne(playerInfoOneDrin);
+            DrawPlayerInfoTwo(playerInfoTwoDrin);
 
             GL.Disable(EnableCap.Blend);
             for (int i = 0; i < 2; i++)
@@ -330,17 +335,24 @@ namespace Computergrafik
 
             saveZoneBlueTexture.Activate();
             GL.Begin(PrimitiveType.Quads);
-            //when using textures we have to set a texture coordinate for each vertex
-            //by using the TexCoord command BEFORE the Vertex command
-
             GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
             GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
             GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
             GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
-
-            //the texture is disabled, so no other draw calls use this texture
             saveZoneBlueTexture.Deactivate();
+
+           /* float value = -0.01f;
+            GL.Begin(PrimitiveType.LineLoop);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.X + value, rect.Y + value);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.MaxX - value, rect.Y +value);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.MaxX -value, rect.MaxY -value);
+            GL.Color3(Color.Black);
+            GL.Vertex2(rect.X +value, rect.MaxY -value);
+            GL.End();*/
         }
         private void DrawPlayerInfoTwo(Box2D rect)
         {
