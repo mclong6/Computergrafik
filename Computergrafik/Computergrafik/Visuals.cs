@@ -123,8 +123,8 @@ namespace Computergrafik
             pos.X = Rect.CenterX;
             pos.Y = Rect.CenterY;
 
-            newBOX.SizeX = Rect.SizeX + 0.05f;
-            newBOX.SizeY = Rect.SizeY + 0.05f;
+            newBOX.SizeX = Rect.SizeX + 0.08f;
+            newBOX.SizeY = Rect.SizeY + 0.08f;
 
             newBOX.CenterX = pos.X;
             newBOX.CenterY = pos.Y;
@@ -160,20 +160,7 @@ namespace Computergrafik
         public void DrawObstacle(Box2D rect)
         {
 
-            GL.Begin(PrimitiveType.Quads);
-
-            GL.Vertex2(rect.X, rect.Y);
-          
-            GL.Vertex2(rect.MaxX, rect.Y);
-           
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
-            float value = 0.025f;
-
-            GL.Begin(PrimitiveType.Quads);
-            
-            GL.End();
+            float value = -0.02f;
 
 
             tex.Activate();
