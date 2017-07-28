@@ -54,6 +54,20 @@ namespace Computergrafik
             GL.Color3(Color.Red);
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
+
+
+            float kleiner = 0.005f;
+       
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.Empty);
+            GL.Vertex2(rect.X + kleiner, rect.Y +kleiner);
+            GL.Color3(Color.Empty);
+            GL.Vertex2(rect.MaxX - kleiner, rect.Y + kleiner);
+            GL.Color3(Color.Empty);
+            GL.Vertex2(rect.MaxX - kleiner, rect.MaxY - kleiner);
+            GL.Color3(Color.Empty);
+            GL.Vertex2(rect.X + kleiner, rect.MaxY - kleiner);
+            GL.End();
         }
 
         public void DrawPlayerOne(Box2D Rect, Texture tex)
