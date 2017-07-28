@@ -10,7 +10,7 @@ namespace Computergrafik
     class Lebensleiste
     {
         float strecker = 0.5f;
-        private Sound sound = new Sound();
+        private Sound sound;
         Box2D playerInfoOne;
         Box2D playerInfoTwo;
         float sizeBalken = 0.28f;
@@ -50,7 +50,7 @@ namespace Computergrafik
 
         public Lebensleiste(Model model)
         {
-            
+            this.sound = new Sound(); 
             playerInfoOne = model.PlayerInfoOne;
             playerInfoTwo = model.PlayerInfoTwo;
 
@@ -157,9 +157,11 @@ namespace Computergrafik
 
                 if (Ammo[num].SizeX > sizeBalken)
                 {
+                    sound.ReloadTheGun();
                     player.Ammo = maxShoot;
                     nachladen[num] = false;
-                    sound.ReloadGun();
+                  
+                 
                 }
                
 

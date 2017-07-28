@@ -672,7 +672,7 @@ namespace Computergrafik
 
             if (currentControllerState.Triggers.Right >= 0.9f && this.boost >=0)
             {
-                
+                sound.doBoost();
                 this.boost = boost - minusBoost;
                 if (this.boost > 0)
                 {
@@ -758,7 +758,7 @@ namespace Computergrafik
             {
                 this.ammo = ammo - minusAmmo;
                 shoot(gunDirection.X, gunDirection.Y);
-                sound.ShootLaserOne();
+               
             }
         }
 
@@ -768,7 +768,8 @@ namespace Computergrafik
 
             bullet = new Bullet(x, y, this);
             Bullets.Add(bullet);
-            
+            sound.ShootLaserOne();
+
             // Thread bulledThread = new Thread(bullet.fligh);
             // bulledThread.Start();
 
@@ -800,6 +801,7 @@ namespace Computergrafik
                         if (logic.Player[i].Bullets[j].Bbullet.Intersects(model.Opponent[0]))
                         {
                             logic.Player[i].Bullets.RemoveAt(j);
+                           
                         }
                     }
                 }
@@ -814,6 +816,7 @@ namespace Computergrafik
                             if (logic.Player[i].Bullets[k].Bbullet.Intersects(this.pplayer))
                             {
                                 logic.Player[i].Bullets.RemoveAt(k);
+                                     sound.doHurt();
                                 life = life - minusLife;
                             }
                         }

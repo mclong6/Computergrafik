@@ -38,28 +38,28 @@ namespace ConsoleApplication1.Main
             //soundEngine.PlaySound(memStream);
         }
 
-        public void Lost()
-        {
-        }
-
-        public void Shoot()
-        {
-            //   soundEngine.PlaySound(Resourcen.laser);
-        }
         public void ShootLaserOne()
         {
               soundEngine.PlaySound(Resource2.Laser_Eins);
         }
 
-        public void ShootLaserTwo()
+      
+        public void ReloadTheGun()
         {
-            soundEngine.PlaySound(Resource2.Laser_Zwei);
-        }
-        public void ReloadGun()
-        {
-            soundEngine.PlaySound(Resource2.Laser_Zwei);
+            soundEngine.PlaySound(Resource2.ReloadGun);
         }
 
+       
+
+        public void doBoost()
+        {
+            soundEngine.PlaySound(Resource2.Boost);
+        }
+
+        public void doHurt()
+        {
+            soundEngine.PlaySound(Resource2.Hurt);
+        }
 
         protected override void DisposeResources()
         {
