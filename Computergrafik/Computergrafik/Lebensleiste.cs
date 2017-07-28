@@ -9,8 +9,10 @@ namespace Computergrafik
 {
     class Lebensleiste
     {
+        private Texture saveZoneBlueTexture;
+        private Texture saveZoneRedTexture;
         float strecker = 0.5f;
-        private Sound sound;
+        Sound sound;
         Box2D playerInfoOne;
         Box2D playerInfoTwo;
         float sizeBalken = 0.28f;
@@ -50,6 +52,9 @@ namespace Computergrafik
 
         public Lebensleiste(Model model)
         {
+
+            saveZoneBlueTexture = TextureLoader.FromBitmap(Resource2.blue_Box);
+            saveZoneRedTexture = TextureLoader.FromBitmap(Resource2.red_Box);
             this.sound = new Sound(); 
             playerInfoOne = model.PlayerInfoOne;
             playerInfoTwo = model.PlayerInfoTwo;
@@ -157,7 +162,7 @@ namespace Computergrafik
 
                 if (Ammo[num].SizeX > sizeBalken)
                 {
-                    sound.ReloadTheGun();
+                    this.sound.ReloadTheGun();
                     player.Ammo = maxShoot;
                     nachladen[num] = false;
                   
@@ -193,8 +198,12 @@ namespace Computergrafik
 
         public void DrawPlayerInfo()
         {
+            GL.Enable(EnableCap.Blend);
+            GL.Color3(Color.White);
             DrawPlayerInfoOne(playerInfoOne);
             DrawPlayerInfoTwo(playerInfoTwo);
+
+            GL.Disable(EnableCap.Blend);
             for (int i = 0; i < 2; i++)
             {
                 DrawW(LifeW[i]);
@@ -319,53 +328,40 @@ namespace Computergrafik
         private void DrawPlayerInfoOne(Box2D rect)
         {
 
-
+            saveZoneBlueTexture.Activate();
             GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.Blue);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Blue);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Blue);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Blue);
-            GL.Vertex2(rect.X, rect.MaxY);
+            //when using textures we have to set a texture coordinate for each vertex
+            //by using the TexCoord command BEFORE the Vertex command
+
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
 
-            GL.Begin(PrimitiveType.LineLoop);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Black);
-            GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
+            //the texture is disabled, so no other draw calls use this texture
+            saveZoneBlueTexture.Deactivate();
         }
         private void DrawPlayerInfoTwo(Box2D rect)
         {
 
+            saveZoneRedTexture.Activate();
             GL.Begin(PrimitiveType.Quads);
-            GL.Color3(Color.Green);
-            GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Green);
-            GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Green);
-            GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Green);
-            GL.Vertex2(rect.X, rect.MaxY);
-            GL.End();
+            //when using textures we have to set a texture coordinate for each vertex
+            //by using the TexCoord command BEFORE the Vertex command
 
-            GL.Begin(PrimitiveType.LineLoop);
-            GL.Color3(Color.Black);
+            GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(rect.X, rect.Y);
+            GL.TexCoord2(1.0f, 0.0f); GL.Vertex2(rect.MaxX, rect.Y);
+            GL.TexCoord2(1.0f, 1.0f); GL.Vertex2(rect.MaxX, rect.MaxY);
+            GL.TexCoord2(0.0f, 1.0f); GL.Vertex2(rect.X, rect.MaxY);
+            GL.End();
+            GL.Begin(PrimitiveType.Quads);
             GL.Vertex2(rect.X, rect.Y);
-            GL.Color3(Color.Black);
             GL.Vertex2(rect.MaxX, rect.Y);
-            GL.Color3(Color.Black);
             GL.Vertex2(rect.MaxX, rect.MaxY);
-            GL.Color3(Color.Black);
             GL.Vertex2(rect.X, rect.MaxY);
             GL.End();
+            saveZoneRedTexture.Deactivate();
         }
     }
 }
