@@ -553,9 +553,9 @@ namespace Computergrafik {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ammo {
+        internal static System.Drawing.Bitmap ammoIcon {
             get {
-                object obj = ResourceManager.GetObject("ammo", resourceCulture);
+                object obj = ResourceManager.GetObject("ammoIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -573,29 +573,9 @@ namespace Computergrafik {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fire_bar {
+        internal static System.Drawing.Bitmap boostIcon {
             get {
-                object obj = ResourceManager.GetObject("fire_bar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap fire_bar_r {
-            get {
-                object obj = ResourceManager.GetObject("fire_bar_r", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap health {
-            get {
-                object obj = ResourceManager.GetObject("health", resourceCulture);
+                object obj = ResourceManager.GetObject("boostIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -606,16 +586,6 @@ namespace Computergrafik {
         internal static System.Drawing.Bitmap health_bar {
             get {
                 object obj = ResourceManager.GetObject("health_bar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap jet {
-            get {
-                object obj = ResourceManager.GetObject("jet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -643,6 +613,16 @@ namespace Computergrafik {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lifeIcon {
+            get {
+                object obj = ResourceManager.GetObject("lifeIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap old_hazard_stripes_texture {
             get {
                 object obj = ResourceManager.GetObject("old_hazard_stripes_texture", resourceCulture);
@@ -656,16 +636,6 @@ namespace Computergrafik {
         internal static System.Drawing.Bitmap reload_bar {
             get {
                 object obj = ResourceManager.GetObject("reload_bar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap vest_bar {
-            get {
-                object obj = ResourceManager.GetObject("vest_bar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
