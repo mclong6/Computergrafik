@@ -199,7 +199,7 @@ namespace Computergrafik
 
             GL.Begin(PrimitiveType.Polygon);
             GL.Color3(Color.OrangeRed);
-            float radiusBig = radius + 0.03f;
+            float radiusBig = radius + 0.04f;
 
             for (float alpha = 0.0f; alpha < 2 * Math.PI; alpha += 0.1f * (float)Math.PI)
                 {
@@ -211,7 +211,7 @@ namespace Computergrafik
             GL.End();
             GL.Begin(PrimitiveType.Polygon);
             GL.Color3(Color.DarkSlateGray);
-            float radiusSmall = radius + 0.02f;
+            float radiusSmall = radius + 0.03f;
             for (float alpha = 0.0f; alpha < 2 * Math.PI; alpha += 0.1f * (float)Math.PI)
             {
                 float x = radiusSmall * (float)Math.Cos(alpha);

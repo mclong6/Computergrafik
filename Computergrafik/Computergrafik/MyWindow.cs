@@ -173,18 +173,14 @@ namespace Computergrafik
                     logic.Player[1].Bullets[i].DrawBulledTow();
                 }
 
-                visuals.DrawOpponent(model.Opponent[0].CenterX, model.Opponent[0].CenterY, 0.5f * model.Opponent[0].SizeX);
-
-
                 for (int i = 0; i < model.Obstacles.Length; i++)
                 {
 
                     visuals.DrawObstacle(model.Obstacles[i]);
                 }
 
-
+                visuals.DrawOpponent(model.Opponent[0].CenterX, model.Opponent[0].CenterY, 0.5f * model.Opponent[0].SizeX);
                 GL.Enable(EnableCap.Blend);
-
 
                 GL.Color3(Color.White);
 
