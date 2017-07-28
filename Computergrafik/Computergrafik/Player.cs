@@ -69,9 +69,9 @@ namespace Computergrafik
      
 
 
-        public Player(Model model,Logic logic, int playerNr) {
+        public Player(Model model,Logic logic, int playerNr, Sound psound) {
 
-            sound = new ConsoleApplication1.Main.Sound();
+            sound = psound;
             this.model          = model;
             this.PlayerNr       = playerNr;
             this.pplayer        = model.Player[playerNr];

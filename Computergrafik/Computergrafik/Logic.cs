@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApplication1.Main;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,11 @@ namespace Computergrafik
         // Hurt hurt;
     
 
-        public Logic(Model model) {
+        public Logic(Model model, Sound psound) {
 
             this.model = model;
-            this.Player[0] = new Player(model,this,0);
-            this.Player[1] = new Player(model,this,1);
+            this.Player[0] = new Player(model,this,0, psound);
+            this.Player[1] = new Player(model,this,1, psound);
             this.opponent[0] = new Opponent(model, this);
 
             scorehandler = new ScoreHandler(player, model);

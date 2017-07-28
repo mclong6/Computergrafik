@@ -50,12 +50,12 @@ namespace Computergrafik
         Texture texBoostIcon;
 
 
-        public Lebensleiste(Model model)
+        public Lebensleiste(Model model, Sound psound)
         {
 
             saveZoneBlueTexture = TextureLoader.FromBitmap(Resource2.blue_Box);
             saveZoneRedTexture = TextureLoader.FromBitmap(Resource2.red_Box);
-            sound = new ConsoleApplication1.Main.Sound();
+            sound = psound;
             playerInfoOne = model.PlayerInfoOne;
             playerInfoTwo = model.PlayerInfoTwo;
 
