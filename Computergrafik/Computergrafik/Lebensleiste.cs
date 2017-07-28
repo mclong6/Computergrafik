@@ -51,9 +51,9 @@ namespace Computergrafik
             playerInfoOne = model.PlayerInfoOne;
             playerInfoTwo = model.PlayerInfoTwo;
 
-            texLife = Tex;
-            texAmmo;
-            texBoost;
+          //  texLife = Tex;
+          //  texAmmo;
+          //  texBoost;
 
             nachladen[0] = false;
             nachladen[1] = false;
