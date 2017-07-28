@@ -12,7 +12,7 @@ using DMS.OpenGL;
 using System.Drawing;
 using Computergrafik;
 
-namespace ConsoleApplication1.Main
+namespace Computergrafik
 {
 
    
@@ -33,32 +33,38 @@ namespace ConsoleApplication1.Main
 
         public void DestroyEnemy()
         {
-           // soundEngine.PlaySound(Resourcen.collisionsschrei);
-            //var memStream = new MemoryStream(Resourcen.EVAXDaughters);
+        
+           // var memStream = new MemoryStream(Resourcen.EVAXDaughters);
             //soundEngine.PlaySound(memStream);
         }
 
         public void ShootLaserOne()
         {
-              soundEngine.PlaySound(Resource2.Laser_Eins);
+            soundEngine.PlaySound(Resource2.laser_Eins);
+        
+            //var memStream = new MemoryStream(Resource2.laser_Eins);
+             //soundEngine.PlaySound(memStream);
         }
 
       
         public void ReloadTheGun()
         {
-            soundEngine.PlaySound(Resource2.ReloadGun);
+           // soundEngine.PlaySound(Resource2.reloadGun);
+       
         }
 
        
 
         public void doBoost()
         {
-            soundEngine.PlaySound(Resource2.Boost);
+         //   soundEngine.PlaySound(Resource2.boost);
+          
         }
 
         public void doHurt()
         {
-            soundEngine.PlaySound(Resource2.Hurt);
+            soundEngine.PlaySound(Resource2.hurt);
+        
         }
 
         protected override void DisposeResources()

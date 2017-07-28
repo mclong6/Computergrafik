@@ -5,7 +5,7 @@ using System.Drawing;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using DMS.OpenGL;
-using ConsoleApplication1.Main;
+
 
 namespace Computergrafik
 {

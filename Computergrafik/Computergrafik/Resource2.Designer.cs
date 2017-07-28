@@ -593,9 +593,9 @@ namespace Computergrafik {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Boost {
+        internal static System.IO.UnmanagedMemoryStream boost {
             get {
-                return ResourceManager.GetStream("Boost", resourceCulture);
+                return ResourceManager.GetStream("boost", resourceCulture);
             }
         }
         
@@ -622,9 +622,9 @@ namespace Computergrafik {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Hurt {
+        internal static System.IO.UnmanagedMemoryStream hurt {
             get {
-                return ResourceManager.GetStream("Hurt", resourceCulture);
+                return ResourceManager.GetStream("hurt", resourceCulture);
             }
         }
         
@@ -651,18 +651,18 @@ namespace Computergrafik {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Laser_Eins {
+        internal static System.IO.UnmanagedMemoryStream laser_Eins {
             get {
-                return ResourceManager.GetStream("Laser_Eins", resourceCulture);
+                return ResourceManager.GetStream("laser_Eins", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Laser_Zwei {
+        internal static System.IO.UnmanagedMemoryStream laser_Zwei {
             get {
-                return ResourceManager.GetStream("Laser_Zwei", resourceCulture);
+                return ResourceManager.GetStream("laser_Zwei", resourceCulture);
             }
         }
         
@@ -749,9 +749,9 @@ namespace Computergrafik {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream ReloadGun {
+        internal static System.IO.UnmanagedMemoryStream reloadGun {
             get {
-                return ResourceManager.GetStream("ReloadGun", resourceCulture);
+                return ResourceManager.GetStream("reloadGun", resourceCulture);
             }
         }
     }
