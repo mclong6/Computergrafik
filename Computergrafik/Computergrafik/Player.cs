@@ -309,21 +309,22 @@ namespace Computergrafik
                 if (Keyboard.GetState()[Key.V] && this.boost >= 0)
                 {
                     this.boost = boost - minusBoost;
-                    if (this.boost > 0)
+                    logic.Player[playerChosen].speed = speedBoost;
+                    if (logic.Player[playerChosen].boost > 0)
                     {
-                        speed = speedBoost;
+                        logic.Player[playerChosen].speed = speedBoost;
                     }
                     else
                     {
-                        
-                        speed = speedStandard;
+
+                        logic.Player[playerChosen].speed = speedStandard;
                     }
-                    joyStickBoost = 1;
+                 //   joyStickBoost = 1;
 
                 }
-                if (joyStickBoost == 1 & !(Keyboard.GetState()[Key.V] && this.boost >= 0))
+                if (!(Keyboard.GetState()[Key.V] && this.boost >= 0))
                 {
-                    speed = 0.006f;
+                    logic.Player[playerChosen].speed = speedStandard;
                 }        
             }
 
@@ -670,27 +671,30 @@ namespace Computergrafik
 
         private void boostPressed()             // if post is presst speed will rise 
         {
-
-            if (currentControllerState.Triggers.Right >= 0.9f && this.boost >=0)
+            /**Dadurch kann Spieler 2 boost an d Tastatur einssetzen, spieler 2 boost am Controller nicht möglich**/
+            if (playerNr == 0)
             {
-                sound.doBoost();
-                this.boost = boost - minusBoost;
-                if (this.boost > 0)
+                if (currentControllerState.Triggers.Right >= 0.9f && this.boost >= 0)
                 {
-                   
-                    speed = speedBoost;
+                    sound.doBoost();
+                    this.boost = boost - minusBoost;
+                    if (this.boost > 0)
+                    {
+
+                        speed = speedBoost;
+                    }
+                    else
+                    {
+
+                        speed = speedStandard;
+                    }
                 }
-                else {
-                  
+
+                if (currentControllerState.Triggers.Right < 0.90f)
+                {
                     speed = speedStandard;
                 }
             }
-
-            if (currentControllerState.Triggers.Right < 0.90f)
-            {
-                speed = speedStandard;
-            }
-
 
         }
 
@@ -800,14 +804,17 @@ namespace Computergrafik
             {
                 for(int j= 0; j< logic.Player[i].bullets.Count; j++)
                 {
-                    if (logic.Player[i].Bullets[j].Bbullet != null) {
-
-                        if (logic.Player[i].Bullets[j].Bbullet.Intersects(model.Opponent[0]))
+                 
+                        if (logic.Player[i].Bullets[j].Bbullet != null)
                         {
-                            logic.Player[i].Bullets.RemoveAt(j);
-                           
+
+                            if (logic.Player[i].Bullets[j].Bbullet.Intersects(model.Opponent[0]))
+                            {
+                                logic.Player[i].Bullets.RemoveAt(j);
+
+                            }
                         }
-                    }
+                    
                 }
 
                 if(logic.Player[i] != this)
