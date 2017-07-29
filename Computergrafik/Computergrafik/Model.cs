@@ -84,9 +84,9 @@ namespace Computergrafik
                 /*Level 2*/
                 obstacles[0] = new Box2D(-0.4f, -1.0f, 0.3f, 0.3f);
                 obstacles[1] = new Box2D(-0.6f - 0.01f, 0.7f, 1.2f, 0.3f);//
-                obstacles[2] = new Box2D(0.4f, 0.4f, 0.3f, 0.3f);
-                obstacles[3] = new Box2D(-0.5f, 0.3f, 0.3f, 0.3f);
-                obstacles[4] = new Box2D(-1f, -1f, 2.0f, 0.3f);//
+                obstacles[2] = new Box2D(0.4f, 0.4f, 0.3f, 0.3f);//
+                obstacles[3] = new Box2D(-0.5f, 0.3f, 0.3f, 0.4f);
+                obstacles[4] = new Box2D(-1f, -1f, 2.0f, 0.8f);//
             }
             if (level == 2)
             {
