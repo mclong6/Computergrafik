@@ -150,8 +150,10 @@ namespace Computergrafik
             shootPressed(true);
             Colisuion();
             calculatePlayerPosition();
+
+            bulledColission();
             calculateBullets();
-            
+           
             obstacleIntersection();
             beHard(model.PlayerInfoOne, this.pplayer);
             beHard(model.PlayerInfoTwo, this.pplayer);
@@ -164,7 +166,7 @@ namespace Computergrafik
                 beHard(logic.Player[1].pplayer, logic.Player[0].pplayer);
             }
             recycleBullets();
-            bulledColission();
+            
         }
 
 
