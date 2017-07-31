@@ -150,7 +150,8 @@ namespace Computergrafik
             shootPressed(true);
             Colisuion();
             calculatePlayerPosition();
-
+               
+            
             bulledColission();
             calculateBullets();
            
