@@ -676,8 +676,8 @@ namespace Computergrafik
         private void boostPressed()             // if post is presst speed will rise 
         {
             /**Dadurch kann Spieler 2 boost an d Tastatur einssetzen, spieler 2 boost am Controller nicht möglich**/
-            if (playerNr == 0)
-            {
+          //  if (playerNr == 0)
+            //{
                 if (currentControllerState.Triggers.Right >= 0.9f && this.boost >= 0)
                 {
                     sound.doBoost();
@@ -698,7 +698,7 @@ namespace Computergrafik
                 {
                     speed = speedStandard;
                 }
-            }
+          //  }
 
         }
 
