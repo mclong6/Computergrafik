@@ -24,7 +24,8 @@ namespace Computergrafik
         private Logic logic;
         private float speed = 0.006f;
         private Box2D player;
-      
+        private bool collisionDifference = true;
+
 
         private Sound sound;
         private int angle;
@@ -32,7 +33,7 @@ namespace Computergrafik
         private Texture[] texture1 = new Texture[24];
 
         private Texture currentTexture = new Texture();
-       
+
         private int joyStickShoot = 0;
         private int joyStickBoost = 0;
 
@@ -66,19 +67,20 @@ namespace Computergrafik
 
         private float speedStandard = 0.006f;
         private float speedBoost = 0.013f;
-     
 
 
-        public Player(Model model,Logic logic, int playerNr, Sound psound) {
+
+        public Player(Model model, Logic logic, int playerNr, Sound psound)
+        {
 
             sound = psound;
-            this.model          = model;
-            this.PlayerNr       = playerNr;
-            this.pplayer        = model.Player[playerNr];
+            this.model = model;
+            this.PlayerNr = playerNr;
+            this.pplayer = model.Player[playerNr];
             this.life = startLife;
             this.ammo = startAmmo;
             this.boost = startBoost;
-           
+
             Texture[0] = TextureLoader.FromBitmap(Resource2._1b);
             Texture[1] = TextureLoader.FromBitmap(Resource2._2b);
             Texture[2] = TextureLoader.FromBitmap(Resource2._3b);
@@ -129,84 +131,106 @@ namespace Computergrafik
             Texture1[22] = TextureLoader.FromBitmap(Resource2._23);
             Texture1[23] = TextureLoader.FromBitmap(Resource2._24);
 
-            this.direcction     = new Vector2(0f, 0f);
-            this.gunDirection   = new Vector2(0f,0f);
-            this.vector1        = new Vector2(0, 1);
-            this.timer          = new Timer();
+            this.direcction = new Vector2(0f, 0f);
+            this.gunDirection = new Vector2(0f, 0f);
+            this.vector1 = new Vector2(0, 1);
+            this.timer = new Timer();
             this.timer.Interval = bulledInterval;
             this.timer.Elapsed += OnTimedEvent;
-            this.timer.AutoReset= true;
-            this.timer.Enabled  = true;
-            this.logic          = logic;
+            this.timer.AutoReset = true;
+            this.timer.Enabled = true;
+            this.logic = logic;
         }
 
 
         public void updatePosition()        //Updates the position of the player
         {
-            
+
 
             getControllerState();
             boostPressed();
             shootPressed(true);
             Colisuion();
             calculatePlayerPosition();
-               
-            
             bulledColission();
             calculateBullets();
-           
             obstacleIntersection();
             beHard(model.PlayerInfoOne, this.pplayer);
             beHard(model.PlayerInfoTwo, this.pplayer);
+
             if (playerNr == 0)
             {
+                collisionDifference = false;
                 beHard(logic.Player[0].pplayer, logic.Player[1].pplayer);
+
             }
             if (playerNr == 1)
             {
+                collisionDifference = false;
                 beHard(logic.Player[1].pplayer, logic.Player[0].pplayer);
             }
             recycleBullets();
-            
+
         }
 
 
         /*beHard Box in diese kann der driver nicht hinein fahren*/
-     
+
         private void beHard(Box2D beHard, Box2D driver)
         {
+            float speed = 0f;
+
+            if (collisionDifference == false)
+            {
+                speed = speedStandard;
+
+            }
+            else
+            {
+                speed = speedBoost;
+            }
+
+            Console.WriteLine(speed);
+
             float bounce = 0.00f;
-            float intervall = speedBoost + 0.000001f;
+            float intervall = speed + 0.000001f;
             if (beHard.Intersects(driver))
-                       {
-                           /*Linke Seite*/
-            if (driver.X <= beHard.MaxX && driver.X >= beHard.MaxX - intervall)
             {
-                driver.X = beHard.MaxX + bounce;
+                /*Linke Seite*/
+                if (driver.X <= beHard.MaxX && driver.X >= beHard.MaxX - intervall)
+                {
+                    driver.X = beHard.MaxX + bounce;
+                }
+
+
+                /*Obere Seite*/
+                if (driver.Y <= beHard.MaxY && driver.Y >= beHard.MaxY - intervall)
+                {
+                    driver.Y = beHard.MaxY + bounce;
+                }
+
+                /*Rechte Seite*/
+                if (beHard.X <= driver.MaxX && beHard.X + intervall >= driver.MaxX)
+                {
+                    driver.X = beHard.X - driver.SizeX - bounce;
+                }
+
+
+
+                /*Untere Seite*/
+                if (beHard.Y <= driver.MaxY && beHard.Y + intervall >= driver.MaxY)
+                {
+                    driver.Y = beHard.Y - driver.SizeY - bounce;
+                }
+
+
+
             }
 
-            
-            /*Obere Seite*/
-             if (driver.Y <= beHard.MaxY && driver.Y >= beHard.MaxY - intervall)
-             {
-                 driver.Y = beHard.MaxY + bounce;
-             }
-
-            /*Rechte Seite*/
-            if (beHard.X <= driver.MaxX && beHard.X + intervall >= driver.MaxX)
-            {
-                driver.X = beHard.X - driver.SizeX - bounce;
-            }
+            collisionDifference = true;
 
 
-
-            /*Untere Seite*/
-             if (beHard.Y <= driver.MaxY && beHard.Y + intervall >= driver.MaxY)
-             {
-                 driver.Y = beHard.Y - driver.SizeY - bounce;
-             }
-         }
-       }
+        }
 
         /*ObstacleIntersection*/
 
@@ -260,6 +284,7 @@ namespace Computergrafik
             }
 
          
+                // für Steuerung mit Tastatur
                 if (Keyboard.GetState()[Key.M])
                 {
                     playerChosen = 0;
@@ -345,7 +370,7 @@ namespace Computergrafik
             gunDirection.NormalizeFast();
 
             if (direcction.X < 0.2f && direcction.X > -0.2f) direcction.X = 0; // da Joysticks nie genau 0
-            if (direcction.Y < 0.2f && direcction.Y > -0.2f) direcction.Y = 0; // da Joysticks nie genau 
+            if (direcction.Y < 0.2f && direcction.Y > -0.2f) direcction.Y = 0; // da Joysticks nie genau 0
 
             if (gunDirection.X < 0.2f && gunDirection.X > -0.2f) gunDirection.X = 0; // da Joysticks nie genau 0
             if (gunDirection.Y < 0.2f && gunDirection.Y > -0.2f) gunDirection.Y = 0; // da Joysticks nie genau 0
@@ -355,7 +380,7 @@ namespace Computergrafik
 
         private void getGunAngle()
         {
-            AngleBetween(gunDirection);
+            AngleBetween(gunDirection);  // berechnet den Winkel der Gun
 
             if (PlayerNr == 0)
             {
@@ -490,7 +515,7 @@ namespace Computergrafik
                 {
                     CurrentTexture = Texture1[5];
                 }
-                if (Angle < 105 && Angle >= 90)
+                else if (Angle < 105 && Angle >= 90)
                 {
                     CurrentTexture = Texture1[6];
                 }
