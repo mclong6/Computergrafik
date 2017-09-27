@@ -190,8 +190,6 @@ namespace Computergrafik
                 speed = speedBoost;
             }
 
-            Console.WriteLine(speed);
-
             float bounce = 0.00f;
             float intervall = speed + 0.000001f;
             if (beHard.Intersects(driver))
